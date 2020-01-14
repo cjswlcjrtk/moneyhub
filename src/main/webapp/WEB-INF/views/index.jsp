@@ -41,6 +41,17 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
 	
+	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/membersChart.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/profitChart.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndexHome_vue.js"></script>
+	
+	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange_test.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 
