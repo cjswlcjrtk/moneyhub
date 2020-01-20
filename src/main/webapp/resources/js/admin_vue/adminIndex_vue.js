@@ -454,7 +454,7 @@ adminIndex_vue ={
 		'                <!-- Card Body -->'+
 		'                <div class="card-body">'+
 		'                  <div class="chart-pie pt-4 pb-2">'+
-		'                    <canvas id="myPieChart"></canvas>'+
+		'                    <canvas id="memberPieChart"></canvas>'+
 		'                  </div>'+
 		'                  <div class="mt-4 text-center small">'+
 		'                    <span class="mr-2">'+
@@ -630,7 +630,7 @@ adminIndex_vue ={
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
 		'  <script src="/web/resources/js/demo/chart-area-demo.js"></script>'+
-		'  <script src="/web/resources/js/demo/chart-pie-demo.js"></script>'+
+		'  <script src="/web/resources/js/demo/chart-pie-member.js"></script>'+
 		'</body>'
 	}
 

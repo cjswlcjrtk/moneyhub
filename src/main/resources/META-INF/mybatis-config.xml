@@ -9,6 +9,7 @@
 		<typeAlias alias="FAQ"  type="com.moneyhub.web.faq.FAQ"/>
 		<typeAlias alias="PageProxy"  type="com.moneyhub.web.pxy.PageProxy"/>
 		<typeAlias alias="Exrate"  type="com.moneyhub.web.exr.Exrate"/>
+		<typeAlias alias="AdminChart"  type="com.moneyhub.web.admin.AdminMapper"/>
 
 <!-- 		<typeAlias alias="Box"  type="com.moneyhub.web.pxy.Box"/> -->
     </typeAliases>
