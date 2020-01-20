@@ -30,6 +30,7 @@ adminLogin =(()=>{
 		alert('aaaa')
 		$(login_vue.login()).appendTo('head')
 		$('body').html(login_vue.login())	
+		alert('bbb')
 	}	
 	
 	
