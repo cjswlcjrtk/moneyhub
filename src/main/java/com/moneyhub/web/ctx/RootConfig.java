@@ -6,6 +6,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -21,7 +23,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
-		HikariConfig hikariConfig = new HikariConfig();
+		
 		// hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");
 		// hikariConfig.setJdbcUrl("jdbc:mariadb://172.168.0.199/moneyhub?serverTimezone=UTC");
 		// //내꺼
@@ -29,12 +31,24 @@ public class RootConfig {
 		// //은지씨
 //		hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver");							//학원 db
 //		hikariConfig.setJdbcUrl("jdbc:mariadb://localhost:3306/moneyhub?serverTimezone=UTC"); //학원 db
-		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver"); // 은지집
+
+/*		HikariConfig hikariConfig = new HikariConfig();
+ 		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver"); // 은지집
 		hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC"); // 은지집
 		hikariConfig.setUsername("moneyhub");
 		hikariConfig.setPassword("moneyhub");
-		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
+		HikariDataSource dataSource = new HikariDataSource(hikariConfig);*/
+		
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC"); // 은지집
+		dataSource.setUsername("moneyhub");
+		dataSource.setPassword("moneyhub");
 		return dataSource;
 	}
-
+	
+	@Bean
+	public DataSourceTransactionManager txManager() {
+		return new DataSourceTransactionManager(dataSource());
+	}
 }

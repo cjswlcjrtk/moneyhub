@@ -6,16 +6,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Lazy
-@Component("kakaoPxy")
-public class KakaoFAQProxy extends Proxy{
+@Component("faqPxy")
+public class FAQStoreProxy extends Proxy{
 
-	public void kakaoFAQStore() {
-				
-		
-//		System.out.println( title_stores().length + title_list.toString());
-//		System.out.println( content_stores().length + title_content.toString());
-	}
-	
 	public String[] title_stores() {
 		String[] titles = {"해외송금 할 때 거주 정보를 어떻게 선택해야 하나요?",
 				"인도에서 WU빠른해외송금을 수취 할 때 주의해야할 점이 있나요?",

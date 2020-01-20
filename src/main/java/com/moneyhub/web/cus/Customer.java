@@ -26,6 +26,9 @@ public class Customer {
 				/*	crtmem,
 					crtdate,
 					upmem,*/
-					udate;		// 수정일
+					udate,
+					salt,
+					zip,
+					addr;		// 수정일
 
 }

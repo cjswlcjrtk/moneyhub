@@ -2,9 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+    
 <mapper namespace="com.moneyhub.web.cus.CustomerMapper">
-
 <!-- 	<select id="getUser" resultMap="usermap">
 		select * from users
 	</select>
@@ -17,7 +16,7 @@
 	 <select id="login" resultType="Customer">
 		SELECT *
 		FROM CUSTOMER
-		WHERE CEMAIL like #{cemail} AND CPWD LIKE #{cpwd}
+		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
 
 	</select>
 	
@@ -52,9 +51,40 @@
 		where cemail like #{param1} and custKey like #{param2}
 	</insert> -->
 	
-	<delete id="withdrawal">
-		DELETE CUSTOMER
-		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
+	<delete id="withdrawal" parameterType="Customer">
+		DELETE
+		FROM CUSTOMER
+		WHERE CEMAIL LIKE #{cemail}
 	</delete>
+
+	
+	<!-- <select id="pwdCheck" resultType="integer">
+		SELECT COUNT(*)
+		FROM CUSTOMER
+		WHERE CPWD LIKE #{cpwd}
+	</select> -->
+	
+	<select id="cus_info" resultType="Customer">
+		SELECT CEMAIL, CNAME, CNTCD, ZIP, ADDR, CPHONE
+		FROM CUSTOMER
+		WEHRE CEMAIL LIKE #{cemail}
+	</select>
+	
+	<update id="cus_info_chg" parameterType="Customer">
+		UPDATE CUSTOMER
+		SET CNAME LIKE #{cname},
+		ZIP LIKE #{zip},
+		ADDR LIKE #{addr},
+		CNTCD LIKE #{cntcd},
+		CPHONE LIKE #{cphone}
+		WHERE CEMAIL LIKE #{cemail}
+	</update>
+	
+	<update id="pwdChg" parameterType="Customer">
+		UPDATE CUSTOMER
+		SET CPWD = #{cpwd}
+		WHERE CEMAIL = #{cemail}
+		AND CNO = #{cno}
+	</update>
 	
 </mapper>

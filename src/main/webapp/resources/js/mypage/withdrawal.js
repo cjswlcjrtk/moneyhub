@@ -23,13 +23,13 @@ withdrawal =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.withdrawal())
-		$('#cfm_cpwd').blur(function(){
-			if($('#cpwd').val() != $('#cfm_cpwd').val()){
-				$('#pwd2_check').text('비밀번호가 일치하지 않습니다.')
-				$('#pwd2_check').css('color','red')
+		$('#withdrawal_pwd').blur(function(){
+			if($('#cpwd').val() != $('#withdrawal_pwd').val()){
+				$('#withdrawal_pwd2').text('비밀번호가 일치하지 않습니다.')
+				$('#withdrawal_pwd2').css('color','red')
 			}else{
-				$('#pwd2_check').text('비밀번호가 일치합니다.')
-				$('#pwd2_check').css('color','blue')
+				$('#withdrawal_pwd2').text('비밀번호가 일치합니다.')
+				$('#withdrawal_pwd2').css('color','blue')
 			}
 		})
 		$('<button/>')
@@ -38,28 +38,32 @@ withdrawal =(()=>{
 		.appendTo('.themoin-mypage .content form')
 		.click(e=>{
 			e.preventDefault()
-			app.onCreate()
-			/*$.ajax({
-				url : _ + '/customers/withdrawal',
-				type : 'DELETE',
-				data : JSON.stringify({
-					cpwd : $('#cpwd').val()
-				}),
-				dataType : 'json',
-				contentType : 'application/json',
-				success : d=>{
-					if(d.msg === 'SUCCESS'){
-						app.onCreate()
+			if(confirm('회원탈퇴 하시겠습니까?')){
+				$.ajax({
+					url : _ + '/customers/withdrawal',
+					type : 'DELETE',
+					data : JSON.stringify({
+						cemail : $('#cemail').val(),
+						cpwd : $('#cpwd').val()
+					}),
+					dataType : 'json',
+					contentType : 'application/json',
+					success : d=>{
+						if(d.msg === 'true'){
+							alert('회원탈퇴 되었습니다.')
+							app.onCreate()
+						}else{
+							alert('이메일 및 비밀번호를 확인해주세요.')
+							$('#withdrawal_pwd').text('이메일 및 비밀번호를 확인해주세요.')
+							$('#withdrawal_pwd').css('color', 'red')
+						}
+					},
+					error : e=>{
+						alert('withdrawal ajax 실패')  
 					}
-					else{
-						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
-						$('#login_pwd').css('color', 'red')
-					}
-				},
-				error : e=>{
-					alert('login ajax 실패')
-				}
-			})*/
+				})
+			}		
+			
 		})
 	}
 	

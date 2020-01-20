@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,21 +56,21 @@ public class FAQSevice {
 	}
 	
 	public Map<?, ?> selectAll(){
-		
+		pager.setRowCount(countFAQ());
 		pager.paging();
+		
 		pxy.print(pager.toString());
 		
 		Function<PageProxy, ArrayList<FAQ>> f = t -> faqMapper.selectAll(t);	
-//		ArrayList<FAQ> list = f.apply(pager);
-		
-//		pxy.print(list.toString());
-		
 		box.put("pager", pager);
 		box.put("faq", f.apply(pager));
+		
+		pxy.print(box.get("faq").toString());
+		
 		return box.get();
 	}
-	public String countFAQ() {
-		
-		return null;
+	public int countFAQ() {
+		Function<PageProxy, String> s = p -> faqMapper.countFAQ(p);
+		return pxy.integer(s.apply(pager));
 	}
 }

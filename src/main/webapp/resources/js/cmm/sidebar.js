@@ -29,45 +29,123 @@ sidebar = (()=>{
 	
 	let mypage_move =()=>{
 		$('#cus_info')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			cus_info.onCreate()
+			
 		})
 		
 		$('#pwd_chg')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			pwd_chg.onCreate()
+			
 		})
 		
 		$('#auth_mgmt')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			auth_mgmt.onCreate()
+			
 		})
 		
 		$('#alarm')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$('#alarm').removeClass('active')
+			$('themoin-mypage-profile').removeClass('active')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			alarm.onCreate()
+			
 		})
 		
 		$('#ref_mgmt')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$('#ref_mgmt').removeClass('active')
+			$('themoin-mypage-profile').removeClass('active')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			ref_mgmt.onCreate()
+			
 		})
 		
 		$('#withdrawal')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$('#withdrawal').removeClass('active')
+			$('themoin-mypage-profile').removeClass('active')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
 			withdrawal.onCreate()
+			
 		})
 		
 		$('#exchange_test')
-		.click(e=>{
-			e.preventdefault
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$('#exchange_test').removeClass('active')
+			$('themoin-mypage-profile').removeClass('active')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			
 			exchange_test.onCreate()
+			
 		})
 	}
 	return { onCreate }

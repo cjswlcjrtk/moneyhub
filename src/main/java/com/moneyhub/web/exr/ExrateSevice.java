@@ -13,30 +13,16 @@ import org.springframework.stereotype.Service;
 public class ExrateSevice {
 	@Autowired Exrate exrate;
 	@Autowired ExrateMapper exrateMapper;
-	public void insertExrate(Map<String, String> paramMap) {
-		
-//		for(String key : HashMap변수명.keySet() )
-/*		for (String key : paramMap.keySet()) {
-	        System.out.println("result: " + key + "^" + paramMap.get(key));
-	           
-		}*/
+	public void insertExrate(Exrate[] paramList) {
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
-
-		ArrayList<Exrate> list = null;
-		for(int i = 0; i<9; i++) {
-			list = new ArrayList<>();
-			exrate.setBdate(paramMap.get("list["+i+"][bdate]"));
-			exrate.setCntcd(paramMap.get("list["+i+"][cntcd]"));
-			exrate.setExrate(Float.parseFloat(paramMap.get("list["+i+"][exrate]")));
-			exrate.setCrtmem("kmk");
+		for(int i = 0; i<paramList.length; i++) {
+			exrate = paramList[i];
+			exrate.setCrtmem("KMK");
 			c.accept(exrate);
 		}
-		
-	//	paramMap.forEach((k, v) -> System.out.println(String.format("%s - %s\n ", k, v)));	
 	}
-	
-	public ArrayList<Exrate> searchExrate(String s){
-		
+
+	public ArrayList<Exrate> searchExrate(String s){	
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
 		return f.apply(s);
 	}

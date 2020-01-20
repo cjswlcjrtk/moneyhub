@@ -24,7 +24,7 @@ main_vue ={
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'		<div class="moin-amount">'+
-		'			<div class="money-graph">'+
+		/*'			<div class="money-graph">'+
 		'				<h3 class="index-money-title">실제로 받는 금액</h3>'+
 		'				<div class="index-money-rank">'+
 		'					<div id="rank-moin" class="index-money-moin">'+
@@ -84,23 +84,23 @@ main_vue ={
 		'						<div class="index-money-unit">EUR</div>'+
 		'					</div>'+
 		'				</div>'+
-		'			</div>'+
+		'			</div>'+*/
 
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>내가 보내는 금액 (수수료 포함)</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" value="5,500,000">'+
+		'						<p>송금 금액</p>'+
+		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
 		'					</div>'+
-		'					<div class="unit-select disabled" tabindex="0">'+
-		'						<p>대한민국</p>'+
-		'						<h3>KRW</h3>'+
+		'					<div class="unit-select disabled" tabindex="0" >'+
+		'						<p>미 화</p>'+
+		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>실제로 받는 금액 (직접입력 가능)</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" value="4,196.92">'+
+		'						<p>예상 비용 (직접입력 가능)</p>'+
+		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>아일랜드</p>'+
@@ -293,17 +293,18 @@ main_vue ={
 		'  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div>'+
 		'  	          <div id="cntcd_exrate" class="currency"></div>'+
 		'  	  </div>                  '+
-		'  	  <div id="chart">                        '+
-		' 	           <canvas id="canvas" width="900" height="160"></canvas>'+
+		'  	  <div id="chart" style="width:100%;">                        '+
+		' 	           <canvas id="canvas" style="width:70%; height:120px"></canvas>'+
 		' 	   </div>'+
 		'	</div>'+
 		'	<div class="themoin-remit-component">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
+		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'		<div class="moin-amount">'+
-		'			<div class="money-graph">'+
-		'				<h3 class="index-money-title">실제로 받는 금액</h3>'+
+		/*'			<div class="money-graph">'+
+		'				<h3 class="index-money-title">예상 비용</h3>'+
 		'				<div class="index-money-rank">'+
 		'					<div id="rank-moin" class="index-money-moin">'+
 		'						<div class="index-money-name">모&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인</div>'+
@@ -362,22 +363,22 @@ main_vue ={
 		'						<div class="index-money-unit">EUR</div>'+
 		'					</div>'+
 		'				</div>'+
-		'			</div>'+
+		'			</div>'+*/
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>내가 보내는 금액 (수수료 포함)</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" value="5,500,000">'+
+		'						<p>송금 금액</p>'+
+		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0">'+
-		'						<p>대한민국</p>'+
-		'						<h3>KRW</h3>'+
+		'						<p>미 화</p>'+
+		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>실제로 받는 금액 (직접입력 가능)</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" value="4,256.29">'+
+		'						<p>예상 비용 (직접입력 가능)</p>'+
+		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>아일랜드</p>'+

@@ -9,16 +9,16 @@ remit_vue = {
 						<div class="form-calculator"> 
 							<div class="amount-row"> 
 								<div class=""> 
-									<p>내가 보내는 금액 (수수료 포함)</p> 
-									<input class="send-amount" type="text" tabindex="0" value="5,500,000"> 
+									<p>송금 금액</p> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0"> 
-									<p>대한민국</p><h3>KRW</h3> 
+									<p>미화</p><h3>USD</h3> 
 								</div> 
 							</div> 
 							<div class="description"> 
 								<i class="empty"></i> 
-								<p><span>-82,500</span> KRW (수수료)</p> 
+								<p><span>-82,500</span> USD (수수료)</p> 
 								<div class="spacer"></div> 
 								<a tabindex="0">쿠폰 등록</a> 
 							</div> 

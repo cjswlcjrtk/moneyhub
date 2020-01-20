@@ -32,7 +32,7 @@ public enum SQL {
 		case TRUNCATE_FAQ :
 			result = "TRUNCATE TABLE FAQ";
 			break;
-			
+					
 		case CREATE_CUSTOMER :
 			result = "CREATE TABLE CUSTOMER\r\n" + 
 					"( \r\n" + 
@@ -77,6 +77,7 @@ public enum SQL {
 		case TRUNCATE_EXRATE :
 			result = "TRUNCATE TABLE EXRATE";
 			break;
+			
 		}
 		
 		return result;

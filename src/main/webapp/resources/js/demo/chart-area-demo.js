@@ -80,4 +80,5 @@ var myLineChart = new Chart(ctx, {
 
 $.getJSON('/web/admin/areaCharts',d=>{
 	alert('aaaaa')
+
 })

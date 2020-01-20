@@ -130,7 +130,7 @@ nav_vue = {
 		'	</div>'+
 		'</nav>'
 	},
-	sidebar_admin : ()=>{
+	/*sidebar_admin : ()=>{
 		return '<div class="themoin-mypage">'+
 		'	<div class="tab-container">'+
 		'		<div class="tab">'+
@@ -148,18 +148,18 @@ nav_vue = {
 		'		</div>'+
 		'	</div>'+
 		'</div>'
-	},
+	},*/
 	sidebar_cus : ()=>{
 		return '<div class="themoin-mypage">'+
 		'<div class="tab-container">'+
 		'	<div class="tab">'+
-		'		<a id="cus_info" class="active" style="margin-right: 50px">회원 정보</a>'+
-		'		<a id="pwd_chg" class="" style="margin-right: 50px">비밀번호 변경</a>'+
-		'		<a id="auth_mgmt" class="" style="margin-right: 50px">인증관리</a>'+
-		'		<a id="alarm" class="" style="margin-right: 50px">알림설정</a>'+
-		'		<a id="ref_mgmt" class="" style="margin-right: 50px">추천인 관리</a>'+
-		'		<a id="exchange_test" class="" style="margin-right: 50px">환전 모의</a>'+
-		'		<a id="withdrawal" class="" style="margin-right: 50px">회원 탈퇴</a>'+
+		'		<a id="cus_info" class="active" data-tab="tab-1" style="margin-right: 50px">회원 정보</a>'+
+		'		<a id="pwd_chg" class="active_a" data-tab="tab-2" style="margin-right: 50px">비밀번호 변경</a>'+
+		'		<a id="auth_mgmt" class="active_a" data-tab="tab-3" style="margin-right: 50px">인증관리</a>'+
+		'		<a id="alarm" class="active_a" data-tab="tab-4" style="margin-right: 50px">알림설정</a>'+
+		'		<a id="ref_mgmt" class="active_a" data-tab="tab-5" style="margin-right: 50px">추천인 관리</a>'+
+		'		<a id="exchange_test" class="active_a" data-tab="tab-6" style="margin-right: 50px">환전 모의</a>'+
+		'		<a id="withdrawal" class="active_a" data-tab="tab-7" style="margin-right: 50px">회원 탈퇴</a>'+
 		'		<div class="spacer"></div>'+
 		'		<img src="https://img.themoin.com/public/img/img-man-s.svg">'+
 		'		<p>rogbest@naver.com</p>'+

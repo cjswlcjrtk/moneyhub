@@ -19,12 +19,11 @@ public class PageProxy extends Proxy {
 				blockCount, nowBlock, blockSize, prevBlock, nextBlock;
 	private boolean existPrev, existNext;
 
+	private String keyword;
+	
 	@Autowired FAQMapper faqMapper;
 	
 	public void paging() {
-		Supplier<String> s = () -> faqMapper.countFAQ();
-		rowCount = integer(s.get());
-
 		pageCount = ( rowCount % pageSize != 0 ) 
 				? rowCount / pageSize + 1 
 				: rowCount / pageSize;

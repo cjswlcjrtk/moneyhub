@@ -1,0 +1,10 @@
+package com.moneyhub.web.remit.serviceimpls;
+
+import org.springframework.stereotype.Service;
+
+import com.moneyhub.web.remit.services.TRDService;
+
+@Service
+public class TRDServiceImpl implements TRDService{
+
+}

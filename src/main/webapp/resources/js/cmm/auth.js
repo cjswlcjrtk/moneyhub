@@ -44,6 +44,10 @@ auth =(()=>{
 		
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
+		
+		$('#cemail').val('1')
+		$('#cpwd').val('1')
+					
 		join_2_page_btn()
 	}
 	
@@ -74,6 +78,10 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
+						alert(d.cus.cname+'님 환영합니다.')
+						setCookie("CEMAIL", d.cus.cemail)
+						setCookie("CPWD", d.cus.cpwd)
+						setCookie("CNO", d.cus.cno)
 						mypage.onCreate()
 					}
 					else{
@@ -82,7 +90,7 @@ auth =(()=>{
 					}					
 				},
 				error : e=>{
-					alert('login ajax 실패')
+					alert('login ajax 실패')  
 				}
 			})
 		})
@@ -171,6 +179,8 @@ auth =(()=>{
 	let join =()=>{
 		existId()
 		// <button class="btn-submit" type="submit">가입완료</button>
+		
+		
 		$('#cpwd').blur(function(){
 			if(pwJ.test($('#cpwd').val())){
 				$('#pwd_check').text('사용가능한 비밀번호입니다.')
@@ -213,8 +223,7 @@ auth =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			let cntcd = $('#phone1').text().substr(1, $('#phone1').text().indexOf(' '))
-			alert(cntcd)
-			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0 ){
+			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
 				$.ajax({
 					url : _+'/customers/',
 					type : 'POST',

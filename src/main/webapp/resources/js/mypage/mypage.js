@@ -29,8 +29,8 @@ mypage =(()=>{
 			$.getScript(mypage_vue_js),
 			$.getScript(compo_js),
 			$.getScript(event_js),
-			$.getScript(faq_js),
-			$.getScript(line_graph_js)
+			$.getScript(faq_js)
+//			$.getScript(line_graph_js)
 	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
@@ -49,6 +49,8 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
+		
+		$.getScript(line_graph_js)
 		
 		$('<button/>')
 		.text('송금하기')
@@ -119,9 +121,9 @@ mypage =(()=>{
 			})
 			
 			$.ajax({
-				url : _ + `/exrate/insert`,
-				type : 'GET',
-				data : { 'list' : arr },
+				url : _ + `/exrate/insert/api`,
+				type : 'POST',
+				data : JSON.stringify({ 'paramList' : arr }),
 				dataType : 'json',
 				contentType : 'application/json',
 				success : d=>{

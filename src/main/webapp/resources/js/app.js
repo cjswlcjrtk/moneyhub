@@ -4,7 +4,7 @@ app =(()=>{
 	const WHEN_ERR = '0 - js파일을 찾지 못했습니다.'
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js
+		tables_mgmt_js,remit_popup_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -27,6 +27,7 @@ app =(()=>{
 		faq_js = js + '/cmm/faq.js'
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js'
+		remit_popup_js = js + '/remit/remit_popup.js'
 	}
 	
 	let onCreate =()=>{
@@ -39,7 +40,8 @@ app =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(tables_mgmt_js)
+			$.getScript(tables_mgmt_js),
+			$.getScript(remit_popup_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -52,12 +54,18 @@ app =(()=>{
 	
 	let setContentView =()=>{
 		$('head')
-		.html(cmm_vue.head())
+		.append(cmm_vue.head())
 
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
+		
+		$('.unit-select receive')
+		.click(()=>{
+			$('#root')
+			.append(remit_popup.nation())
+		})
 		
 		$('<button/>')
 		.text('송금하기')
@@ -80,14 +88,17 @@ app =(()=>{
 		})
 		
 		$('#tables_mgmt_a')
+
 		.click(()=>{
 			tables_mgmt.onCreate()
 		})
+
 		$('#admin_login')
 		.click(()=>{
 			adminIndex.onCreate('admin_login')
+
 		})
-		
+
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)

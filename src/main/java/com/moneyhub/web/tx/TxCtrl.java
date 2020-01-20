@@ -28,10 +28,18 @@ public class TxCtrl {
 		return box.get();
 	}
 	
-	@GetMapping("/insert/kakaofaq")
+	@GetMapping("/insert/faqlist")
 	public Map<?, ?> faqInsert(){
-		System.out.println("FAQ insert 진입");
-		txService.insertStore();
+		System.out.println("Tx FAQ insert 진입");
+		txService.insertFAQStore();
+		box.put("result", "SUCCESS");
+		return box.get();
+	}
+	
+	@GetMapping("/insert/exratelist")
+	public Map<?, ?> exrateInsert(){
+		System.out.println("Tx EXRATE insert 진입");
+		txService.insertExrateStore();
 		box.put("result", "SUCCESS");
 		return box.get();
 	}

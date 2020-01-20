@@ -1,90 +1,151 @@
-
-$(function() {
-	let lineChart = null;
-	let ctx = document.getElementById("canvas").getContext("2d");
-
-	let lineChartData = {
-		labels : [],	// 일자////
-		datasets : [		
-			{
-				label: "Exchange Rate dataset",
-				fillColor : "rgba(151,187,205,0.2)",
-				strokeColor : "rgba(151,187,205,1)",
-				pointColor : "rgba(151,187,205,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(151,187,205,1)",
-				data : []	// 환율
-			}
-		]
-	}
-/*	function clock_excute(){
-//		let clockTarger = document.getElementById("clock")
-		let date = new Date();
-		let year = date.getFullYear()
-		let month = date.getMonth()
-		let clockDate = date.getDate()
-		let day = date.getDay()
-		let hours = date.getHours()
-		let minutes = date.getMinutes()
-		let seconds = date.getSeconds()
-		$('#clock').text(`실시간 모인 환율 - ${year}년 ${month+1}월 ${clockDate}일` +
-				` ${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }` : minutes }:${seconds < 10 ? `0${seconds }` : seconds }`)
-	}
-
-	setInterval(clock_excute, 1000)*/
-//	if($('#clock').text() == )
-/*	if(  new Date().getMinutes() == 55 ){
-		alert(new Date().getMinutes())
-	}*/
-	chart_update()
-	
-	function chart_update(){
-//		alert('chart_update')
-		let cntcd = 'USD'
-			$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
-				$.each(d.exlist.reverse(), (i, j)=>{
-//					lineChartData.datasets[0].data[i] = j.exrate 
-					lineChartData.labels.push(j.bdate.substr(-2))
-					lineChartData.datasets[0].data.push(parseFloat(j.exrate))
-				})
+//		window.onload = function() {//
+$(document).ready(function(){
+	let config = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				borderColor: '#2DCCD6',
+				lineTension : 0,
+				data: [],
+				fill: false,
 				
-				$('#cntcd_exrate')
-				.text(`1 ${cntcd} = ${lineChartData.datasets[0].data[9]} KRW`)
+			}]
+		},
+		options: {
+			
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
 				
-				lineChart = new Chart(ctx).Line(lineChartData, {
-					///Boolean - Whether grid lines are shown across the chart
-					scaleShowGridLines : false,
-					//String - Colour of the grid lines
-					scaleGridLineColor : "rgba(0,0,0,0.05)",
-					//Number - Width of the grid lines
-					scaleGridLineWidth : 1,
-					//Boolean - Whether the line is curved between points
-					bezierCurve : false,
-					//Number - Tension of the bezier curve between points
-					bezierCurveTension : 0.4,
-					//Boolean - Whether to show a dot for each point
-					pointDot : true,
-					//Number - Radius of each point dot in pixels
-					pointDotRadius : 5,
-					//Number - Pixel width of point dot stroke
-					pointDotStrokeWidth : 1,
-					//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-					pointHitDetectionRadius : 20,
-					//Boolean - Whether to show a stroke for datasets
-					datasetStroke : true,
-					//Number - Pixel width of dataset stroke
-					datasetStrokeWidth : 2,
-					//Boolean - Whether to fill the dataset with a colour
-					datasetFill : false,
-					onAnimationProgress: function() {
-						console.log("onAnimationProgress");
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#2DCCD6',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
 					},
-					onAnimationComplete: function() {
-						console.log("onAnimationComplete");
+					label : function(tooltipItem, data){
+						return config.data.datasets[0].data[tooltipItem['index']]
 					}
-				})
-			})
-	}
+				},
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
+			}
+		}
+	};
 	
+	let ctx = document.getElementById('canvas').getContext('2d');
+	
+	let cntcd = 'EUR'
+	$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
+		$.each(d.exlist.reverse(), (i, j)=>{
+//				lineChartData.datasets[0].data[i] = j.exrate 
+			config.data.labels.push(j.bdate.substr(-2))
+			config.data.datasets[0].data.push(parseFloat(j.exrate))
+		})
+		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[9]} KRW`
+//		$('#cntcd_exrate')
+//		.text(`1 ${cntcd} = ${config.data.datasets[0].data[9]} KRW`)
+
+		window.myLine = new Chart(ctx, config);
+	})
 })
+		
+			
+		
+
+/*		document.getElementById('randomizeData').addEventListener('click', function() {
+			config.data.datasets.forEach(function(dataset) {
+				dataset.data = dataset.data.map(function() {
+					return randomScalingFactor();
+				});
+
+			});
+
+			window.myLine.update();
+		});
+
+		var colorNames = Object.keys(window.chartColors);
+		document.getElementById('addDataset').addEventListener('click', function() {
+			var colorName = colorNames[config.data.datasets.length % colorNames.length];
+			var newColor = window.chartColors[colorName];
+			var newDataset = {
+				label: 'Dataset ' + config.data.datasets.length,
+				backgroundColor: newColor,
+				borderColor: newColor,
+				data: [],
+				fill: false
+			};
+
+			for (var index = 0; index < config.data.labels.length; ++index) {
+				newDataset.data.push(randomScalingFactor());
+			}
+
+			config.data.datasets.push(newDataset);
+			window.myLine.update();
+		});
+
+		document.getElementById('addData').addEventListener('click', function() {
+			if (config.data.datasets.length > 0) {
+				var month = MONTHS[config.data.labels.length % MONTHS.length];
+				config.data.labels.push(month);
+
+				config.data.datasets.forEach(function(dataset) {
+					dataset.data.push(randomScalingFactor());
+				});
+
+				window.myLine.update();
+			}
+		});
+
+		document.getElementById('removeDataset').addEventListener('click', function() {
+			config.data.datasets.splice(0, 1);
+			window.myLine.update();
+		});
+
+		document.getElementById('removeData').addEventListener('click', function() {
+			config.data.labels.splice(-1, 1); // remove the label first
+
+			config.data.datasets.forEach(function(dataset) {
+				dataset.data.pop();
+			});
+
+			window.myLine.update();
+		});*/
