@@ -28,7 +28,7 @@ adminLogin =(()=>{
 	
 	let setContentView =()=>{
 		alert('aaaa')
-		$(login_vue.login()).appendTo('head')
+		$(adminLogin_vue.login_body()).appendTo('head')
 		$('body').html(login_vue.login())	
 		alert('bbb')
 	}	
