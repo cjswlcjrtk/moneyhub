@@ -78,21 +78,6 @@ var myLineChart = new Chart(ctx, {
   }
 });
 
-//
-//$.ajax({
-//	url : '/web/admin/areaCharts',
-//	type : 'POST',
-//	data :JSON.stringify({}),
-//	dataType : 'json',
-//	contentType : 'application/json',
-//	success : d=>{
-//		alert('성공')
-//	},
-//	error : e=>{
-//		alert('chart ajax 실패')
-//	}
-//})
-
 $.getJSON('/web/admin/areaCharts',d=>{
 	alert('aaaaa')
 })
