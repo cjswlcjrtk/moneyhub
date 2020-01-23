@@ -67,75 +67,8 @@ adminIndex_vue ={
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="qna" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-folder"></i>'+		
-		'          <span>QnA</span>'+
+		'          <span>테이블 생성</span>'+
 		'        </a>'+		
-//		'        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">'+
-//		'          <div class="bg-white py-2 collapse-inner rounded">'+
-//		'            <h6 class="collapse-header">Custom Components:</h6>'+
-//		'            <a class="collapse-item" href="buttons.html">Buttons</a></br>'+
-//		'            <a class="collapse-item" href="cards.html">Cards</a>'+
-//		'          </div>'+
-//		'        </div>'+
-//		'      </li>'+
-//		'     <!-- Nav Item - Utilities Collapse Menu -->'+
-//		'      <li class="nav-item">'+
-//		'        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">'+
-//		'          <i class="fas fa-fw fa-wrench"></i>'+
-//		'          <span>Utilities</span>'+
-//		'        </a>'+
-//		'        <a class="nav-link collapsed" id="buttons" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
-//		'          <span>Buttons</span>'+
-//		'        </a>'+
-//		'        <a class="nav-link collapsed" href="#" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
-//		'          <span>Cards</span>'+
-//		'        </a>'+
-//		'        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">'+
-//		'          <div class="bg-white py-2 collapse-inner rounded">'+
-//		'            <h6 class="collapse-header">Custom Utilities:</h6>'+
-//		'            <a class="collapse-item" href="utilities-color.html">Colors</a>'+
-//		'            <a class="collapse-item" href="utilities-border.html">Borders</a>'+
-//		'            <a class="collapse-item" href="utilities-animation.html">Animations</a>'+
-//		'            <a class="collapse-item" href="utilities-other.html">Other</a>'+
-//		'          </div>'+
-//		'        </div>'+
-//		'      </li>'+
-//		'     <!-- Divider -->'+
-//		'      <hr class="sidebar-divider">'+
-//		'     <!-- Heading -->'+
-//		'      <div class="sidebar-heading">'+
-//		'        Addons'+
-//		'      </div>'+
-//		'     <!-- Nav Item - Pages Collapse Menu -->'+
-//		'      <li class="nav-item">'+
-//		'        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">'+
-//		'          <i class="fas fa-fw fa-folder"></i>'+
-//		'          <span>Pages</span>'+
-//		'        </a>'+
-//		'        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">'+
-//		'          <div class="bg-white py-2 collapse-inner rounded">'+
-//		'            <h6 class="collapse-header">Login Screens:</h6>'+
-//		'            <a class="collapse-item" href="login.html">Login</a>'+
-//		'            <a class="collapse-item" href="register.html">Register</a>'+
-//		'            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>'+
-//		'            <div class="collapse-divider"></div>'+
-//		'            <h6 class="collapse-header">Other Pages:</h6>'+
-//		'            <a class="collapse-item" href="404.html">404 Page</a>'+
-//		'            <a class="collapse-item" href="blank.html">Blank Page</a>'+
-//		'          </div>'+
-//		'        </div>'+
-//		'      </li>'+
-//		'     <!-- Nav Item - Charts -->'+
-//		'      <li class="nav-item">'+
-//		'        <a class="nav-link" href="charts.html">'+
-//		'          <i class="fas fa-fw fa-chart-area"></i>'+
-//		'          <span>Charts</span></a>'+
-//		'      </li>'+
-//		'     <!-- Nav Item - Tables -->'+
-//		'      <li class="nav-item">'+
-//		'        <a class="nav-link" href="tables.html">'+
-//		'          <i class="fas fa-fw fa-table"></i>'+
-//		'          <span>Tables</span></a>'+
-//		'      </li>'+
 		'     <!-- Divider -->'+
 		'      <hr class="sidebar-divider d-none d-md-block">'+
 		'     <!-- Sidebar Toggler (Sidebar) -->'+
@@ -153,18 +86,7 @@ adminIndex_vue ={
 		'         <!-- Sidebar Toggle (Topbar) -->'+
 		'          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">'+
 		'            <i class="fa fa-bars"></i>'+
-		'          </button>'+
-		'         <!-- Topbar Search -->'+
-		'          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">'+
-		'            <div class="input-group">'+
-		'              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">'+
-		'              <div class="input-group-append">'+
-		'                <button class="btn btn-primary" type="button">'+
-		'                  <i class="fas fa-search fa-sm"></i>'+
-		'                </button>'+
-		'              </div>'+
-		'            </div>'+
-		'          </form>'+
+		'          </button>'+	
 		'         <!-- Topbar Navbar -->'+
 		'          <ul class="navbar-nav ml-auto">'+
 		'           <!-- Nav Item - Search Dropdown (Visible Only XS) -->'+
@@ -410,7 +332,7 @@ adminIndex_vue ={
 		'              <div class="card shadow mb-4">'+
 		'                <!-- Card Header - Dropdown -->'+
 		'                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">월별 수수료 수익(단위 1만달러)</h6>'+
 		'                  <div class="dropdown no-arrow">'+
 		'                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
 		'                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>'+
@@ -437,7 +359,7 @@ adminIndex_vue ={
 		'              <div class="card shadow mb-4">'+
 		'                <!-- Card Header - Dropdown -->'+
 		'                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">고객별 나이대</h6>'+
 		'                  <div class="dropdown no-arrow">'+
 		'                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
 		'                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>'+
@@ -503,57 +425,57 @@ adminIndex_vue ={
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
-		'             <!-- Color System -->'+
-		'              <div class="row">'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-primary text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Primary'+
-		'                      <div class="text-white-50 small">#4e73df</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-success text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Success'+
-		'                      <div class="text-white-50 small">#1cc88a</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-info text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Info'+
-		'                      <div class="text-white-50 small">#36b9cc</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-warning text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Warning'+
-		'                      <div class="text-white-50 small">#f6c23e</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-danger text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Danger'+
-		'                      <div class="text-white-50 small">#e74a3b</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-secondary text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Secondary'+
-		'                      <div class="text-white-50 small">#858796</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'              </div>'+
+//		'             <!-- Color System -->'+
+//		'              <div class="row">'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-primary text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Primary'+
+//		'                      <div class="text-white-50 small">#4e73df</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-success text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Success'+
+//		'                      <div class="text-white-50 small">#1cc88a</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-info text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Info'+
+//		'                      <div class="text-white-50 small">#36b9cc</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-warning text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Warning'+
+//		'                      <div class="text-white-50 small">#f6c23e</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-danger text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Danger'+
+//		'                      <div class="text-white-50 small">#e74a3b</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-secondary text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Secondary'+
+//		'                      <div class="text-white-50 small">#858796</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'              </div>'+
 		'           </div>'+
 		'           <div class="col-lg-6 mb-4">'+
 		'             <!-- Illustrations -->'+
@@ -629,8 +551,8 @@ adminIndex_vue ={
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
-		'  <script src="/web/resources/js/demo/chart-area-demo.js"></script>'+
-		'  <script src="/web/resources/js/demo/chart-pie-member.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-area-feedb.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-pie-member.js"></script>'+
 		'</body>'
 	}
 

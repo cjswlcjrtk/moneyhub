@@ -840,7 +840,7 @@ tables_vue ={
 		'  <script src="vendor/datatables/jquery.dataTables.min.js"></script>'+
 		'  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
-		'  <script src="js/demo/datatables-demo.js"></script>'+
+		'  <script src="js/adminChart/datatables-demo.js"></script>'+
 		'</body>'+
 		'</html>'
 	}

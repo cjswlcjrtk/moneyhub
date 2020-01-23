@@ -4,6 +4,7 @@ public enum SQL {
 	CREATE_DB,
 	CREATE_FAQ, DROP_FAQ, TRUNCATE_FAQ,
 	CREATE_CUSTOMER, DROP_CUSTOMER, TRUNCATE_CUSTOMER,
+	CREATE_FEEDB, DROP_FEEDB, TRUNCATE_FEEDB,
 	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE
 	;
 	@Override
@@ -37,15 +38,16 @@ public enum SQL {
 			result = "CREATE TABLE CUSTOMER\r\n" + 
 					"( \r\n" + 
 					"  CNO       INT  		   NOT NULL AUTO_INCREMENT  COMMENT '고객번호',\r\n" + 
-					"  CEMAIL    VARCHAR(25)    NOT NULL       		    COMMENT '이메일',\r\n" + 
-					"  CPWD 	 VARCHAR(15)    NOT NULL        			COMMENT '비밀번호',\r\n" + 
-					"  CNAME     VARCHAR(15)    NULL    					COMMENT '고객이름',\r\n" + 
-					"  CNTCD     VARCHAR(5)     NULL    					COMMENT '고객국가코드',\r\n" + 
-					"  CPHONE    VARCHAR(13)    NULL    					COMMENT '고객핸드폰번호',\r\n" + 
-					"  CSTCD     VARCHAR(10)    NULL        				COMMENT '고객상태코드',\r\n" + 
+					"  CEMAIL    VARCHAR(40)    NOT NULL       		    COMMENT '이메일',\r\n" + 
+					"  CPWD 	 VARCHAR(20)    NOT NULL        			COMMENT '비밀번호',\r\n" + 
+					"  CNAME     VARCHAR(20)    NULL    					COMMENT '고객이름',\r\n" + 
+					"  CNTCD     VARCHAR(20)     NULL    					COMMENT '고객국가코드',\r\n" + 
+					"  CPHONE    VARCHAR(20)    NULL    					COMMENT '고객핸드폰번호',\r\n" + 
+					"  CSTCD     VARCHAR(20)    NULL        				COMMENT '고객상태코드',\r\n" + 
 					"  SDATE     DATE	 	   NULL      				COMMENT '가입일', \r\n" + 
 					"  WDATE     DATE		   NULL      				COMMENT '탈퇴일', \r\n" + 
 					"  UDATE     DATE  		   NULL       				COMMENT '수정일자',\r\n" + 
+					"  AGE     INT  		   NULL       				COMMENT '나이',\r\n" +
 					"  PRIMARY KEY (CNO)\r\n" + 
 					")";
 			break;
@@ -56,6 +58,32 @@ public enum SQL {
 			
 		case TRUNCATE_CUSTOMER :
 			result = "TRUNCATE TABLE CUSTOMER";
+			break;
+			
+		case CREATE_FEEDB :
+			result = "CREATE TABLE FEEDB\r\n" + 
+					"( \r\n" + 
+					"  SEQ       	INT  		   NOT NULL AUTO_INCREMENT  COMMENT '순번',\r\n" + 
+					"  BDATE    	INT    NOT NULL       		    		COMMENT '기준일',\r\n" + 
+					"  CUSNUM 	 	VARCHAR(20)    NULL        				COMMENT '고객번호',\r\n" + 
+					"  TXSEQ     	VARCHAR(20)    NULL    					COMMENT '거래일련번호',\r\n" + 
+					"  FEETYPCD     VARCHAR(20)    NULL    					COMMENT '수수료종류코드',\r\n" + 
+					"  FEEDTLCD    	VARCHAR(20)    NULL    					COMMENT '수수료상세코드',\r\n" + 
+					"  AMNT     	VARCHAR(20)    NULL        				COMMENT '수수료금액',\r\n" + 
+					"  CRTMEN     	VARCHAR(20)	   NULL      				COMMENT '생성자', \r\n" + 
+					"  CRTDATE      DATE		   NULL      				COMMENT '생성일자', \r\n" + 
+					"  UMEM     	VARCHAR(20)	   NULL       				COMMENT '수정자',\r\n" + 
+					"  UDATE     	DATE  		   NULL       				COMMENT '수정일자',\r\n" +
+					"  PRIMARY KEY (SEQ)\r\n" + 
+					")";
+			break;
+			
+		case DROP_FEEDB :
+			result = "DROP TABLE FEEDB";
+			break;
+			
+		case TRUNCATE_FEEDB :
+			result = "TRUNCATE TABLE FEEDB";
 			break;
 			
 		case CREATE_EXRATE : 

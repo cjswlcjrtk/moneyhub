@@ -143,7 +143,7 @@ adminIndexHome_vue ={
 		'                <!-- Card Body -->'+
 		'                <div class="card-body">'+
 		'                  <div class="chart-pie pt-4 pb-2">'+
-		'                    <canvas id="myPieChart"></canvas>'+
+		'                    <canvas id="memberPieChart"></canvas>'+
 		'                  </div>'+
 		'                  <div class="mt-4 text-center small">'+
 		'                    <span class="mr-2">'+
@@ -192,57 +192,57 @@ adminIndexHome_vue ={
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
-		'             <!-- Color System -->'+
-		'              <div class="row">'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-primary text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Primary'+
-		'                      <div class="text-white-50 small">#4e73df</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-success text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Success'+
-		'                      <div class="text-white-50 small">#1cc88a</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-info text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Info'+
-		'                      <div class="text-white-50 small">#36b9cc</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-warning text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Warning'+
-		'                      <div class="text-white-50 small">#f6c23e</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-danger text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Danger'+
-		'                      <div class="text-white-50 small">#e74a3b</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'                <div class="col-lg-6 mb-4">'+
-		'                  <div class="card bg-secondary text-white shadow">'+
-		'                    <div class="card-body">'+
-		'                      Secondary'+
-		'                      <div class="text-white-50 small">#858796</div>'+
-		'                    </div>'+
-		'                  </div>'+
-		'                </div>'+
-		'              </div>'+
+//		'             <!-- Color System -->'+
+//		'              <div class="row">'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-primary text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Primary'+
+//		'                      <div class="text-white-50 small">#4e73df</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-success text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Success'+
+//		'                      <div class="text-white-50 small">#1cc88a</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-info text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Info'+
+//		'                      <div class="text-white-50 small">#36b9cc</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-warning text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Warning'+
+//		'                      <div class="text-white-50 small">#f6c23e</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-danger text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Danger'+
+//		'                      <div class="text-white-50 small">#e74a3b</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'                <div class="col-lg-6 mb-4">'+
+//		'                  <div class="card bg-secondary text-white shadow">'+
+//		'                    <div class="card-body">'+
+//		'                      Secondary'+
+//		'                      <div class="text-white-50 small">#858796</div>'+
+//		'                    </div>'+
+//		'                  </div>'+
+//		'                </div>'+
+//		'              </div>'+
 		'           </div>'+
 		'           <div class="col-lg-6 mb-4">'+
 		'             <!-- Illustrations -->'+
@@ -318,8 +318,8 @@ adminIndexHome_vue ={
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
-		'  <script src="/web/resources/js/demo/chart-area-demo.js"></script>'+
-		'  <script src="/web/resources/js/demo/chart-pie-demo.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-area-feedb.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-pie-member.js"></script>'+
 		'</body>'
 	}
 

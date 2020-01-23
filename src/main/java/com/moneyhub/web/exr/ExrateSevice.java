@@ -14,12 +14,7 @@ public class ExrateSevice {
 	@Autowired Exrate exrate;
 	@Autowired ExrateMapper exrateMapper;
 	public void insertExrate(Map<String, String> paramMap) {
-		
-//		for(String key : HashMap변수명.keySet() )
-/*		for (String key : paramMap.keySet()) {
-	        System.out.println("result: " + key + "^" + paramMap.get(key));
-	           
-		}*/
+
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
 
 		ArrayList<Exrate> list = null;
@@ -31,12 +26,9 @@ public class ExrateSevice {
 			exrate.setCrtmem("kmk");
 			c.accept(exrate);
 		}
-		
-	//	paramMap.forEach((k, v) -> System.out.println(String.format("%s - %s\n ", k, v)));	
 	}
 	
 	public ArrayList<Exrate> searchExrate(String s){
-		
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
 		return f.apply(s);
 	}

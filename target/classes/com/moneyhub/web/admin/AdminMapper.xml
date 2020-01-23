@@ -4,13 +4,49 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.moneyhub.web.admin.AdminMapper">
-	<select id="memberPieChart" resultType="String">		
-		SELECT DISTINCT AGE FROM CUSTOMER
-	</select>	
-	
-	<select id="memberPieChartCount" resultType="String">
+	<!-- <select id="memberPieChart" resultType="map">		
+		<![CDATA[
+			SELECT 
+			DISTINCT (SELECT DISTINCT 10 FROM CUSTOMER 
+				WHERE AGE<20 AND 10<=AGE) AS '10',
+				(SELECT DISTINCT 20 FROM CUSTOMER 
+				WHERE AGE<30 AND 20<=AGE) AS '20',
+			    (SELECT DISTINCT 30 FROM CUSTOMER 
+				WHERE AGE<40 AND 30<=AGE) AS '30',
+			    (SELECT DISTINCT 40 FROM CUSTOMER 
+				WHERE AGE<50 AND 40<=AGE) AS '40',
+			    (SELECT DISTINCT 50 FROM CUSTOMER 
+				WHERE AGE<60 AND 50<=AGE) AS '50',
+			    (SELECT DISTINCT 60 FROM CUSTOMER 
+				WHERE AGE<70 AND 60<=AGE) AS '60',
+			    (SELECT DISTINCT 70 FROM CUSTOMER 
+				WHERE AGE<80 AND 70<=AGE) AS '70',
+			    (SELECT DISTINCT 80 FROM CUSTOMER 
+				WHERE AGE<90 AND 80<=AGE) AS '80',
+			    (SELECT DISTINCT 90 FROM CUSTOMER 
+				WHERE AGE<100 AND 90<=AGE) AS '90'
+			FROM CUSTOMER ORDER BY AGE
+		]]>
+		
+	</select>-->
+		
+	<select id="memberPieChartCount" parameterType="string" resultType="string">
 		SELECT COUNT(AGE) FROM CUSTOMER
-		WHERE AGE = #{age}		
+		WHERE 
+		<![CDATA[
+			AGE < #{value} AND #{value}-10 < AGE
+		]]>
+	</select>
+	
+	<select id="feeDBChart" resultType="string">
+		SELECT DISTINCT (BDATE) 
+		FROM FEEDB
+		ORDER BY BDATE
+	</select>
+	
+	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
+		SELECT SUM(AMNT) FROM FEEDB		
+		WHERE BDATE LIKE #{value}
 	</select>
 
 </mapper>

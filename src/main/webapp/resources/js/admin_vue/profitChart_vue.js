@@ -42,7 +42,7 @@ profitChart_vue ={
 		'                    <canvas id="myAreaChart"></canvas>'+
 		'                  </div>'+
 		'                  <hr>'+
-		'                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.'+
+		'                  Styling for the area chart can be found in the <code>/js/adminChart/chart-area-demo.js</code> file.'+
 		'                </div>'+
 		'              </div>'+
 		'             <!-- Bar Chart -->'+
@@ -55,7 +55,7 @@ profitChart_vue ={
 		'                    <canvas id="myBarChart"></canvas>'+
 		'                  </div>'+
 		'                  <hr>'+
-		'                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.'+
+		'                  Styling for the bar chart can be found in the <code>/js/adminChart/chart-bar-demo.js</code> file.'+
 		'                </div>'+
 		'              </div>'+
 		'           </div>'+
@@ -69,10 +69,10 @@ profitChart_vue ={
 		'                <!-- Card Body -->'+
 		'                <div class="card-body">'+
 		'                  <div class="chart-pie pt-4">'+
-		'                    <canvas id="myPieChart"></canvas>'+
+		'                    <canvas id="memberPieChart"></canvas>'+
 		'                  </div>'+
 		'                  <hr>'+
-		'                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.'+
+		'                  Styling for the donut chart can be found in the <code>/js/adminChart/chart-pie-demo.js</code> file.'+
 		'                </div>'+
 		'              </div>'+
 		'            </div>'+
@@ -126,9 +126,9 @@ profitChart_vue ={
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
-		'  <script src="/web/resources/js/demo/chart-area-demo.js"></script>'+
-		'  <script src="/web/resources/js/demo/chart-pie-demo.js"></script>'+
-		'  <script src="/web/resources/js/demo/chart-bar-demo.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-area-feedb.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-pie-member.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-bar-demo.js"></script>'+
 		'</body>'
 	}
 }

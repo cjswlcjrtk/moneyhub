@@ -1,5 +1,5 @@
-var adminLogin_vue = adminLogin_vue || {}
-adminLogin_vue ={
+var login_vue = login_vue || {}
+login_vue ={
 	login_body : ()=>{
 		return '	<div class="themoin-login">'+
 		'				<div>'+
@@ -13,7 +13,7 @@ adminLogin_vue ={
 	login : ()=>{
 		return '<div>'+
 		'			<div class="moin-login">'+
-		'						<div class="newmoin-text-header">로그인</div>'+
+		'						<div class="newmoin-text-header">관리자 로그인</div>'+
 		'						<form class="login" method="post" action="/a/v1/member/login">'+
 		'							<div class="moin-input-group">'+
 		'								<div class="moin-input">'+
@@ -31,7 +31,6 @@ adminLogin_vue ={
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
-/*		'							<button class="btn-submit" type="submit">로그인</button>'+*/
 		'						</form>'+
 		'						<div class="divider"></div>'+
 		'					</div>'+

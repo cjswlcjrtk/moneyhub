@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.crudtable.CRUDTableMapper">
+ 	<select id="createCustomer" parameterType="map">
+		${CREATE_CUSTOMER}
+	</select>
+	
+	<select id="truncateCustomer" parameterType="map">
+		${TRUNCATE_CUSTOMER}
+	</select>
+	
+	<select id="dropCustomer" parameterType="map">
+		${DROP_CUSTOMER}
+	</select>
+	
+	<select id="createFeeDB" parameterType="map">
+		${CREATE_FEEDB}
+	</select>
+	
+	<select id="truncateFeeDB" parameterType="map">
+		${TRUNCATE_FEEDB}
+	</select>
+	
+	<select id="dropFeeDB" parameterType="map">
+		${DROP_FEEDB}
+	</select>
+	
+</mapper>

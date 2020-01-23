@@ -41,6 +41,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
 	
+	<script src="<%=application.getContextPath()%>/resources/js/admin/adminLogin.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
