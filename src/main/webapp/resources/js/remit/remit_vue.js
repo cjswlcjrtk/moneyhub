@@ -1,8 +1,9 @@
 var remit_vue = remit_vue || {}
 remit_vue = {
 	remit_first: () => {
+		deal = $.deal()
 		return `<div class="themoin-remit-extended-component"> 
-						<h2 class="title-amount">보내는 금액을 입력해주세요.</h2> 
+						<h2 class="title-amount">보내는 금액을 확인해주세요.</h2> 
 						<div id="moin-event-amount" class="moin-event-amount" style="text-align: center;"> 
 							<p class="color-deepgrey"></p> 
 						</div> 
@@ -10,32 +11,32 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0"> 
+									<input class="send-amount" id= "sd_amount"  type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
 								</div> 
-								<div class="unit-select disabled" tabindex="0"> 
+								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
 								</div> 
 							</div> 
 							<div class="description"> 
 								<i class="empty"></i> 
-								<p><span>-82,500</span> USD (수수료)</p> 
+								<p><span id="fee_check" >$</span> USD (수수료)</p>
 								<div class="spacer"></div> 
-								<a tabindex="0">쿠폰 등록</a> 
+								<p>3,000$ 이상은 12$</p>
 							</div> 
 							<div class="description"> 
 								<i class="empty"></i> 
-								<p><span>5,417,500</span>KRW (실제 환전 금액)</p> 
+								<p><span>541,750</span> JPY (수취 예상 금액)</p> 
+								<div class="spacer"></div> 
+								<p>실시간 환율로 예상한 금액</p>
 							</div> 
 								<div class="description last"> 
 									<i><img src="https://img.themoin.com/public/img/exchange-rate.svg"></i> 
-									<p><span>100</span>JPY = <span>1060.08</span>KRW (모인 환율)</p> 
-										<div class="spacer"></div> 
-											<a tabindex="0">상세 보기</a> 
+									<p><span>100</span>JPY = <span>1060.08</span>KRW (실시간 환율)</p> 
 								</div> 
 								<div class="amount-row"> 
 									<div class=""> 
-										<p>실제로 받는 금액 (직접입력 가능)</p> 
-										<input class="receive-amount" type="text" tabindex="0" value="511,046"> 
+										<p>예상 비용</p> 
+										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
 									<div class="unit-select receive" tabindex="0"> 
 										<p>일본</p><h3>JPY</h3> 
@@ -48,7 +49,8 @@ remit_vue = {
 				</div>`
 	},
 		
-	remit_sec: ()=>{
+	remit_cusInfo: ()=>{
+		cus = $.cusInfo()
 		return `<div class="themoin-remit-step-form">
 							<div class="header-progress">
 								<div class="step-item current">
@@ -78,46 +80,25 @@ remit_vue = {
 							</div>
 							<h2>보내는 분</h2>
 							<div class="themoin-section isOpen">
-								<h2 class="section-title">보내는 분의 정보를 입력해 주세요.</h2>
-								<p class="section-description">기입한 연락처로 송금 관련 문자가 발송됩니다. 중요한 안내를 받지 못하는 일이 없도록 정확히 입력해주세요.</p>
+								<h2 class="section-title">보내는 분의 정보를 확인해 주세요.</h2>
+								<p class="section-description">기입한 이메일로 송금 관련 알림이 발송됩니다.<br> 중요한 안내를 받지 못하는 일이 없도록 정확히 입력해주세요.</p>
 								<button class="toggle open"></button>
 								<div class="themoin-profile-section">
 									<form action="/a/v1/member/update" method="post">
 										<div class="form-row col-2">
 											<div class="firstname">
 												<div class="moin-input">
-													<label style="color: rgb(116, 127, 155);">이름 (First name)</label>
-													<input class="fs-block" placeholder="Gildong" type="text" tabindex="0" value="213" readonly="">
+													<label style="color: rgb(116, 127, 155);">이름 (Name)</label>
+													<input class="fs-block" type="text" tabindex="0" value="${cus.cname}" readonly="">
 												</div>
 												<p class="moin-error"></p>
-											</div>
-											<div class="lastname">
-												<div class="moin-input">
-													<label style="color: rgb(116, 127, 155);">성 (Last name)</label>
-													<input class="fs-block" placeholder="Hong" type="text" tabindex="0" value="edqwe" readonly="">
-												</div>
-												<p class="moin-error"></p>
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="moin-dropdown country">
-												<label>국가</label>
-												<a id="update-country" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-													<span class="moin-dropdown-text">대한민국 (South Korea)</span>
-													<img class="pull-right" src="https://img.themoin.com/public/img/ic-dropdown-p.png">
-												</a>
-												<ul class="dropdown-menu" role="menu">
-													<li>
-														<a>대한민국 (South Korea)</a>
-													</li>
-												</ul>
 											</div>
 										</div>
 										<div class="form-row col-2">
 											<div class="zip">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">우편번호</label>
-													<input class="fs-block" placeholder="12345" type="text" tabindex="0" value="28787">
+													<input class="fs-block" placeholder="12345" type="text" tabindex="0" value="">
 												</div>
 												<p class="moin-error"></p>
 											</div>
@@ -129,7 +110,7 @@ remit_vue = {
 											<div class="address">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">주소</label>
-													<input class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="1202-2, 1sunhwan-ro, Sangdang-gu, Cheongju-si, Chungcheongbuk-do, Korea">
+													<input class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="">
 												</div>
 												<p class="moin-error"></p>
 											</div>
@@ -138,27 +119,19 @@ remit_vue = {
 											<div class="subaddress">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">상세주소</label>
-													<input class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="2">
+													<input class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="">
 												</div>
 												<p class="moin-error"></p>
 											</div>
 										</div>
 										<div class="form-row col-2">
-											<div class="phone1">
-												<div class="moin-dropdown">
-													<label>국가 번호 (Country Code)</label>
-													<a id="phone1" class="dropdown-toggle">+82 (South Korea)
-														<img class="pull-right" src="https://img.themoin.com/public/img/ic-dropdown-p.png">
-													</a>
-												</div>
-											</div>
 											<div class="themoin-composite-input  phone2">
 												<div class="extra-controls">
-													<button>번호변경</button>
+													<button>이메일 인증</button>
 												</div>
 												<div class="moin-input">
-													<label style="color: rgb(116, 127, 155);">휴대전화 번호 (Mobile)</label>
-													<input class="fs-block" placeholder="01012345678" type="text" tabindex="0" maxlength="11" value="123456789">
+													<label style="color: rgb(116, 127, 155);">이메일 번호 </label>
+													<input class="fs-block" placeholder="현재 이메일 주소를 입력해주세요." type="text" tabindex="0" maxlength="11" value="">
 												</div>
 												<p class="moin-error"></p>
 											</div>
@@ -173,7 +146,7 @@ remit_vue = {
 								</div>
 							</div>
 							<div class="controls">
-								<button class="prev">이전</button>
+								<button id="prev_fs_remit_btn" class="prev">이전</button>
 								<button id="sec_remit_btn" class="next">다음</button>
 							</div>
 							<div style="height: 80px;"></div>
@@ -181,7 +154,7 @@ remit_vue = {
 						<div style="display:none"></div>
 					</div>`
 	},
-	remit_third: ()=>{
+	remit_rcpt: ()=>{
 		return `<div class="themoin-remit-step-form">
 					<div class="header-progress">
 						<div class="step-item active">
@@ -217,69 +190,43 @@ remit_vue = {
 							<div class="form-row col-2">
 								<div>
 									<div class="moin-input">
-										<label style="color: rgb(116, 127, 155);">받는 분 이름 (First Name)</label>
-										<input class="fs-block" placeholder="이름 (First Name)" type="text" tabindex="0" value="">
+										<label style="color: rgb(116, 127, 155);">여권 이름 (PassPort Name)</label>
+										<input class="fs-block" id="pass_fnm" placeholder="이름 (First Name)" type="text" tabindex="0" value="">
 									</div>
+									<p>※여권 이름과 정확히 일치해야 합니다.</>
 									<p class="moin-error"></p>
 								</div>
 								<div>
 									<div class="moin-input">
-										<label style="color: rgb(116, 127, 155);">받는 분 성 (Last Name)</label>
-										<input class="fs-block" placeholder="성 (Last Name)" type="text" tabindex="0" value="">
+									<label style="color: rgb(116, 127, 155);"></label>
+										<input class="fs-block" id="pass_lnm" placeholder="성 (Last Name)" type="text" tabindex="0" value="">
+									</div>
+									<p class="moin-error"></p>
+								</div>
+								
+							</div>
+							<div class="form-row">
+								<div>
+									<div class="moin-input">
+										<label style="color: rgb(116, 127, 155);">수취 국가 (Nation)</label>
+										<input class="fs-block" style="display: block;" type="text" tabindex="0" readonly="" value="미국">
 									</div>
 									<p class="moin-error"></p>
 								</div>
 							</div>
 							<div class="form-row">
 								<div>
-									<img src="https://img.themoin.com/public/img/search-new.svg" class="btn-search" type="button">
 									<div class="moin-input">
-										<label style="color: rgb(116, 127, 155);">은행 (Bank)</label>
-										<input class="fs-block" placeholder="은행명을 검색해 주세요." type="text" tabindex="0" readonly="" value="">
+										<label style="color: rgb(116, 127, 155);">이메일 (E-Mail)</label>
+										<input class="fs-block"  id="rcpt_email" placeholder="수취인 이메일을 입력해주세요." type="text" tabindex="0" value="" >
 									</div>
 									<p class="moin-error"></p>
 								</div>
-							</div>
-							<div class="form-row">
-								<div>
-									<div class="moin-input">
-										<label style="color: rgb(116, 127, 155);">계좌 번호 (Account number)</label>
-										<input class="fs-block" placeholder="1234567123456712" type="text" tabindex="0" value="">
-									</div>
-									<p class="moin-error"></p>
-								</div>
-							</div>
-							<div class="form-row col-2">
-								<div class="phone1">
-									<div class="moin-dropdown">
-										<label>국가 번호 (Country Code)</label>
-										<a class="dropdown-toggle">+65 (싱가포르)
-											<img class="pull-right" src="https://img.themoin.com/public/img/ic-dropdown-p.png">
-										</a>
-										<ul class="dropdown-menu">
-											<li>
-												<a>+65 (싱가포르)</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="phone2">
-									<div class="moin-input">
-										<label style="color: rgb(116, 127, 155);">휴대전화 번호 (Mobile)</label>
-										<input class="fs-block" placeholder="08012345678" type="text" tabindex="0" maxlength="11" value="">
-									</div>
-									<p class="moin-error"></p>
-								</div>
-							</div>
-							<div>
-								<br>
-								<p style="text-align: center;">송금 예상시간 : 한국은행 영업시간 기준으로 약 2일 이내에 송금 완료.<br>
-								(한국 시각 10:00 - 19:00 기준, 주말 및 공휴일 제외)</p>
 							</div>
 						</form>
 					</div>
 					<div class="controls">
-						<button class="prev">이전</button>
+						<button id="prev_sec_remit_btn" class="prev">이전</button>
 						<button id="third_remit_btn" class="next">다음</button>
 					</div>
 					<div style="height: 80px;"></div>
@@ -294,7 +241,6 @@ remit_vue = {
 								<p>보내는 분 정보</p>
 								<div>
 									<div>
-										
 									</div>
 								</div>
 							</div>
@@ -328,11 +274,11 @@ remit_vue = {
 									<p>보내는 금액</p>
 								<div>
 									<div class="amount">
-										<p>5,500,000 <span class="unit">KRW</span></p><p>총 수수료 : 3,000 KRW</p>
+										<p >0.00 <span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} KRW</p>
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p>4,731.41 <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
+										<p >${deal.amount} <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
 									</div>
 								</div>
 							</div>
@@ -343,42 +289,22 @@ remit_vue = {
 								<table>
 									<tbody>
 										<tr>
-											<td style="width: 100px;">국가</td>
-											<td class="color-grey-1">미국 (USA)</td>
-										</tr>
-										<tr>
-											<td>이름</td>
+											<td style="width: 100px;">여권 이름</td>
 											<td class="color-grey-1 name fs-block">
-												<span lang="en">SADQW FSADF WER</span>
+												<span lang="en">${deal.rcpsl}</span>
+												<span lang="en">${deal.rcpsf}</span>
 											</td>
 										</tr>
 										<tr>
-											<td>송금대상</td>
-											<td class="color-grey-1 fs-block">개인</td>
+											<td style="width: 100px;">수취 국가</td>
+											<td class="color-grey-1">미국 (USA)</td>
 										</tr>
 										<tr>
-											<td>계좌종류</td>
-											<td class="color-grey-1 fs-block">SAVING</td>
-										</tr>
-										<tr>
-											<td>라우팅번호</td>
-											<td class="color-grey-1 fs-block">122233345</td>
-										</tr>
-										<tr>
-											<td>계좌번호</td>
-											<td class="color-grey-1 fs-block">213214</td>
-										</tr>
-										<tr>
-											<td>전화번호</td>
-											<td class="color-grey-1 fs-block">+1 (미국) 1251235615</td>
-										</tr>
-										<tr>
-											<td>거주지역</td>
-											<td class="color-grey-1 fs-block">a, DE</td>
+											<td>이 메 일</td>
+											<td class="color-grey-1 fs-block"></td>
 										</tr>
 									</tbody>
 								</table>
-								<a>수정하기</a>
 							</div>
 							<br>
 						</div>
@@ -435,7 +361,7 @@ remit_vue = {
 						<div>
 							<img src="https://img.themoin.com/public/img/img-success.svg">
 							<h1>입금기한 58:31</h1>
-							<div class="intro">모인 해외송금을 이용해주셔서 감사합니다.<br>
+							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span>2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
 								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>
 								진행 상황은 메인화면의 송금 내역에서 확인하실 수 있습니다.<br>
@@ -451,33 +377,12 @@ remit_vue = {
 								<div class="remit_info">
 									<div>
 										<p class="info_desc">입금할 가상 계좌</p>
-										<p class="copy_text">광주은행 9427010256943 이은지_모인</p>
+										<p class="copy_text">광주은행 9427010256943 이은지_머니허브</p>
 									</div>
 									<button>계좌 복사하기</button>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
-								<div>
-									<p class="title">송금 완료까지 걸리는 시간</p>
-									<div class="process">
-										<span>한국 은행 영업시간(10:00 - 19:00, 주말 및 공휴일 제외)</span>
-										<br><p><span>기준으로 최대 3일 이내에 송금 완료</span> 됩니다.</p>
-									</div>
-								</div>
 							</div>
-							<h3 class="title-funnel">모인을 어떻게 알게 되셨나요?</h3>
-							<select class="">
-								<option value="not-selected" disabled="">모인을 어떻게 알게 되셨나요?</option>
-								<option value="네이버 검색">네이버 검색 (Search on Naver)</option>
-								<option value="구글 검색">구글 검색 (Search on Google)</option>
-								<option value="네이버 블로그">네이버 블로그 (Naver Blog)</option>
-								<option value="페이스북">페이스북 (Facebook)</option>
-								<option value="기타 SNS">기타 SNS (Other SNS)</option>
-								<option value="온라인 커뮤니티">온라인 커뮤니티 (Online Community)</option>
-								<option value="언론보도">언론보도 (MOIN on news / Newsroom)</option>
-								<option value="지인 추천">지인 추천 (Friends Referral)</option>
-								<option value="유학박람회">유학박람회 (Study Abroad Fair)</option>
-								<option value="기타">기타 (Others)</option>
-							</select>
 							<a id="main_user_btn">확인</a>
 						</div>
 					</div>`

@@ -17,7 +17,6 @@ cmm_vue = {
 
 		'	<!-- Bootstrap core CSS -->'+
 		'	'+
-
 		`<style>
 		canvas{
 			-moz-user-select: none;
@@ -70,6 +69,10 @@ cmm_vue = {
 		'				<a class="caption">공지사항</a>'+
 		'				<h3 class="event-univ">학생 및 기관 할인</h3>'+
 		'				<a class="caption">학생 및 기관 할인등록 페이지</a>'+*/
+		'			</div>'+
+		'			<div class="spacer"></div>'+
+		'			<div class="social">'+
+		'				<h3><b><a id="guide" class="">WU 수취 가이드</a></b></h3>'+
 		'			</div>'+
 		'		</div>'+
 		'		<div class="section bottom">'+

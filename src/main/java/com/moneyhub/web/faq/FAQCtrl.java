@@ -13,6 +13,7 @@ import com.moneyhub.web.pxy.Proxy;
 
 @RestController
 
+
 @RequestMapping("/faq")
 public class FAQCtrl extends Proxy{
 	@Autowired Box<Object> box;

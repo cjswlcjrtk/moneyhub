@@ -31,17 +31,7 @@ public class ExrateCtrl extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired Exrate exrate;
 	
-	@GetMapping("/create/table")//
-	public Map<?, ?> createTable(){
-		print("테이블 생성 진입");
-		HashMap<String, String> map = new HashMap<>();
-		map.put("CREATE_EXRATE", SQL.CREATE_EXRATE.toString());
-		exService.createExrate(map);
-		
-		map.clear();
-		map.put("result", "SUCCESS");
-		return map;
-	}
+	
 	
 	@GetMapping("/search/{cntcd}")
 	public Map<?, ?> searchExrate(@PathVariable String cntcd){
@@ -58,12 +48,22 @@ public class ExrateCtrl extends Proxy{
 	public Map<?, ?> insertExrate(@RequestBody HashMap<String, Exrate[]> paramMap){
 		print("insert 진입 - list : " + paramMap.get("paramList").length);
 		print(paramMap.get("paramList").toString());
-
 		exService.insertExrate(paramMap.get("paramList"));
-		
 		box.put("result", "SUCCESS");
 		return box.get();
 	}	
+	
+	@GetMapping("/create/table")//
+	public Map<?, ?> createTable(){
+		print("테이블 생성 진입");
+		HashMap<String, String> map = new HashMap<>();
+		map.put("CREATE_EXRATE", SQL.CREATE_EXRATE.toString());
+		exService.createExrate(map);
+		
+		map.clear();
+		map.put("result", "SUCCESS");
+		return map;
+	}
 	
 	@GetMapping("/delete/table")
 	public Map<?, ?> deleteTable(){
@@ -71,7 +71,6 @@ public class ExrateCtrl extends Proxy{
 		HashMap<String, String> map = new HashMap<>();
 		map.put("DROP_EXRATE", SQL.DROP_EXRATE.toString());
 		exService.deleteExrate(map);
-		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;

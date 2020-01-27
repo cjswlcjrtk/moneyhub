@@ -47,19 +47,17 @@ pwd_chg =(()=>{
 					data : JSON.stringify({
 						cemail : $('#cemail').val(),
 						cpwd : $('#cpwd').val(),
-						cno : getCookie("CNO")
+						cno : sessionStorage.getItem('CNO')
 					}),
 					dataType : 'json',
 					contentType : 'application/json',
 					success : d=>{
 						if(d.msg === 'true'){
-							getCookie("CEMAIL")
-							setCookie("CPWD", d.cus.cpwd)
+							sessionStorage.setItem('CPWD',d.cus.cpwd)
 							auth.onCreate()
 							alert('변경된 비밀번호로 다시 로그인하실 수 있습니다.')
 						}else{
 							alert('현재 비밀번호와 동일합니다.')
-							
 						}
 					},
 					error : e=>{

@@ -9,34 +9,30 @@ mypage_vue = {
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>ID</p>'+
-		'                    <p class="fs-block">rogbest@naver.com</p>'+
+		'                    <div class="fs-block" id="infoEmail"></div>'+
 		'                </li>'+
 		'            </ol>'+
 		'            <div class="head">회원정보</div>'+
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>이름</p>'+
-		'                    <p class="fs-block">${Customer.cname}</p>'+
-		'                </li>'+
-		'                <li>'+
-		'                    <p>국가</p>'+
-		'                    <p class="fs-block">+82 (South Korea)</p>'+
+		'                    <p class="fs-block" id="infoName"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>우편번호</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoZip"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>집주소</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoAddr"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>상세주소</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoAddr2"></p>'+
 		'                </li>'+
 		'                <li>'+
-		'                    <p>휴대전화</p>'+
-		'                    <p class="fs-block">01042234683</p>'+
+		'                    <p>생년월일</p>'+
+		'                    <p class="fs-block" id="infoBirth"></p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div><br>'+
@@ -47,11 +43,10 @@ mypage_vue = {
 	cus_info_chg : ()=>{
 		return '<div class="themoin-mypage-profile"><br>'+
 		'        <h1>회원정보</h1><br>'+
-		'        <p class="newmoin-text-text-button" style="text-align: center;">기입한 연락처로 송금 관련 알림이 발송됩니다. 중요한 안내를 받지 못하는 일이 없도록 정확히 입력해주세요.<br>회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 동의없이 공개되지 않습니다.<br>정보 수정을 원하시면 하단의 수정하기 버튼을 눌러주세요.<br></p><br>'+
-		
+		'        <p class="newmoin-text-text-button" style="text-align: center;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 동의없이 공개되지 않습니다.<br>정보 수정을 원하시면 하단의 수정하기 버튼을 눌러주세요.<br></p><br>'+
 		'        <div class="content themoin-recipient-field-section">'+
 		'            <form action="/a/v1/member/update" method="post">'+
-		'                <div class="form-row col-2">'+
+		/*'                <div class="form-row col-2">'+
 		'                    <div class="firstname">'+
 		'                        <div class="moin-input">'+
 		'                            <label style="color: rgb(116, 127, 155);">이름 (First name)</label>'+
@@ -66,24 +61,25 @@ mypage_vue = {
 		'                        </div>'+
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
-		'                </div>'+
+		'                </div>'+*/
 		'                <div class="form-row col-2">'+
 		'                    <div class="zip">'+
 		'                        <div class="moin-input">'+
-		'                            <label style="color: rgb(116, 127, 155);">우편번호</label>'+
-		'                            <input class="fs-block" placeholder="12345" type="text" tabindex="0" value="">'+
+		'                            <label style="color: rgb(116, 127, 155);">우편번호(Zip)</label>'+
+		'                            <input id="zip" class="fs-block" placeholder="12345" type="text" tabindex="0" value="">'+
 		'                        </div>'+
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
 		'                    <div class="postcode">'+
-		'                        <button class="btn-zipcode" tabindex="0" type="button">우편번호 검색</button>'+
+//		'						<input type="button" onclick="fn_setAddr()" value="우편번호 찾기">'+
+		'                <button onclick="fn_setAddr()" class="btn-zipcode" type="button" tabindex="0">주소 검색</button>'+
 		'                    </div>'+
 		'                </div>'+
 		'                <div class="form-row">'+
 		'                    <div class="address">'+
 		'                        <div class="moin-input">'+
-		'                            <label style="color: rgb(116, 127, 155);">주소</label>'+
-		'                            <input class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="">'+
+		'                            <label style="color: rgb(116, 127, 155);">주소(Address)</label>'+
+		'                            <input id="addr" class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="">'+
 		'                        </div>'+
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
@@ -91,13 +87,13 @@ mypage_vue = {
 		'                <div class="form-row">'+
 		'                    <div class="subaddress">'+
 		'                        <div class="moin-input">'+
-		'                            <label style="color: rgb(116, 127, 155);">상세주소</label>'+
-		'                            <input class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="">'+
+		'                            <label style="color: rgb(116, 127, 155);">상세주소(SubAddress)</label>'+
+		'                            <input id="daddr" class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="">'+
 		'                        </div>'+
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
 		'                </div>'+
-		'                <div class="form-row col-2">'+
+		/*'                <div class="form-row col-2">'+
 		'                    <div class="phone1">'+
 		'                        <div class="moin-dropdown">'+
 		'                            <label>국가 번호 (Country Code)</label>'+
@@ -358,13 +354,13 @@ mypage_vue = {
 		'                        <div class="moin-input">'+
 		'                            <label style="color: rgb(116, 127, 155);">휴대전화 번호 (Mobile)</label>'+
 		'                            <input class="fs-block" placeholder="01012345678" type="text" tabindex="0" maxlength="11" value="">'+
-		'                        </div>'+
+		'                        </div>'+*/
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
 		'                </div>'+
 		'                <div class="form-row"></div>'+
 		'            </form>'+
-		'	<div class="daum-container hidden">'+
+		/*'	<div class="daum-container hidden">'+
 		'		<div class="daum-layer">'+
 		'			<img id="btnCloseLayer"'+
 		'				src="https://i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"'+
@@ -474,15 +470,16 @@ mypage_vue = {
 		'				</iframe>'+
 		'			</div>'+
 		'		</div>'+
-		'	</div>'+
+		'	</div>'+*/
 		'                </div>'+
 		'            </div>'+
 		'        </div>'+
 		'        <div class="form-row submit-row">'+
-		'            <div class="cancel">'+
-		'                <button class="account-cancel-btn" type="button" tabindex="0">취소</button>'+
+		'            <div class="submit">'+
+		'                <button id="info_chg_cancle" class="account-send-btn" type="button" tabindex="0" style="width:50%; float:right;">취소</button>'+
 		'            </div>'+
-		'            <div class="submit"><button class="account-send-btn" type="button" tabindex="0">저장</button>'+
+		'            <div class="submit">'+
+		'				<button id="info_chg_check" class="account-send-btn" type="button" tabindex="0" style="width:50%">저장</button>'+
 		'            </div>'+
 		'        </div>'+
 		'    </div>'

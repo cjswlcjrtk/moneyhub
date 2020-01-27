@@ -31,7 +31,7 @@
 		SELECT * 
 		FROM EXRATE 
 		WHERE CNTCD LIKE #{cntcd}
-		ORDER BY 1 DESC
+		ORDER BY bdate DESC
 		limit 0, 10 
 	</select>
 	

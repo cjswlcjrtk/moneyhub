@@ -1,7 +1,5 @@
 package com.moneyhub.web.cus;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Repository;
 
 
@@ -15,4 +13,6 @@ public interface CustomerMapper {
 //	public int pwdCheck(Customer param);
 	public void withdrawal(Customer param);
 	public void pwdChg(Customer param);
+	public Customer cusInfo(Customer param);
+	public void cusInfoChg(Customer param);
 }

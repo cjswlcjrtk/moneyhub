@@ -24,7 +24,7 @@ adminLogin =(()=>{
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})
-	}	
+	}
 	
 	let setContentView =()=>{
 		alert('aaaa')

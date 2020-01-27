@@ -10,12 +10,10 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false,
-				
+				fill: false,	
 			}]
 		},
 		options: {
-			
 			responsive: true,
 			legend : {
 				display : false
@@ -24,7 +22,6 @@ $(document).ready(function(){
 				display: true,
 				text: '',
 				fontSize : 18
-				
 			},
 			tooltips: {
 				displayColors : false,
@@ -70,25 +67,38 @@ $(document).ready(function(){
 			}
 		}
 	};
-	
+//	alert('그래프')
 	let ctx = document.getElementById('canvas').getContext('2d');
 	
-	let cntcd = 'EUR'
+	let cntcd = $('#remit_box .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
-//				lineChartData.datasets[0].data[i] = j.exrate 
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
-		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[9]} KRW`
-//		$('#cntcd_exrate')
-//		.text(`1 ${cntcd} = ${config.data.datasets[0].data[9]} KRW`)
+		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
 
+		//		수수료 1.5%
+		receive_value_calc()
+		$('#remit_box .amount-row input.send-amount').keyup(()=>{
+			receive_value_calc()
+		})
+		
 		window.myLine = new Chart(ctx, config);
 	})
+	
+	let receive_value_calc =()=>{
+		let receive_value = $('#remit_box .amount-row input.send-amount').val().replace(/,/gi, '') 
+							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985 + ""
+		//alert(`${receive_value.substring(0, receive_value.indexOf('.') + 3)}`)
+		$('#remit_box .amount-row input.receive-amount').val(numberFormat(receive_value.substring(0, receive_value.indexOf('.') + 3)))
+
+	}
+	
+	let numberFormat =x=>{
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	}
 })
-		
-			
 		
 
 /*		document.getElementById('randomizeData').addEventListener('click', function() {

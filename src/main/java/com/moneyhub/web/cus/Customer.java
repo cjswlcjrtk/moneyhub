@@ -18,8 +18,6 @@ public class Customer {
 					cemail,
 					cpwd,
 					cname,
-					cntcd,		// 고객 국가 코드ㅇㅇㅇㅇ
-					cphone,
 					cstcd,		// 고객상태코드
 					sdate,		// 가입일
 					wdate,		// 탈퇴일
@@ -29,6 +27,8 @@ public class Customer {
 					udate,
 					salt,
 					zip,
-					addr;		// 수정일
+					addr,
+					daddr,
+					birth;
 
 }

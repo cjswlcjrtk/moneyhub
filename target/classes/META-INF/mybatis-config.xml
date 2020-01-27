@@ -10,7 +10,7 @@
 		<typeAlias alias="PageProxy"  type="com.moneyhub.web.pxy.PageProxy"/>
 		<typeAlias alias="Exrate"  type="com.moneyhub.web.exr.Exrate"/>
 		<typeAlias alias="AdminChart"  type="com.moneyhub.web.admin.AdminMapper"/>
-
+		<typeAlias alias="Remit"  type="com.moneyhub.web.remit.mappers.RemitMapper"/>
 <!-- 		<typeAlias alias="Box"  type="com.moneyhub.web.pxy.Box"/> -->
     </typeAliases>
 </configuration>

@@ -43,14 +43,17 @@ auth_vue ={
 		'								<img src="https://img.themoin.com/public/img/login-email.svg">'+
 		'								<p class="newmoin-text-text-button">이메일로<br>시작하기</p>'+
 		'							</button>'+*/
-		'							<button>'+
+		/*'							<button>'+
 		'								<img src="https://img.themoin.com/public/img/login-facebook-2.svg">'+
 		'								<p class="newmoin-text-text-button">페이스북으로<br>시작하기</p>'+
-		'							</button>'+
-		'							<button>'+
+		'							</button>'+*/
+		/*'							<button>'+
 		'								<img src="https://img.themoin.com/public/img/login-naver-2.svg">'+
 		'								<p class="newmoin-text-text-button">네이버로<br>시작하기</p>'+
-		'							</button>'+
+		'							</button>'+*/
+		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+		'							<a id="kakao-login-btn"></a>'+
+		'							<a href="http://developers.kakao.com/logout"></a>'+	
 		'						</div><br><br>'+
 		'					</div>'+
 		'			</div>'
@@ -68,20 +71,23 @@ auth_vue ={
 		return '		<div><br><br><br>'+
 		'					<div class="moin-login">'+
 		'						<div class="newmoin-text-header">회원가입</div>'+
-		'						<p class="signup-subtitle">아직 모인 회원이 아니신가요?</p><br>'+
+		'						<p class="signup-subtitle">아직 머니허브 회원이 아니신가요?</p><br>'+
 		'						<div class="buttons">'+
 	/*	'							<button id="join_page_btn">'+
 		'								<img src="https://img.themoin.com/public/img/login-email.svg">'+
 		'								<p class="newmoin-text-text-button">이메일로<br>시작하기</p>'+
 		'							</button>'+*/
-		'							<button>'+
+/*		'							<button>'+
 		'								<img src="https://img.themoin.com/public/img/login-facebook.svg">'+
 		'								<p class="newmoin-text-text-button">페이스북으로<br>시작하기</p>'+
-		'							</button>'+
-		'							<button>'+
+		'							</button>'+*/
+/*		'							<button>'+
 		'								<img src="https://img.themoin.com/public/img/login-naver.svg">'+
 		'								<p class="newmoin-text-text-button">네이버로<br>시작하기</p>'+
-		'							</button>'+
+		'							</button>'+*/
+		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+		'							<a id="kakao-login-btn"></a>'+
+		'							<a href="http://developers.kakao.com/logout"></a>'+	
 		'						</div><br>'+
 		'						<div class="divider"></div>'+
 /*		'						<p style="margin: 33px auto 0px;"><a>이미 회원이신가요?</a></p>'+*/
@@ -92,10 +98,20 @@ auth_vue ={
 		'					<div id="moneyhub_join" class="moin-login">'+
 		'						<div class="newmoin-text-header">회원가입</div>'+
 		'						<form class="signup" action="/a/v1/member/join" method="post">'+
-		'							<div class="moin-input-group">'+
-		'								<div id="moin-input-id" class="moin-input">'+
-		'									<label style="color: rgb(116, 127, 155);">이메일 (Email)</label>'+
-	/*	'									<input id="cemail" class="fs-block" placeholder="youremail@email.com" type="text" tabindex="0" value="">'+	*/
+		'							<div class="themoin-composite-input moin-input-group phone2">'+
+		'								<div class="extra-controls">'+
+		'									<button>인증번호받기</button>'+
+		'								</div>'+
+		'								<div class="moin-input" id="moneyhub-id">'+
+		'									<label style="color: rgb(116, 127, 155);">이메일 주소 (Email)</label>'+
+		//'										<input id="cemail" class="fs-block" placeholder="youremail@email.com" type="text" tabindex="0" value="">'+
+		'								</div>'+
+		'								<p class="moin-error"></p>'+
+		'							</div>'+
+		'							<div class="themoin-composite-input moin-input-group">'+
+		'								<div class="moin-input">'+
+		'										<label style="color: rgb(116, 127, 155);">인증번호 입력</label>'+
+		'										<input class="fs-block" placeholder="인증번호 입력" type="text" tabindex="0" maxlength="6" value="">'+
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
@@ -120,10 +136,10 @@ auth_vue ={
 		'									<div class="box"></div>'+
 		'									<span><label class="caption">아래 항목에 모두 동의합니다.</label></span>'+
 		'								</a>'+
-		'								<pre style="white-space: pre-wrap; text-align: left;">모인 이용약관'+
+		'								<pre style="white-space: pre-wrap; text-align: left;">머니허브 이용약관'+
 		'+제1장 총칙'+
 		'+제1조 (목적)'+
-		'이 약관은 주식회사 모인(이하 "회사"라고 합니다)이 "모인" 인터넷 사이트(https://www.themoin.com, m.themoin.com 및 해당 모바일 사이트와 연결 사이트, 이하 "모인 사이트"라고 합니다)와 스마트폰 등 이동통신기기를 통해 제공되는 "모인" 모바일 애플리케이션(이하 "모바일 모인"이라고 합니다)을 통하여 제공하는 소액해외송금서비스(이하 "서비스"라고 합니다)와 관련하여 회사와 회원 간의 권리와 의무, 책임사항 및 회원의 서비스이용절차에 관한 사항을 규정함을 목적으로 합니다.'+
+		'이 약관은 주식회사 머니허브(이하 "회사"라고 합니다)가 "머니허브" 인터넷 사이트(https://www.themoin.com, m.themoin.com 및 해당 모바일 사이트와 연결 사이트, 이하 "머니허브 사이트"라고 합니다)와 스마트폰 등 이동통신기기를 통해 제공되는 "머니허브" 모바일 애플리케이션(이하 "모바일 머니허브"라고 합니다)을 통하여 제공하는 소액해외송금서비스(이하 "서비스"라고 합니다)와 관련하여 회사와 회원 간의 권리와 의무, 책임사항 및 회원의 서비스이용절차에 관한 사항을 규정함을 목적으로 합니다.'+
 		'+제2조 (용어의 정의)'+
 		'이 약관에서 사용하는 용어의 정의는 다음과 같습니다.'+
 		'1. 회원: 이 약관을 승인하고 회사와 서비스이용계약을 체결한 자를 말합니다. 회원은 가입형태에 따라 개인회원과 사업자회원으로 구분되며 상호간 회사가 정하는 바에 따라 전환할 수 있습니다.'+
@@ -172,8 +188,8 @@ auth_vue ={
 		'⑤ 이용계약이 종료된 경우, 회사는 당해 회원의 정보를 파기하는 것을 원칙으로 합니다. 다만, 아래의 경우에는 회원정보를 보관하고, 이 경우 회사는 보관하고 있는 회원정보를 그 보관의 목적으로만 이용합니다.'+
 		'1. 상법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.'+
 		'2. 기타 정보수집에 관한 동의를 받을 때 보유기간을 명시한 경우에는 그 보유기간까지 회원정보를 보관합니다.'+
-		'⑥ 회사가 제3자에게 회원의 개인정보를 제공할 필요가 있는 경우 회사는 실제 제공되는 개인정보 항목, 제공받는 자, 제공받는 자의 개인정보 이용목적 및 보유·이용기간 등을 명시하여 회원의 동의를 받고, 개인정보의 수집·처리·관리 등을 위탁하는 경우에는 위탁업무의 내용 및 수탁사의 명칭 등에 관한 사항을 서면, 전자우편, 모사전송, 전화 또는 홈페이지를 통해 미리 회원에게 고지하여 동의를 받고, 개인정보 처리방침에 포함하여 모인 사이트와 모바일 모인에 공개합니다.'+
-		'⑦ 회사는 회사의 개인정보 관리책임자 및 연락처, 회원정보의 보호와 관리에 관한 개인정보처리방침을 회원과 회사의 서비스를 이용하고자 하는 자가 알 수 있도록 모인 사이트와 모바일 모인에 공개합니다.'+
+		'⑥ 회사가 제3자에게 회원의 개인정보를 제공할 필요가 있는 경우 회사는 실제 제공되는 개인정보 항목, 제공받는 자, 제공받는 자의 개인정보 이용목적 및 보유·이용기간 등을 명시하여 회원의 동의를 받고, 개인정보의 수집·처리·관리 등을 위탁하는 경우에는 위탁업무의 내용 및 수탁사의 명칭 등에 관한 사항을 서면, 전자우편, 모사전송, 전화 또는 홈페이지를 통해 미리 회원에게 고지하여 동의를 받고, 개인정보 처리방침에 포함하여 머니허브 사이트와 모바일 머니허브에 공개합니다.'+
+		'⑦ 회사는 회사의 개인정보 관리책임자 및 연락처, 회원정보의 보호와 관리에 관한 개인정보처리방침을 회원과 회사의 서비스를 이용하고자 하는 자가 알 수 있도록 머니허브 사이트와 모바일 머니허브에 공개합니다.'+
 		'⑧ 회사가 회원의 개인정보를 처리할 때에는 개인정보의 분실·도난·누출·변조 또는 훼손을 방지하기 위하여 관련법령에서 정한 기술적·관리적 조치를 다하여야 합니다.'+
 		'+제9조 (회원정보의 변경)'+
 		'① 회원은 이용신청시 기재한 사항이 잘못되었거나 변경되었을 경우, 즉시 해당 사항을 수정해야 합니다. 단, 아이디(ID) 및 성명은 수정할 수 없음을 원칙으로 합니다.'+
@@ -189,7 +205,7 @@ auth_vue ={
 		'③ 회사는 회원에게 서비스 이용에 대한 서비스 이용 수수료를 부과할 수 있으며, 회사는 회원의 서비스 이용 시 해당 건에 대해 확정된 서비스 이용 수수료를 통지합니다. 이 경우 회사는 수수료에 관한 사항을 환전수수료, 송금수수료, 협력업자 수수료 등 세부 구성항목별로 구분하여 그 내역을 회원에게 제공하여야 합니다.'+
 		'④ 회원은 회사의 서비스를 1일 24시간, 1년 365일 이용할 수 있으나, 시스템 점검 등 기타 불기피한 사유가 발생할 경우 회사는 회원에게 미리 사유와 기간을 고지하여 회원의 서비스 이용을 제한할 수 있습니다.'+
 		'+제12조 (거래 지시 및 거래의 완료)'+
-		'① 의뢰인이 모인 사이트에서 거래하고자 하는 금액을 기재하고 수령인명, 수령인의 전화번호, 주소, 계좌번호, 은행명 등을 기재한 후 거래확인을 할 때 거래 지시가 완료(이하 "거래 지시 완료"라고 합니다) 됩니다. 회사는 거래 지시가 완료된 시점의 고시 환율을 적용하여 거래를 진행하며, 회사는 의뢰인이 거래 지시 완료 전에 의뢰인이 거래하고자 하는 금액에 대한 서비스 이용 수수료, 적용 환율, 실제 수령인이 받는 금액의 원화표시 및 외화표시 금액, 거래 완료에 소요되는 예상 기간에 관한 사항을 의뢰인이 확인할 수 있도록 합니다.'+
+		'① 의뢰인이 머니허브 사이트에서 거래하고자 하는 금액을 기재하고 수령인명, 수령인의 전화번호, 주소, 계좌번호, 은행명 등을 기재한 후 거래확인을 할 때 거래 지시가 완료(이하 "거래 지시 완료"라고 합니다) 됩니다. 회사는 거래 지시가 완료된 시점의 고시 환율을 적용하여 거래를 진행하며, 회사는 의뢰인이 거래 지시 완료 전에 의뢰인이 거래하고자 하는 금액에 대한 서비스 이용 수수료, 적용 환율, 실제 수령인이 받는 금액의 원화표시 및 외화표시 금액, 거래 완료에 소요되는 예상 기간에 관한 사항을 의뢰인이 확인할 수 있도록 합니다.'+
 		'② 회사는 소액해외송금업무에 사용할 계좌인 것으로 소액해외송금업 등록(변경등록 포함) 당시 지정한 회사명의의 금융회사 개설 계좌(이하 "지정계좌"라고 합니다)를 통해서만 수령인에게 금원을 지급하거나 의뢰인으로부터 금원을 수령할 수 있습니다. 회사는 지정계좌에 관한 내용을 회사 홈페이지에 게시하고 이를 최신 내용으로 관리하여야 합니다.'+
 		'③ 의뢰인은 거래 지시 완료 후 회사가 지정한 시한 내에 지정계좌로 해당 금원을 입금합니다. 이 경우, 의뢰인이 거래 지시한 금원과 의뢰인이 실제로 입금한 금원의 액수가 일치하지 않는 경우에는 회사는 의뢰인에게 이메일 또는 문자메시지 등 의뢰인이 선택한 방법을 통하여 불일치 사실을 통지하고, 의뢰인이 거래 지시한 금원과 동일한 액수를 입금할 때까지 거래를 이행하지 않습니다.'+
 		'④ 의뢰인이 거래 지시 완료 후 회사가 지정한 시한 내에 회사 명의의 계좌에 거래 지시한 금원과 동일한 액수를 입금하지 아니하는 경우 해당 거래 지시는 취소되며(이하 "취소된 거래 지시"라고 합니다), 의뢰인이 다시 동일한 내용으로 회사에 거래 지시(이하 "재거래 지시"라고 합니다)를 하더라도 해당 거래에 대해서는 재거래 지시 완료 시점을 기준으로 적용 환율 등이 결정되어 취소된 거래 지시 시 안내되었던 내용과는 거래 내용이 달라질 수 있습니다. 한편, 회사는 재거래 지시 완료 전에도 의뢰인이 제1항 제2문의 확인 사항을 확인할 수 있도록 합니다. '+
@@ -233,7 +249,7 @@ auth_vue ={
 		'+제22조 (준거법 및 관할법원)'+
 		'이 약관과 회사와 회원 간의 서비스 이용계약 및 그 해석에 대해서는 대한민국 법령이 적용되며, 이와 관련하여 분쟁이 발생할 경우 당사자는 회사의 소재지를 관할하는 법원 또는 민사소송법 및 관련 법률이 정하는 관할 법원을 해당 분쟁의 제1심의 관할 법원으로 한다.'+
 		'+제23조 (약관의 명시, 효력 및 변경)'+
-		'① 회사는 이 약관을 서비스를 이용하고자 하는 자와 회원이 알 수 있도록 서비스가 제공되는 모인 사이트의 초기화면에 게시하여야 하며, 회원과 이 약관 및 서비스 이용 계약을 체결할 경우 고객에게 약관을 명시하여야 합니다.'+
+		'① 회사는 이 약관을 서비스를 이용하고자 하는 자와 회원이 알 수 있도록 서비스가 제공되는 머니허브 사이트의 초기화면에 게시하여야 하며, 회원과 이 약관 및 서비스 이용 계약을 체결할 경우 고객에게 약관을 명시하여야 합니다.'+
 		'② 회사는 회원이 요청할 경우 회원에게 전자문서의 전송(전자우편을 이용한 전송을 포함합니다)의 방식으로 약관의 사본을 고객에게 교부하여야 합니다.'+
 		'③ 회사는 고객이 약관의 내용에 대한 설명을 요청하는 경우 다음 각 호의 어느 하나의 방법으로 고객에게 약관의 중요내용을 설명하여야 합니다.'+
 		'1. 약관의 중요내용을 고객에게 직접 설명'+
@@ -263,8 +279,8 @@ auth_vue ={
 		'										</label>'+
 		'									</span>'+
 		'								</a>'+
-		'								<pre style="white-space: pre-wrap; text-align: left;">모인 개인정보 처리방침'+
-		'주식회사 모인(이하 “회사”)는 회사가 운영하는 인터넷 사이트(www.themoin.com 및 해당 모바일 사이트와 연결 사이트), 스마트폰 등 이동통신기기를 통해 제공되는 모인 모바일 애플리케이션 (이하 “모인”)을 이용하는 이용자님들의 개인정보를 매우 중요하게 생각하며 아래와 같은 개인 정보 처리방침을 가지고 있습니다. 이 개인정보 처리방침은 개인정보와 관련한 법령 또는 지침의 변경이 있는 경우 개정되고, 회사 정책의 변화에 따라 달라질 수 있으니 이용자님들께서는 개인정보 처리 방침을 수시로 확인하여 주시기 바랍니다.'+
+		'								<pre style="white-space: pre-wrap; text-align: left;">머니허브 개인정보 처리방침'+
+		'주식회사 머니허브(이하 “회사”)는 회사가 운영하는 인터넷 사이트(www.themoin.com 및 해당 모바일 사이트와 연결 사이트), 스마트폰 등 이동통신기기를 통해 제공되는 머니허브 모바일 애플리케이션 (이하 “머니허브”)를 이용하는 이용자님들의 개인정보를 매우 중요하게 생각하며 아래와 같은 개인 정보 처리방침을 가지고 있습니다. 이 개인정보 처리방침은 개인정보와 관련한 법령 또는 지침의 변경이 있는 경우 개정되고, 회사 정책의 변화에 따라 달라질 수 있으니 이용자님들께서는 개인정보 처리 방침을 수시로 확인하여 주시기 바랍니다.'+
 		'1. 개인정보의 수집•이용'+
 		'(1) 회사가 개인정보를 수집하는 목적은 이용자의 신분과 서비스 이용 의사를 확인하여 최적화되고 맞춤화 된 서비스를 제공하고자 함입니다. 회사는 최초 회원가입 시[회원이 아닌 이용자(이하 “타발송금 수령인”이라 함)의 경우 최초 타발송금(대한민국 외의 국가에 소재한 의뢰인으로부터 회사의 협력업체가 이용자에 대한 송금을 의뢰 받아 회사를 통해 이용자에게 금원을 지급하는 것을 말합니다) 수령 시] 서비스의 본질적 기능을 수행하기 위해 반드시 필요한 최소한의 정보만을 수집하고 있으며 회사가 제공하는 서비스 이용에 따라서 필요한 정보를 추가로 수집할 수 있습니다.'+
 		'(2) 회사는 개인정보를 수집•이용목적 이외에 다른 용도로 이를 이용하거나 이용자의 동의 없이 제3자에게 이를 제공하지 않습니다.'+
@@ -334,8 +350,8 @@ auth_vue ={
 		'(3) 이용자는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서 이용자는 웹브라우저에서 옵션을 조정함으로써 모든 쿠키를 허용/거부하거나, 쿠키가 저장될 때마다 확인을 거치도록 할 수 있습니다.'+
 		'(4) 쿠키의 저장을 거부할 경우에는 개인 맞춤서비스 등 회사가 제공하는 일부 서비스는 이용이 어려울 수 있습니다.'+
 		'6. 이용자의 권리'+
-		'(1) 이용자는 언제든지 모인 사이트의 “정보수정”을 통하여 이용자의 개인정보를 열람, 정정 처리하실 수 있으며, 이용자의 개인정보가 제3자에게 제공되거나 처리 위탁된 경우 이용자는 회사 또는 ‘제3자’/’수탁자’에게 파기를 요청할 수 있습니다. 또한 개인정보 오류에 대한 정정요청한 경우에는 다른 법률에 따라 개인정보의 제공을 요청 받는 경우가 아닌 한 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. '+
-		'(2) 이용자는 언제든지 모인 사이트의 개인정보에 대하여 처리의 정지를 요구 할 수 있습니다. 다만 아래의 경우에 해당하는 경우 처리정지 요구를 거절할 수 있습니다. '+
+		'(1) 이용자는 언제든지 머니허브 사이트의 “정보수정”을 통하여 이용자의 개인정보를 열람, 정정 처리하실 수 있으며, 이용자의 개인정보가 제3자에게 제공되거나 처리 위탁된 경우 이용자는 회사 또는 ‘제3자’/’수탁자’에게 파기를 요청할 수 있습니다. 또한 개인정보 오류에 대한 정정요청한 경우에는 다른 법률에 따라 개인정보의 제공을 요청 받는 경우가 아닌 한 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. '+
+		'(2) 이용자는 언제든지 머니허브 사이트의 개인정보에 대하여 처리의 정지를 요구 할 수 있습니다. 다만 아래의 경우에 해당하는 경우 처리정지 요구를 거절할 수 있습니다. '+
 		'1) 법률에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여 불가피한 경우'+
 		'2) 다른 사람의 생명•신체를 해할 우려가 있거나 다른 사람의 재산과 그 밖의 이익을 부당하게 침해할 우려가 있는 경우'+
 		'3) 개인정보를 처리하지 아니하면 정보주체와 약정한 서비스를 제공하지 못하는 등 계약의 이행이 곤란한 경우로서 정보주체가 그 계약의 해지 의사를 명확하게 밝히지 아니한 경우'+
@@ -409,11 +425,55 @@ auth_vue ={
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
-		'							<div class="themoin-sms-request">'+
+		'				<div class="form-row col-2">'+
+		'							<div class="themoin-composite-input moin-input-group phone2">'+
+		'								<div class="extra-controls">'+
+//		'									<input type="button" onclick="fn_setAddr()" value="우편번호 찾기">'+
+//		'									<button">우편번호 검색</button>'+
+		'               					 <button onclick="fn_setAddr()" class="btn-zipcode" type="button" tabindex="0">주소 검색</button>'+
+		'								</div>'+
+		'								<div class="moin-input">'+
+		'									<label style="color: rgb(116, 127, 155);">우편번호(Zip)</label>'+
+		'										<input id="zip" class="fs-block" placeholder="12345" type="text" tabindex="0" value="">'+
+		'									</div>'+
+		'								<p class="moin-error"></p>'+
+		'							</div>'+
+		'                <div class="themoin-password-input moin-input-group">'+
+		'                    <div class="address">'+
+		'                        <div class="moin-input">'+
+		'                            <label style="color: rgb(116, 127, 155);">주소(Address)</label>'+
+		'                            <input id="addr" class="fs-block" placeholder="서울시 마포구 백범로 23 구프라자" type="text" tabindex="0" value="">'+
+		'                        </div>'+
+		'                        <p class="moin-error"></p>'+
+		'                    </div>'+
+		'                </div>'+
+		'                <div class="themoin-password-input moin-input-group">'+
+		'                    <div class="subaddress">'+
+		'                        <div class="moin-input">'+
+		'                            <label style="color: rgb(116, 127, 155);">상세주소(subAddress)</label>'+
+		'                            <input id="daddr" class="fs-block" placeholder="3층" type="text" tabindex="0" value="">'+
+		'                        </div>'+
+		'                        <p class="moin-error"></p>'+
+		'                    </div>'+
+		'                </div>'+
+		'                <div class="themoin-password-input moin-input-group">'+
+		'                    <div class="birthday">'+
+		'                        <div class="moin-input">'+
+		'                            <label style="color: rgb(116, 127, 155);">생년월일(Birth)</label>'+
+		'                            <input id="birth" class="fs-block" placeholder="19900101" type="text" tabindex="0" value="">'+
+		'							<div class="check_font" id="birth_check" ></div>'+
+		'                        </div>'+
+		'                        <p class="moin-error"></p>'+
+		'                    </div>'+
+		'                </div>'+
+		
+		
+		
+/*핸드폰인증'							<div class="themoin-sms-request">'+
 		'								<div id="code_dropdown" class="moin-input-group moin-dropdown">'+	// 국가 번호 open - moin-input-group moin-dropdown open
 		'									<label>국가 번호 (Country Code)</label>'+
 		'									<a id="phone1" class="dropdown-toggle">'+
-/*		'										<img class="pull-right" src="https://img.themoin.com/public/img/ic-dropdown-p.png">'+	*/
+		'										<img class="pull-right" src="https://img.themoin.com/public/img/ic-dropdown-p.png">'+	
 		'									</a>'+
 		'									<ul class="dropdown-menu"><li><a>+1 (United States)</a></li><li><a>+1 (Canada)</a></li><li><a>+1242 (Bahamas)</a></li><li><a>+1246 (Barbados)</a></li><li><a>+1264 (Anguilla)</a></li><li><a>+1268 (Antigua and Barbuda)</a></li><li><a>+1284 (British Virgin Islands)</a></li><li><a>+1340 (United States Virgin Islands)</a></li><li><a>+1345 (Cayman Islands)</a></li><li><a>+1441 (Bermuda)</a></li><li><a>+1473 (Grenada)</a></li><li><a>+1649 (Turks and Caicos Islands)</a></li><li><a>+1664 (Montserrat)</a></li><li><a>+1670 (Northern Mariana Islands)</a></li><li><a>+1671 (Guam)</a></li><li><a>+1684 (American Samoa)</a></li><li><a>+1721 (Sint Maarten)</a></li><li><a>+1758 (Saint Lucia)</a></li><li><a>+1767 (Dominica)</a></li><li><a>+1784 (Saint Vincent and the Grenadines)</a></li><li><a>+1787 (Puerto Rico)</a></li><li><a>+1809 (Dominican Republic)</a></li><li><a>+1868 (Trinidad and Tobago)</a></li><li><a>+1869 (Saint Kitts and Nevis)</a></li><li><a>+1876 (Jamaica)</a></li><li><a>+20 (Egypt)</a></li><li><a>+211 (South Sudan)</a></li><li><a>+212 (Western Sahara)</a></li><li><a>+212 (Morocco)</a></li><li><a>+213 (Algeria)</a></li><li><a>+216 (Tunisia)</a></li><li><a>+218 (Libya)</a></li><li><a>+220 (Gambia)</a></li><li><a>+221 (Senegal)</a></li><li><a>+222 (Mauritania)</a></li><li><a>+223 (Mali)</a></li><li><a>+224 (Guinea)</a></li><li><a>+225 (Ivory Coast)</a></li><li><a>+226 (Burkina Faso)</a></li><li><a>+227 (Niger)</a></li><li><a>+228 (Togo)</a></li><li><a>+229 (Benin)</a></li><li><a>+230 (Mauritius)</a></li><li><a>+231 (Liberia)</a></li><li><a>+232 (Sierra Leone)</a></li><li><a>+233 (Ghana)</a></li><li><a>+234 (Nigeria)</a></li><li><a>+235 (Chad)</a></li><li><a>+236 (Central African Republic)</a></li><li><a>+237 (Cameroon)</a></li><li><a>+238 (Cape Verde)</a></li><li><a>+239 (São Tomé and Príncipe)</a></li><li><a>+240 (Equatorial Guinea)</a></li><li><a>+241 (Gabon)</a></li><li><a>+242 (Republic of the Congo)</a></li><li><a>+243 (DR Congo)</a></li><li><a>+244 (Angola)</a></li><li><a>+245 (Guinea-Bissau)</a></li><li><a>+246 (British Indian Ocean Territory)</a></li><li><a>+248 (Seychelles)</a></li><li><a>+249 (Sudan)</a></li><li><a>+250 (Rwanda)</a></li><li><a>+251 (Ethiopia)</a></li><li><a>+252 (Somalia)</a></li><li><a>+253 (Djibouti)</a></li><li><a>+254 (Kenya)</a></li><li><a>+255 (Tanzania)</a></li><li><a>+256 (Uganda)</a></li><li><a>+257 (Burundi)</a></li><li><a>+258 (Mozambique)</a></li><li><a>+260 (Zambia)</a></li><li><a>+261 (Madagascar)</a></li><li><a>+262 (Mayotte)</a></li><li><a>+262 (Réunion)</a></li><li><a>+263 (Zimbabwe)</a></li><li><a>+264 (Namibia)</a></li><li><a>+265 (Malawi)</a></li><li><a>+266 (Lesotho)</a></li><li><a>+267 (Botswana)</a></li><li><a>+268 (Swaziland)</a></li><li><a>+269 (Comoros)</a></li><li><a>+27 (South Africa)</a></li><li><a>+291 (Eritrea)</a></li><li><a>+297 (Aruba)</a></li><li><a>+298 (Faroe Islands)</a></li><li><a>+299 (Greenland)</a></li><li><a>+30 (Greece)</a></li><li><a>+31 (Netherlands)</a></li><li><a>+32 (Belgium)</a></li><li><a>+33 (France)</a></li><li><a>+34 (Spain)</a></li><li><a>+350 (Gibraltar)</a></li><li><a>+351 (Portugal)</a></li><li><a>+352 (Luxembourg)</a></li><li><a>+353 (Ireland)</a></li><li><a>+354 (Iceland)</a></li><li><a>+355 (Albania)</a></li><li><a>+356 (Malta)</a></li><li><a>+357 (Cyprus)</a></li><li><a>+358 (Åland Islands)</a></li><li><a>+358 (Finland)</a></li><li><a>+359 (Bulgaria)</a></li><li><a>+36 (Hungary)</a></li><li><a>+370 (Lithuania)</a></li><li><a>+371 (Latvia)</a></li><li><a>+372 (Estonia)</a></li><li><a>+373 (Moldova)</a></li><li><a>+374 (Armenia)</a></li><li><a>+375 (Belarus)</a></li><li><a>+376 (Andorra)</a></li><li><a>+377 (Monaco)</a></li><li><a>+378 (San Marino)</a></li><li><a>+380 (Ukraine)</a></li><li><a>+381 (Serbia)</a></li><li><a>+382 (Montenegro)</a></li><li><a>+383 (Kosovo)</a></li><li><a>+385 (Croatia)</a></li><li><a>+386 (Slovenia)</a></li><li><a>+387 (Bosnia and Herzegovina)</a></li><li><a>+389 (Macedonia)</a></li><li><a>+39 (Italy)</a></li><li><a>+3906698 (Vatican City)</a></li><li><a>+40 (Romania)</a></li><li><a>+41 (Switzerland)</a></li><li><a>+420 (Czechia)</a></li><li><a>+421 (Slovakia)</a></li><li><a>+423 (Liechtenstein)</a></li><li><a>+43 (Austria)</a></li><li><a>+44 (United Kingdom)</a></li><li><a>+44 (Guernsey)</a></li><li><a>+44 (Isle of Man)</a></li><li><a>+44 (Jersey)</a></li><li><a>+45 (Denmark)</a></li><li><a>+46 (Sweden)</a></li><li><a>+47 (Norway)</a></li><li><a>+4779 (Svalbard and Jan Mayen)</a></li><li><a>+48 (Poland)</a></li><li><a>+49 (Germany)</a></li><li><a>+500 (Falkland Islands)</a></li><li><a>+500 (South Georgia)</a></li><li><a>+501 (Belize)</a></li><li><a>+502 (Guatemala)</a></li><li><a>+503 (El Salvador)</a></li><li><a>+504 (Honduras)</a></li><li><a>+505 (Nicaragua)</a></li><li><a>+506 (Costa Rica)</a></li><li><a>+507 (Panama)</a></li><li><a>+508 (Saint Pierre and Miquelon)</a></li><li><a>+509 (Haiti)</a></li><li><a>+51 (Peru)</a></li><li><a>+52 (Mexico)</a></li><li><a>+53 (Cuba)</a></li><li><a>+54 (Argentina)</a></li><li><a>+55 (Brazil)</a></li><li><a>+56 (Chile)</a></li><li><a>+57 (Colombia)</a></li><li><a>+58 (Venezuela)</a></li><li><a>+590 (Saint Barthélemy)</a></li><li><a>+590 (Guadeloupe)</a></li><li><a>+590 (Saint Martin)</a></li><li><a>+591 (Bolivia)</a></li><li><a>+592 (Guyana)</a></li><li><a>+593 (Ecuador)</a></li><li><a>+594 (French Guiana)</a></li><li><a>+595 (Paraguay)</a></li><li><a>+596 (Martinique)</a></li><li><a>+597 (Suriname)</a></li><li><a>+598 (Uruguay)</a></li><li><a>+5999 (Curaçao)</a></li><li><a>+60 (Malaysia)</a></li><li><a>+61 (Australia)</a></li><li><a>+61 (Cocos (Keeling) Islands)</a></li><li><a>+61 (Christmas Island)</a></li><li><a>+62 (Indonesia)</a></li><li><a>+63 (Philippines)</a></li><li><a>+64 (New Zealand)</a></li><li><a>+64 (Pitcairn Islands)</a></li><li><a>+65 (Singapore)</a></li><li><a>+66 (Thailand)</a></li><li><a>+670 (Timor-Leste)</a></li><li><a>+672 (Norfolk Island)</a></li><li><a>+673 (Brunei)</a></li><li><a>+674 (Nauru)</a></li><li><a>+675 (Papua New Guinea)</a></li><li><a>+676 (Tonga)</a></li><li><a>+677 (Solomon Islands)</a></li><li><a>+678 (Vanuatu)</a></li><li><a>+679 (Fiji)</a></li><li><a>+680 (Palau)</a></li><li><a>+681 (Wallis and Futuna)</a></li><li><a>+682 (Cook Islands)</a></li><li><a>+683 (Niue)</a></li><li><a>+685 (Samoa)</a></li><li><a>+686 (Kiribati)</a></li><li><a>+687 (New Caledonia)</a></li><li><a>+688 (Tuvalu)</a></li><li><a>+689 (French Polynesia)</a></li><li><a>+690 (Tokelau)</a></li><li><a>+691 (Micronesia)</a></li><li><a>+692 (Marshall Islands)</a></li><li><a>+7 (Russia)</a></li><li><a>+76 (Kazakhstan)</a></li><li><a>+81 (Japan)</a></li><li><a>+82 (South Korea)</a></li><li><a>+84 (Vietnam)</a></li><li><a>+850 (North Korea)</a></li><li><a>+852 (Hong Kong)</a></li><li><a>+853 (Macau)</a></li><li><a>+855 (Cambodia)</a></li><li><a>+856 (Laos)</a></li><li><a>+86 (China)</a></li><li><a>+880 (Bangladesh)</a></li><li><a>+886 (Taiwan)</a></li><li><a>+90 (Turkey)</a></li><li><a>+91 (India)</a></li><li><a>+92 (Pakistan)</a></li><li><a>+93 (Afghanistan)</a></li><li><a>+94 (Sri Lanka)</a></li><li><a>+95 (Myanmar)</a></li><li><a>+960 (Maldives)</a></li><li><a>+961 (Lebanon)</a></li><li><a>+962 (Jordan)</a></li><li><a>+963 (Syria)</a></li><li><a>+964 (Iraq)</a></li><li><a>+965 (Kuwait)</a></li><li><a>+966 (Saudi Arabia)</a></li><li><a>+967 (Yemen)</a></li><li><a>+968 (Oman)</a></li><li><a>+970 (Palestine)</a></li><li><a>+971 (United Arab Emirates)</a></li><li><a>+972 (Israel)</a></li><li><a>+973 (Bahrain)</a></li><li><a>+974 (Qatar)</a></li><li><a>+975 (Bhutan)</a></li><li><a>+976 (Mongolia)</a></li><li><a>+977 (Nepal)</a></li><li><a>+98 (Iran)</a></li><li><a>+992 (Tajikistan)</a></li><li><a>+993 (Turkmenistan)</a></li><li><a>+994 (Azerbaijan)</a></li><li><a>+995 (Georgia)</a></li><li><a>+996 (Kyrgyzstan)</a></li><li><a>+998 (Uzbekistan)</a></li>'+
 		'									</ul>'+
@@ -435,14 +495,18 @@ auth_vue ={
 		'									</div>'+
 		'									<p class="moin-error"></p>'+
 		'								</div>'+
-		'							</div>'+
-		'							<div class="moin-input-group refercode-input">'+
+		'							</div>'+*/
+		
+		
+/*추천인	'							<div class="moin-input-group refercode-input">'+
 		'								<div class="moin-input">'+
 		'									<label style="color: rgb(116, 127, 155);">추천인 코드 - 선택 (Referral Code - Optional)</label>'+
 		'									<input class="fs-block" placeholder="영문 숫자 조합 5자" type="text" tabindex="0" maxlength="5" value="">'+
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
-		'							</div>'+
+		'							</div>'+	*/
+		
+		
 /*		'							<button class="btn-submit" type="submit">가입완료</button>'+	*/
 		'						</form>'+
 		'					</div><br><br><br>'+

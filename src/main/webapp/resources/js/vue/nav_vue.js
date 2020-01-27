@@ -76,7 +76,7 @@ nav_vue = {
 		return '<nav class="themoin-header">'+
 		'	<div>'+
 		'		<a class="logo">'+
-'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
+		'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
 		'		</a>'+
 		'		<div class="spacer"></div>'+
 		'		<a class="menu">'+
@@ -156,8 +156,6 @@ nav_vue = {
 		'		<a id="cus_info" class="active" data-tab="tab-1" style="margin-right: 50px">회원 정보</a>'+
 		'		<a id="pwd_chg" class="active_a" data-tab="tab-2" style="margin-right: 50px">비밀번호 변경</a>'+
 		'		<a id="auth_mgmt" class="active_a" data-tab="tab-3" style="margin-right: 50px">인증관리</a>'+
-		'		<a id="alarm" class="active_a" data-tab="tab-4" style="margin-right: 50px">알림설정</a>'+
-		'		<a id="ref_mgmt" class="active_a" data-tab="tab-5" style="margin-right: 50px">추천인 관리</a>'+
 		'		<a id="exchange_test" class="active_a" data-tab="tab-6" style="margin-right: 50px">환전 모의</a>'+
 		'		<a id="withdrawal" class="active_a" data-tab="tab-7" style="margin-right: 50px">회원 탈퇴</a>'+
 		'		<div class="spacer"></div>'+

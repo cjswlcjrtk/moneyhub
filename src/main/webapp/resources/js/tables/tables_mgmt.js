@@ -180,7 +180,6 @@ tables_mgmt =(()=>{
 					error : e=>{
 						alert('전송 실패')
 					}
-					
 				})
 			})
 		})
