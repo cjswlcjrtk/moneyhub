@@ -24,7 +24,7 @@ adminLogin =(()=>{
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})
-	}
+	}	
 	
 	let setContentView =()=>{
 		alert('aaaa')
@@ -32,8 +32,6 @@ adminLogin =(()=>{
 		$('body').html(login_vue.login())	
 		alert('bbb')
 	}	
-	
-	
 	
 	return { onCreate }
 })()
