@@ -15,13 +15,20 @@
 	<select id="selectAll" resultType="FAQ" parameterType="PageProxy">
 		select A.* 
 		from (  SELECT * 
-				FROM FAQ ) A
+				FROM FAQ 
+				<if test="keyword != null">
+				WHERE TITLE LIKE CONCAT('%', #{keyword} ,'%')
+				</if>
+				) A
 		LIMIT ${startRow}, ${pageSize}
 	</select>
 	
-	<select id="countFAQ" resultType="String">
+	<select id="countFAQ" resultType="String" parameterType="PageProxy">
 		select count(*)
 		from FAQ
+		<if test="keyword != null">
+		WHERE TITLE LIKE CONCAT('%', #{keyword} ,'%')
+		</if>
 	</select>
 	
 	<select id="createFAQ" parameterType="map">
@@ -34,6 +41,11 @@
 	
 	<select id="truncateFAQ" parameterType="map">
 		${TRUNCATE_FAQ}
+	</select>
+	
+	<select id="insertFAQ" parameterType="map">
+		INSERT INTO FAQ(TITLE, CONTENT)
+		VALUES(#{title}, #{content})
 	</select>
 <!-- 	WHERE ${aid} LIKE #{aid}
         where aid like 'a'

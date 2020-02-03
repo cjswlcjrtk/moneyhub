@@ -290,7 +290,8 @@ button {
 .moin-amount-input {
   width: 100%;
   border: none;
-  font-weight: 400; }
+  font-weight: 400; 
+  }
 
 .moin-amount-input:focus,
 .moin-amount-input:focus {
@@ -4652,7 +4653,7 @@ _:-ms-fullscreen, :root .themoin-unit-dropdown {
     -ms-flex-direction: row;
         flex-direction: row;
     -ms-flex-pack: justify;
-        justify-content: space-between;
+        justify-content: center;
     -ms-flex-align: center;
         align-items: center; }
     @media (max-width: 700px) {

@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.moneyhub.web.enums.Path;
 import com.moneyhub.web.faq.FAQ;
-import com.moneyhub.web.tx.TxMapper;
+import com.moneyhub.web.faq.FAQMapper;
 
 @Lazy
 @Component("crawler")
@@ -24,7 +24,7 @@ public class CrawlingProxy extends Proxy{
 	@Autowired Inventory<Object> inventory;
 	@Autowired Box<Object> box;
 	@Autowired FAQ faq;
-	@Autowired TxMapper txMapper;
+	@Autowired FAQMapper faqMapper;
 	
 	@Transactional
 	public void kakaoFAQ(int pageNum){
@@ -64,7 +64,7 @@ public class CrawlingProxy extends Proxy{
 //				faq.setCategory(category.get(i).text());
 				faq.setTitle(titles.get(i).text());
 				faq.setContent(contents.get(i).html());
-				txMapper.insertFAQ(faq);
+				faqMapper.insertFAQ(faq);
 				
 			}
 		} catch (Exception e) {

@@ -4,8 +4,8 @@ public enum SQL {
 	CREATE_DB,
 	CREATE_FAQ, DROP_FAQ, TRUNCATE_FAQ,
 	CREATE_CUSTOMER, DROP_CUSTOMER, TRUNCATE_CUSTOMER,
-	CREATE_FEEDB, DROP_FEEDB, TRUNCATE_FEEDB,
-	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE
+	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE,
+	CREATE_FEEDB, DROP_FEEDB, TRUNCATE_FEEDB
 	;
 	@Override
 	public String toString() {
@@ -17,13 +17,12 @@ public enum SQL {
 			break;
 
 		case CREATE_FAQ :
-			result = "CREATE TABLE FAQ (\r\n" + 
+			result = "CREATE TABLE IF NOT EXISTS FAQ (\r\n" + 
 					"	FAQID	INT NOT NULL AUTO_INCREMENT,\r\n" + 
-//					"    CATEGORY	VARCHAR(50) NOT NULL,\r\n" + 
 					"    TITLE	VARCHAR(100) NOT NULL,\r\n" + 
 					"    CONTENT VARCHAR(1400) NULL,\r\n" + 
 					"    PRIMARY KEY (FAQID)\r\n" + 
-					")";
+					")	DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
 			break;
 			
 		case DROP_FAQ :
@@ -33,9 +32,9 @@ public enum SQL {
 		case TRUNCATE_FAQ :
 			result = "TRUNCATE TABLE FAQ";
 			break;
-			
+					
 		case CREATE_CUSTOMER :
-			result = "CREATE TABLE CUSTOMER\r\n" + 
+			result = "CREATE TABLE IF NOT EXISTS CUSTOMER\r\n" + 
 					"( \r\n" + 
 					"  CNO       INT  		   NOT NULL AUTO_INCREMENT  COMMENT '고객번호',\r\n" + 
 					"  CEMAIL    VARCHAR(40)    NOT NULL       		    COMMENT '이메일',\r\n" + 
@@ -49,7 +48,7 @@ public enum SQL {
 					"  UDATE     DATE  		   NULL       				COMMENT '수정일자',\r\n" + 
 					"  AGE     INT  		   NULL       				COMMENT '나이',\r\n" +
 					"  PRIMARY KEY (CNO)\r\n" + 
-					")";
+					") DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
 			break;
 			
 		case DROP_CUSTOMER :
@@ -87,7 +86,7 @@ public enum SQL {
 			break;
 			
 		case CREATE_EXRATE : 
-			result = "CREATE TABLE EXRATE(\n" + 
+			result = "CREATE TABLE IF NOT EXISTS EXRATE(\n" + 
 					"	SEQ INT NOT NULL AUTO_INCREMENT, \n" + 
 					"    BDATE VARCHAR(10) NULL,\n" + 
 					"    EXRATE VARCHAR(10) NOT NULL, \n" + 
@@ -96,7 +95,7 @@ public enum SQL {
 					"    UPMEM  VARCHAR(10) NULL,\n" + 
 					"    UDATE  VARCHAR(10) NULL,\n" + 
 					"    PRIMARY KEY(SEQ)\n" + 
-					")";
+					") DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
 			break;
 		case DROP_EXRATE : 
 			result = "DROP TABLE EXRATE";
@@ -105,6 +104,33 @@ public enum SQL {
 		case TRUNCATE_EXRATE :
 			result = "TRUNCATE TABLE EXRATE";
 			break;
+			
+		case CREATE_FEEDB :
+			result = "CREATE TABLE FEEDB\r\n" + 
+					"( \r\n" + 
+					"  SEQ       	INT  		   NOT NULL AUTO_INCREMENT  COMMENT '순번',\r\n" + 
+					"  BDATE    	INT    NOT NULL       		    		COMMENT '기준일',\r\n" + 
+					"  CUSNUM 	 	VARCHAR(20)    NULL        				COMMENT '고객번호',\r\n" + 
+					"  TXSEQ     	VARCHAR(20)    NULL    					COMMENT '거래일련번호',\r\n" + 
+					"  FEETYPCD     VARCHAR(20)    NULL    					COMMENT '수수료종류코드',\r\n" + 
+					"  FEEDTLCD    	VARCHAR(20)    NULL    					COMMENT '수수료상세코드',\r\n" + 
+					"  AMNT     	VARCHAR(20)    NULL        				COMMENT '수수료금액',\r\n" + 
+					"  CRTMEN     	VARCHAR(20)	   NULL      				COMMENT '생성자', \r\n" + 
+					"  CRTDATE      DATE		   NULL      				COMMENT '생성일자', \r\n" + 
+					"  UMEM     	VARCHAR(20)	   NULL       				COMMENT '수정자',\r\n" + 
+					"  UDATE     	DATE  		   NULL       				COMMENT '수정일자',\r\n" +
+					"  PRIMARY KEY (SEQ)\r\n" + 
+					")";
+			break;
+			
+		case DROP_FEEDB :
+			result = "DROP TABLE FEEDB";
+			break;
+			
+		case TRUNCATE_FEEDB :
+			result = "TRUNCATE TABLE FEEDB";
+			break;
+			
 		}
 		
 		return result;

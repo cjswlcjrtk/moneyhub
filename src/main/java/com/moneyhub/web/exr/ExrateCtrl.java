@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +31,40 @@ public class ExrateCtrl extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired Exrate exrate;
 	
-	@RequestMapping("/create/table")//
+	
+	
+	@GetMapping("/search/cntcd/{cntcd}")
+	public Map<?, ?> cntcdSearchExrate(@PathVariable String cntcd){
+		print("cntcd search 진입 - cntcd : " + cntcd);
+		ArrayList<Exrate> list = new ArrayList<>();
+		list = exService.cntcdSearchExrate(cntcd);
+		box.clear();
+		box.put("exlist", list);
+		print(box.get().toString());
+		return box.get();
+	}
+	
+	@GetMapping("/search/bdate/{bdate}")
+	public Map<?, ?> bdateSearchExrate(@PathVariable String bdate){
+		print("bdate search 진입 - bdate : " + bdate);
+		ArrayList<Exrate> list = new ArrayList<>();
+		list = exService.bdateSearchExrate(bdate);
+		box.clear();
+		box.put("exlist", list);
+		print(box.get().toString());
+		return box.get();
+	}
+	
+	@PostMapping("/insert/api")
+	public Map<?, ?> insertExrate(@RequestBody HashMap<String, Exrate[]> paramMap){
+		print("insert 진입 - list : " + paramMap.get("paramList").length);
+		print(paramMap.get("paramList").toString());
+		exService.insertExrate(paramMap.get("paramList"));
+		box.put("result", "SUCCESS");
+		return box.get();
+	}	
+	
+	@GetMapping("/create/table")//
 	public Map<?, ?> createTable(){
 		print("테이블 생성 진입");
 		HashMap<String, String> map = new HashMap<>();
@@ -41,45 +76,18 @@ public class ExrateCtrl extends Proxy{
 		return map;
 	}
 	
-	@RequestMapping("/search/{cntcd}")
-	public Map<?, ?> searchExrate(@PathVariable String cntcd){
-		print("search 진입 - cntcd : " + cntcd);
-		ArrayList<Exrate> list = new ArrayList<>();
-		list = exService.searchExrate(cntcd);
-		box.clear();
-		box.put("exlist", list);
-		print(box.get().toString());
-		return box.get();
-	}
-	
-	@RequestMapping("/insert")
-	public Map<?, ?> insertExrate(@RequestParam Map<String, String> paramMap){
-//	public void insertExrate(@RequestBody List<Object> paramMap){
-		print("insert 진입 - list : " + paramMap.size());
-		HashMap<String, String> map = new HashMap<>();
-		paramMap.forEach((k, v) -> System.out.println(String.format("%s - %s\n ", k, v)));
-	//	paramMap.forEach( System.out :: println);
-		print("============================");
-
-		exService.insertExrate(paramMap);
-		
-		map.put("result", "SUCCESS");
-		return map;
-	}
-	
-	@RequestMapping("/delete/table")
+	@GetMapping("/delete/table")
 	public Map<?, ?> deleteTable(){
 		print("테이블 삭제 진입");
 		HashMap<String, String> map = new HashMap<>();
 		map.put("DROP_EXRATE", SQL.DROP_EXRATE.toString());
 		exService.deleteExrate(map);
-		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
 	}
 	
-	@RequestMapping("/truncate/table")
+	@GetMapping("/truncate/table")
 	public Map<?, ?> truncateTable(){
 		print("테이블 내용 삭제 진입");
 		HashMap<String, String> map = new HashMap<>();

@@ -25,6 +25,23 @@ auth_mgmt =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
+		
+		$('#copy_btn').on('click', function(e){
+			var text = $('#account').html()
+			$('#clip_target').val(text)
+			$('#clip_target').select()
+			try { 
+				var successful = document.execCommand('copy');
+				if(successful){
+					alert('복사되었습니다.')
+				}else{
+					alert('복사실패')
+				}
+			} catch (err) { 
+				alert('이 브라우저는 지원하지 않습니다.') 
+			}
+		})
+		
 	}
 	
 	return { onCreate }

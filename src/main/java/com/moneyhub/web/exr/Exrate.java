@@ -16,5 +16,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Exrate {
 	private String seq, bdate, cntcd, crtmem, upmem, udate; 
-	private float exrate;
+	private double exrate;
 }

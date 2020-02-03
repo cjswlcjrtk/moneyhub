@@ -11,6 +11,8 @@
 		<typeAlias alias="Exrate"  type="com.moneyhub.web.exr.Exrate"/>
 		<typeAlias alias="AdminChart"  type="com.moneyhub.web.admin.AdminMapper"/>
 		<typeAlias alias="CRUDTable"  type="com.moneyhub.web.crudtable.CRUDTableMapper"/>
-
+		<typeAlias alias="TRD"  type="com.moneyhub.web.remit.domains.TRD"/>
+		<typeAlias alias="TRDHR"  type="com.moneyhub.web.remit.domains.TRDHR"/>
+		<typeAlias alias="RCPT"  type="com.moneyhub.web.remit.domains.RCPT"/>
     </typeAliases>
 </configuration>

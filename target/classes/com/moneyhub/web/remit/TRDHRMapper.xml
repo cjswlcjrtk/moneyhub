@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.remit.mappers.TRDHRMapper">
+	<select id="selectAll" resultType="TRDHR"  parameterType="PageProxy">
+		select T.* 
+		from TRDHR T, CUSTOMER C
+		WHERE T.CNO = C.CNO
+		LIMIT ${startRow}, ${pageSize}
+	</select>
+	<select id="countTRDHR" resultType="String" parameterType="PageProxy">
+		select count(*)
+		from TRDHR
+	</select>
+</mapper>

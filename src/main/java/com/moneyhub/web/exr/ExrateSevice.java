@@ -15,21 +15,26 @@ public class ExrateSevice {
 	@Autowired ExrateMapper exrateMapper;
 	public void insertExrate(Map<String, String> paramMap) {
 
+	public void insertExrate(Exrate[] paramList) {
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
-
-		ArrayList<Exrate> list = null;
-		for(int i = 0; i<9; i++) {
-			list = new ArrayList<>();
-			exrate.setBdate(paramMap.get("list["+i+"][bdate]"));
-			exrate.setCntcd(paramMap.get("list["+i+"][cntcd]"));
-			exrate.setExrate(Float.parseFloat(paramMap.get("list["+i+"][exrate]")));
-			exrate.setCrtmem("kmk");
+		for(int i = 0; i<paramList.length; i++) {
+			exrate = paramList[i];
+			exrate.setCrtmem("KMK");
 			c.accept(exrate);
 		}
 	}
 	
 	public ArrayList<Exrate> searchExrate(String s){
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
+	}
+
+	public ArrayList<Exrate> cntcdSearchExrate(String s){	
+		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.cntcdSearchExrate(t);
+		return f.apply(s);
+	}
+	
+	public ArrayList<Exrate> bdateSearchExrate(String s){	
+		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.bdateSearchExrate(t);
 		return f.apply(s);
 	}
 	

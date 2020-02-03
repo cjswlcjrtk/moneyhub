@@ -2,9 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+    
 <mapper namespace="com.moneyhub.web.cus.CustomerMapper">
-
 <!-- 	<select id="getUser" resultMap="usermap">
 		select * from users
 	</select>
@@ -17,14 +16,14 @@
 	 <select id="login" resultType="Customer">
 		SELECT *
 		FROM CUSTOMER
-		WHERE CEMAIL like #{cemail} AND CPWD LIKE #{cpwd}
+		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
 
 	</select>
 	
  	<select id="existId" resultType="integer">
 		SELECT COUNT(*) 
 		FROM CUSTOMER
-		WHERE CEMAIL like #{cemail}
+		WHERE CEMAIL = #{cemail}
 	</select>
 	
 <!-- 	CNO, CEMAIL, CPWD, CNAME, CNTCD, CPHONE, CSTCD, SDATE, WDATE, UDATE 
@@ -34,27 +33,72 @@
 		-->
 
 	<insert id="join" parameterType="Customer">
-	    INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CNTCD, CPHONE, 
-	    						CSTCD, SDATE, WDATE, UDATE ) 
+	   <!--  INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
+	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
 	    VALUES (
-	    	#{cemail}, #{cpwd}, #{cname}, #{cntcd}, #{cphone}, 
-	    	#{cstcd}, #{sdate}, #{wdate}, #{udate}
-	    )
+	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
+	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
+	    ) -->
+	    INSERT ALL
+	    INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
+	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
+	    VALUES (
+	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
+	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
+	    	)
+	    INTO ACCOUNT ( CNO, BSDATE, ACCT_NO, ACHCNTCD, CRTMEN, 
+	    			CRTDT, CPMEM, UPDT) 
+	    VALUES (
+	    	#{cno}, #{bsdate}, #{acct_no}, #{achcntcd}, #{crtmen}, 
+	    	#{crtdt}, #{cpmem}, #{updt}
+	    	)
+	    SELECT *
+	    FROM DUAL;
+	    	
 	</insert>
 	
  	<!-- <insert id="GetKey" parameterType="Customer">
-		update customer set custKey like #{param2}
-		where cemail like #{param1}
+		UPDATE CUSTOMER SET CUSTKEY LIKE #{param2}
+		WHERE CEMAIL LIKE #{param1}
 	</insert>
 	
 	<insert id="alterCustKey" parameterType="Customer">
-		update customer set custKey like 'Y'
-		where cemail like #{param1} and custKey like #{param2}
+		UPDATE CUSTOMER SET CUSTKEY LIKE 'Y'
+		WHERE CEMAIL LIKE #{param1} AND CUSTKEY LIKE #{param2}
 	</insert> -->
 	
-	<delete id="withdrawal">
-		DELETE CUSTOMER
-		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
+	<delete id="withdrawal" parameterType="Customer">
+		DELETE
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail}
 	</delete>
+
+	
+	<!-- <select id="pwdCheck" resultType="integer">
+		SELECT COUNT(*)
+		FROM CUSTOMER
+		WHERE CPWD LIKE #{cpwd}
+	</select> -->
+	
+	<select id="cusInfo" resultType="Customer">
+		SELECT CEMAIL, CNAME, ZIP, ADDR, DADDR, BIRTH
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail}
+	</select>
+	
+	<update id="cusInfoChg" parameterType="Customer">
+		UPDATE CUSTOMER
+		SET ZIP = #{zip},
+		ADDR = #{addr},
+		DADDR = #{daddr}
+		WHERE CEMAIL = #{cemail}
+	</update>
+	
+	<update id="pwdChg" parameterType="Customer">
+		UPDATE CUSTOMER
+		SET CPWD = #{cpwd}
+		WHERE CEMAIL = #{cemail}
+		AND CNO = #{cno}
+	</update>
 	
 </mapper>
