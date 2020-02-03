@@ -1,6 +1,6 @@
 "use strict"
-
 function Session(x){	
+	let exrate = {}
 	sessionStorage.setItem('ctx', x);
 	sessionStorage.setItem('js', x + '/resources/js');
 	sessionStorage.setItem('css', x + '/resources/css');
@@ -8,6 +8,8 @@ function Session(x){
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
 	var deal = new Object() // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
+	
+
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
@@ -15,7 +17,8 @@ function Session(x){
 		img : ()=>{ return sessionStorage.getItem('img');},
 		jsp : ()=>{return sessionStorage.getItem('jsp');},
 		deal : ()=>{return JSON.parse(sessionStorage.getItem('deal'))},
-		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))}
+		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))},
+		exrate : ()=>{ return JSON.parse(sessionStorage.getItem('exrate'))}
 	}
 }
 function Customer_Info(x){
@@ -41,3 +44,9 @@ function Clock(){
 	}
 }
 
+function Remit_send(){
+	let send = $('.form-calculator .amount-row input.send-amount')
+	let send_value = comma_create(send.val().replace(/,/gi, ''))	
+	alert('Remit_send')
+	send.val(send_value)
+}

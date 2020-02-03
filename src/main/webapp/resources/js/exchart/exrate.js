@@ -22,6 +22,7 @@ exrate =(()=>{
 		}else{
 			cntcd = receive_cntcd
 		}
+	}
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
@@ -34,29 +35,48 @@ exrate =(()=>{
 			})
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 		})
+		let exrate = $.exrate()
+/*		switch (receive_cntcd) {
+		case 'KRW':
+			cntcd = send_cntcd
+			break;
+		case 'USD':
+			cntcd = exrate.usd
+			break;
+		case 'EUR':
+			cntcd = exrate.eur
+			break;
+		case 'CNY':
+			cntcd = exrate.cny
+			break;
+		case 'JPY':
+			cntcd = exrate.jpy
+			break;
+		case 'AUD':
+			cntcd = exrate.aud
+			break;
+		}	
 		
+		receive_value_calc()
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			receive_value_calc()
+		})
+		*/
 		//	수수료 1.5%
 		let receive_value_calc =()=>{
+			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
+		
 			if( receive_cntcd === 'KRW'){
-				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-									* exrate_arr[exrate_arr.length -1] * 0.985
-			
-				$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
+				receive_value = receive_value * exrate_arr[exrate_arr.length -1] //* 0.985
 			}
 			else{
-				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-									/ exrate_arr[exrate_arr.length -1] * 0.985
-			
-				$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
+				receive_value = receive_value / exrate_arr[exrate_arr.length -1] //* 0.985
 			}
-			// * 0.985
+			
+			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
+
 			deal.amount = $('.form-calculator .amount-row input.send-amount').val()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 		}
-		
-		let comma_create =x=>{
-			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-		}
-	}
 	return { onCreate }
 })()

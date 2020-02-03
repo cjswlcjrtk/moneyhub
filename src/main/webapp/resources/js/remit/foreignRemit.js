@@ -14,21 +14,23 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-		remit_box_js = js + '/remit/remit_box.js'
+	//	remit_box_js = js + '/remit/remit_box.js'
 
 	}
 
 	let onCreate =()=>{
 		init()
 		$.when(
-			$.getScript(remit_vue_js),
-			$.getScript(remit_box_js)
+			$.getScript(remit_vue_js)
+	//		$.getScript(remit_box_js)
 		)
 		.done(()=>{
-		setContentView()
-		remit_deal()
-		remit_box.onCreate('')
-
+			setContentView()
+			remit_deal()
+		//	remit_box.onCreate('')
+			window.Remit_send()
+			
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -41,6 +43,22 @@ foreignRemit = (()=>{
 		$('.themoin-footer').empty()
 		
 		$('#popup-exchange').empty()
+		
+		$('.form-calculator .amount-row .receive')
+    	.css({ cursor : 'text',
+    		'background-image' : 'none'})
+    		
+    	common.remit_send_focusout()
+    	let exrate_arr = []
+    	$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
+			$.each(d.exlist.reverse(), (i, j)=>{
+				exrate_arr.push(parseFloat(j.exrate))
+			})
+			common.receive_value_calc(exrate_arr[exrate_arr.length -1])
+			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+				common.receive_value_calc(exrate_arr[exrate_arr.length -1])
+			})
+		})
 	}
 	
 	let remit_deal = ()=>{
@@ -53,7 +71,6 @@ foreignRemit = (()=>{
 			{$('#fee_check').text('12')}
 			else {$('#fee_check').text('6')}
 		})
-		
 		
 		$('#first_remit_btn').click(()=>{
 			deal.amount = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') //송금액을 바꿨을 때 금액

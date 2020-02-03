@@ -146,16 +146,18 @@ tables_mgmt =(()=>{
 			e.preventDefault()
 			$.getJSON('https://api.manana.kr/exchange/rate/KRW/'+
 						'KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json', d=>{
+
 				let arr = []
 				$.each(d, (i, j)=>{
 					arr.push({bdate : j.date.substr(0, 10), 
 						cntcd : j.name.substr(0, 3),
 						exrate : j.rate.toFixed(2)})
 				})
+				
 				$.ajax({
-					url : _ + `/exrate/insert`,
-					type : 'GET',
-					data : { 'list' : arr },
+					url : _ + `/exrate/insert/api`,
+					type : 'POST',
+					data : JSON.stringify({ 'paramList' : arr }),
 					dataType : 'json',
 					contentType : 'application/json',
 					success : d=>{
@@ -168,6 +170,16 @@ tables_mgmt =(()=>{
 				})
 			})
 		})
+
+		$(`<h3><a>EARATE 테이블  chart test용 data 삽입</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/tx/insert/exratelist`, d=>{
+				alert(`테이블 DATA 삽입 성공여부 : ${d.result}`)
+			})
+		})
+    
 		$(`<h3><a>EARATE 테이블  DATA 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
@@ -176,6 +188,7 @@ tables_mgmt =(()=>{
 				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
 			})
 		})
+		
 		$(`<h3><a>EARATE 테이블 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{

@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 public class ExrateSevice {
 	@Autowired Exrate exrate;
 	@Autowired ExrateMapper exrateMapper;
-	
-
 	public void insertExrate(Exrate[] paramList) {
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
 		for(int i = 0; i<paramList.length; i++) {

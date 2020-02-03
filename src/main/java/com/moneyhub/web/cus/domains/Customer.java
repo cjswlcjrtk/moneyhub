@@ -1,4 +1,4 @@
-package com.moneyhub.web.cus;
+package com.moneyhub.web.cus.domains;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

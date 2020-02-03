@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.moneyhub.web.cus.CustomerMapper">
+<mapper namespace="com.moneyhub.web.cus.mappers.CustomerMapper">
 <!-- 	<select id="getUser" resultMap="usermap">
 		select * from users
 	</select>
@@ -17,7 +17,6 @@
 		SELECT *
 		FROM CUSTOMER
 		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
-
 	</select>
 	
  	<select id="existId" resultType="integer">
@@ -33,17 +32,17 @@
 		-->
 
 	<insert id="join" parameterType="Customer">
-	   <!--  INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
+	    INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
 	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
 	    VALUES (
-	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
+	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, now(), 
 	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
-	    ) -->
-	    INSERT ALL
+	    )
+	   <!--  INSERT ALL
 	    INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
 	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
 	    VALUES (
-	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
+	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, now(),
 	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
 	    	)
 	    INTO ACCOUNT ( CNO, BSDATE, ACCT_NO, ACHCNTCD, CRTMEN, 
@@ -53,7 +52,7 @@
 	    	#{crtdt}, #{cpmem}, #{updt}
 	    	)
 	    SELECT *
-	    FROM DUAL;
+	    FROM DUAL; -->
 	    	
 	</insert>
 	
@@ -100,5 +99,11 @@
 		WHERE CEMAIL = #{cemail}
 		AND CNO = #{cno}
 	</update>
+	
+	<select id="CreateAcc" resultType="Customer">
+		SELECT DATE_FORMAT(SDATE, '%y%m%d'), CNO
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
+	</select>
 	
 </mapper>

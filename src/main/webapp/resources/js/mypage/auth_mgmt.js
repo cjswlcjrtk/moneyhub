@@ -26,6 +26,12 @@ auth_mgmt =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
 		
+		$.getJSON(_+'/customers/CreateAcc/' + $('#cemail').val(), d=>{
+			cemail : sessionStorage.getItem('CEMAIL')
+			$('#account').text(d.cus.sdate.replace(/-/gi,"").substring(2)+d.cus.cno)
+			
+		})
+		
 		$('#copy_btn').on('click', function(e){
 			var text = $('#account').html()
 			$('#clip_target').val(text)

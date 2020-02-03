@@ -44,7 +44,8 @@ mypage =(()=>{
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
-			remit_list({ nowPage : 0, keyword : null })
+			remit_list({ nowPage : 0})
+
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -79,23 +80,7 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
-
-			//====================================================================================== EJ
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
-			//======================================================================================
-			//====================================================================================== MK
-			/*sessionStorage.setItem('cemail', null)
-			sessionStorage.setItem('cname', null)*/
-	/*		alert(`email : ${$.cemail()}`)
-			if( $.cemail() !== 'null' ){
-				alert(`null 아닐 때  ${$.cemail()}`)
-			}else{
-				alert(`null 일 때  ${$.cemail()}`)
-			}*/
-			//======================================================================================
-			//======================================================================================HM
-			/*sessionStorage.setItem('CEMAIL', null);*/
-			//======================================================================================
 			app.onCreate()
 		})
 		$('#compo')
@@ -164,41 +149,85 @@ mypage =(()=>{
 			
 			$.each(d.trdhr, (i, j)=>{  //숙제 테이블 두개 정보 받아 넣기
 				$(`<div class="themoin-main-remititem">
-								<div class="simple">
-									<div class="unit-flag">
-										<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
-									</div>
-									<div class="simple-nametime">
-										<h3 class="username">
-											<span class="fs-block" lang="en" title="a aaa a"></span>
-										</h3>
-										<p class="create-time">${j.bsdate}</p>
-									</div>
-									<div class="simple-spacer"></div>
-									<div class="simple-amount">
-										<div class="user-sendlistdetail-amount">
-											<h3 class="user-sendlist-send">
-												<span class="user-sendlist-send">${j.trdSend}</span>
-												<span class="user-sendlist-sendunit">KRW</span>
-											</h3>
-											<img src="https://img.themoin.com/public/img/ic-next-p.png"
-												class="user-sendlist-ic">
-											<h3 class="user-sendlist-receive">
-												<span class="user-sendlist-receive">${j.trdAmnt}</span>
-												<span class="user-sendlist-receiveunit">USD</span>
-											</h3>
-										</div>
-										<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
-										<div class="send-due">
-											<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
-										</div>
-									</div>
+						<div class="simple">
+							<div class="unit-flag">
+								<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
+							</div>
+							<div class="simple-nametime">
+								<h3 class="username">
+									<span class="fs-block" lang="en" title="a aaa a"></span>
+								</h3>
+								<p class="create-time">${j.bsdate}</p>
+							</div>
+							<div class="simple-spacer"></div>
+							<div class="simple-amount">
+								<div class="user-sendlistdetail-amount">
+									<h3 class="user-sendlist-send">
+										<span class="user-sendlist-send">${j.trdSend}</span> <span
+											class="user-sendlist-sendunit">KRW</span>
+									</h3>
+									<img src="https://img.themoin.com/public/img/ic-next-p.png"
+										class="user-sendlist-ic">
+									<h3 class="user-sendlist-receive">
+										<span class="user-sendlist-receive">${j.trdAmnt}</span> <span
+											class="user-sendlist-receiveunit">USD</span>
+									</h3>
+								</div>
+								<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
+								<div class="send-due">
+									<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
 								</div>
 							</div>
+						</div>
 					</div>`)
 			    .appendTo('.remits')
 			})
-			
+			let pxy = d.pager
+			if(pxy.existPrev){
+				$(`<button class="control disabled" disabled="">
+		         	이전
+		         </button>`)
+		         .appendTo('.themoin-pagination')
+		         .click(()=>{
+		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
+		         })
+			}
+			$(`<ul class="list_paging"></ul>`)
+			.appendTo('.bundle_paging') 
+			for(let i = pxy.startPage; i<= pxy.endPage; i++){
+				if( pxy.nowPage == i ){
+					$(`<li class="on">
+							<a href="#" class="link_num">
+								<span class="screen_out">선택 됨</span>
+								${i+1}
+							</a>
+						</li>`)
+					.appendTo('.bundle_paging ul')		
+					$('html').scrollTop(0);
+				}else{
+					$(`<li class="">
+							<a href="#" class="link_num">
+								${i+1}
+							</a>
+						</li>`)
+					.appendTo('.bundle_paging ul')
+					.click(function(e){
+						e.preventDefault()
+						faq.faq_list({ nowPage : i, keyword : x.keyword })
+					})
+				}
+			}
+			if(pxy.existNext){
+				$(`<a href="#" class="link_paging">
+						<span class="ico_pay ico_next"></span>다음
+		        	</a>`)
+		        .appendTo('.bundle_paging')
+		        .click(()=>{
+		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
+		        })
+			}
+			//내역 눌렀을 때 상세 또는 수정 삭제
+
 			/*$('div.box')
 		    .click(function(){
 		    	if($(this).children('.answer').hasClass('show') == false){
@@ -208,7 +237,13 @@ mypage =(()=>{
 		    		$('div.box').children('.answer').attr('class', 'answer')
 //		    		$(this).children('.answer').attr('class', 'answer')
 		    	}
-		    })*/
+			/*<div class="themoin-pagination"></div>
+			<button class="control disabled" disabled="">이전</button>
+			<button class="paginator current">1</button>
+			<button class="control disabled" disabled="">다음</button>
+		</div>
+	</div>*/
+
 		})
 	}
 	

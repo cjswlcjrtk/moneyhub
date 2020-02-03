@@ -57,7 +57,7 @@ pwd_chg =(()=>{
 							auth.onCreate()
 							alert('변경된 비밀번호로 다시 로그인하실 수 있습니다.')
 						}else{
-							alert('현재 비밀번호와 동일합니다.')
+							alert('정보를 다시 확인해주세요.')
 						}
 					},
 					error : e=>{

@@ -5,7 +5,9 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,guide_recieve_js, remit_box_js,deal, adminLogin_js
+		tables_mgmt_js,guide_recieve_js, remit_box_js,deal,
+		adminLogin_js, common_js
+
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -31,12 +33,14 @@ app =(()=>{
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_box_js = js + '/remit/remit_box.js'
-		adminLogin_js = js + '/admin/adminLogin.js'
+		adminLogin_js = js + '/admin/adminLogin.js',
+		common_js = js + '/cmm/common.js'
 	}
 	
 	let onCreate =()=>{
 		init()
 		$.when(
+			$.getScript(common_js),
 			$.getScript(cmm_vue_js),
 			$.getScript(nav_vue_js),
 			$.getScript(main_vue_js),
@@ -59,6 +63,7 @@ app =(()=>{
 			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -113,14 +118,12 @@ app =(()=>{
 	let page_move =()=>{
 		$('#join')
 		.click(()=>{
-			auth.onCreate('join')
-			
+			auth.onCreate('join')	
 		})
 		
 		$('#login')
 		.click(()=>{
 			auth.onCreate('login')
-			
 		})
 		
 		$('#tables_mgmt_a')

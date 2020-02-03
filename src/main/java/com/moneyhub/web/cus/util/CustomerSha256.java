@@ -1,4 +1,4 @@
-package com.moneyhub.web.cus;
+package com.moneyhub.web.cus.util;
 
 import java.security.MessageDigest;
 

@@ -1,19 +1,20 @@
 $(document).ready(function(){
 //    $(function () {
-	let date = new Date();
-	let yyyy = date.getFullYear()
-	let mm = (date.getMonth() + 1).toString()
-	let dd = date.getDate().toString()
-	
-	mm = mm[1] ? mm : "0" + mm[0]
-	dd = dd[1] ? dd : "0" + dd[0]
-	let bdate = `${yyyy}-${mm}-${dd}`
+
 	let usd, eur, cny, jpy, aud		
+//	let flag = 'default'
+
+		
+	alert(`exrate_flag : ${$.exrate().flag}, exrate_bdate : ${$.exrate().bdate}`)
 	
 	let exchange_box =x=>{
 		$('.form-calculator .amount-row .receive p').text(`${x.country}`)
 		$('.form-calculator .amount-row .receive h3').text(`${x.cntcd}`)
 		
+		$('#exchange_test_exrate p')
+		.text(`${x.cntcd} 환율 : ${x.exrate}`)
+		.css({ 'text-align': 'left', margin : '5px' })
+                    			
 		$('#popup-exchange')
 		.show()
 		$.getScript($.js() + '/remit/remit_box.js')
@@ -22,25 +23,30 @@ $(document).ready(function(){
 		})
 	}
 	
-	$.getJSON(`${$.ctx()}/exrate/search/bdate/${bdate}`, d=>{
+	$.getJSON(`${$.ctx()}/exrate/search/bdate/${$.exrate().bdate}`, d=>{
 		$.each(d.exlist.reverse(), (i,j)=>{	
+			sessionStorage.setItem('exrate', '');
 			switch (j.cntcd) {
 			case 'USD':
-				usd = j.exrate
+				exrate.usd = usd = j.exrate
 				break;
 			case 'EUR':
-				eur = j.exrate
+				exrate.eur = eur = j.exrate
 				break;
 			case 'CNY':
-				cny = j.exrate
+				exrate.cny = cny = j.exrate
 				break;
 			case 'JPY':
-				jpy = j.exrate
+				exrate.jpy = jpy = j.exrate
 				break;
 			case 'AUD':
-				aud = j.exrate
+				exrate.aud = aud = j.exrate
 				break;
 			}	
+			exrate.bdate = j.bdate
+			sessionStorage.setItem('exrate', JSON.stringify(exrate));
+			$('#exchange_datepicker b')
+			.text(`환율 기준일 : ${j.bdate}`)
 		})
 
             $(".mapcontainer").mapael({
@@ -84,22 +90,22 @@ $(document).ready(function(){
                         			$('.form-calculator .amount-row .send p').text(`미국`)
                         			$('.form-calculator .amount-row .send h3').text(`USD`)
                         			$('#exchange_send_amount').val(1000)
-                            		exchange_box({country : '대한민국', cntcd : 'KRW'})
+                            		exchange_box({country : '대한민국', cntcd : 'KRW', exrate : 1})
                             	}
                             	else if(id === 'US' || id === 'MX'){
-                            		exchange_box({country : '미국', cntcd : 'USD'})
+                            		exchange_box({country : '미국', cntcd : 'USD', exrate : usd})
                             	}
                             	else if(id === 'JP'){
-                            		exchange_box({country : '일본', cntcd : 'JPY'})
+                            		exchange_box({country : '일본', cntcd : 'JPY', exrate : jpy})
                             	}
                             	else if(id === 'CN'){
-                            		exchange_box({country : '중국', cntcd : 'CNY'})
+                            		exchange_box({country : '중국', cntcd : 'CNY', exrate : cny})
                             	}
                             	else if(id === 'AU'){
-                            		exchange_box({country : '호주', cntcd : 'AUD'})
+                            		exchange_box({country : '호주', cntcd : 'AUD', exrate : aud})
                             	}
                             	else if(id === 'DE'){
-                            		exchange_box({country : '유럽', cntcd : 'EUR'})
+                            		exchange_box({country : '유럽', cntcd : 'EUR', exrate : eur})
                             	}
 
                                /* var newData = {

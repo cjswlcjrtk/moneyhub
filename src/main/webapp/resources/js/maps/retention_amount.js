@@ -9,7 +9,6 @@ retention_amount =(()=>{
 	let onCreate =()=>{
 		init()
 		setContentView()
-		
 	}
 	
 	let setContentView =()=>{
@@ -23,18 +22,19 @@ retention_amount =(()=>{
 		
 		$.each(data, (i,j)=>{
 			$(`<li><p style="font-size : 18px width:120px;">${j.currencies}</p>
-					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${comma_create(j.money)}</p>
+					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${common.comma_create(j.money)}</p>
 					<p class="fs-block" style="font-size : 18px">${j.cntcd}</p>
 				</li>`)
 			.css({
 				'font-size' : '18px'
 			})
 			.appendTo('#amount ol')
+			
+			$('#amount')
+			.css({ float : 'left'})
+			
 		})
 	}
-	
-	let comma_create =x=>{
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-	}
+
 	return { onCreate }
 })()

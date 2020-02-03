@@ -1,3 +1,4 @@
+//		window.onload = function() {//
 $(document).ready(function(){
 	let config = {
 		type: 'line',
@@ -9,7 +10,7 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false,	
+				fill: false	
 			}]
 		},
 		options: {
@@ -36,7 +37,7 @@ $(document).ready(function(){
 						return config.data.datasets[0].data[tooltipItem['index']]
 					}
 				},
-				intersect: false,
+				intersect: false
 			},
 			hover: {
 				mode: 'nearest',
@@ -69,17 +70,17 @@ $(document).ready(function(){
 	alert('그래프')
 	let ctx = document.getElementById('canvas2').getContext('2d');
 	
-	let cntcd = $('#remit_box .amount-row .receive h3').text()
-	$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
+	let cntcd = $('.form-calculator .amount-row .receive h3').text()
+	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
-		config.options.title.text = `선택한 통화 환율 추이   1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
+		config.options.title.text = `머니허브환율 1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
 
 		//		수수료 1.5%
 		receive_value_calc()
-		$('#remit_box .amount-row input.send-amount').keyup(()=>{
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
 		})
 		
@@ -87,14 +88,12 @@ $(document).ready(function(){
 	})
 	
 	let receive_value_calc =()=>{
-		let receive_value = $('#remit_box .amount-row input.send-amount').val().replace(/,/gi, '') 
-							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985 + ""
-		//alert(`${receive_value.substring(0, receive_value.indexOf('.') + 3)}`)
-		$('#remit_box .amount-row input.receive-amount').val(numberFormat(receive_value.substring(0, receive_value.indexOf('.') + 3)))
-
+		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
+							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
+		$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 	}
 	
-	let numberFormat =x=>{
+	let comma_create =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
 })

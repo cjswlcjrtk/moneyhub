@@ -1,6 +1,11 @@
-package com.moneyhub.web.cus;
+package com.moneyhub.web.cus.mappers;
+
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
+
+import com.moneyhub.web.cus.domains.Customer;
+import com.moneyhub.web.faq.FAQ;
 
 
 @Repository
@@ -15,4 +20,5 @@ public interface CustomerMapper {
 	public void pwdChg(Customer param);
 	public Customer cusInfo(Customer param);
 	public void cusInfoChg(Customer param);
+	public String CreateAcc(Customer param);
 }

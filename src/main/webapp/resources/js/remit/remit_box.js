@@ -14,12 +14,10 @@ remit_box =(()=>{
 	
 	let onCreate =x=>{
 		init(x)
-		$('#send_amount').val(1000000)
-		remit_send()
-		$('.form-calculator .amount-row input.send-amount')
-		.focusout(()=>{
-			remit_send()
-		})
+		$('#send_amount').val(1000)
+		
+		common.remit_send_focusout()
+
 		popup()
 		$.getScript(exrate_js)
 		.done(()=>{
@@ -27,16 +25,6 @@ remit_box =(()=>{
 		})
 	}
 	
-	let remit_send =()=>{
-		let send = $('.form-calculator .amount-row input.send-amount')
-		let send_value = comma_create(send.val().replace(/,/gi, ''))	
-		send.val(send_value)
-	}
-	
-	let comma_create =x=>{
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-	}
-	//
 	let popup =()=>{
 		if(flag === 'exchange'){	// 모의 환전 시
 			let send_data = [ { img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
@@ -47,7 +35,7 @@ remit_box =(()=>{
 							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' }]
 			
 			if( cntcd === 'KRW' ){
-				alert('cntcd : ' + cntcd)
+//				alert('cntcd : ' + cntcd)
 				$('.form-calculator .amount-row .send')	// send cntcd 클릭 시
 				.click(e=>{
 					e.preventDefault()
@@ -99,12 +87,7 @@ remit_box =(()=>{
 				search_filter(receive_data)			
 			})
 			
-			$('#popup-root .moin-close')
-			.click(e=>{
-				e.preventDefault()
-				$('#popup-root')
-				.hide()
-			})
+			common.popup_close('root')
 		}
 	}
 	
@@ -144,7 +127,7 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					$('#chart')
-					.html(`<canvas id="canvas" style="width:70%; height:110px"></canvas>`)
+					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
 					$.getScript(line_graph_js)
 					
 				}
@@ -153,6 +136,7 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
 					$('#popup-exchange').show()
 					exrate.onCreate()
+
 				}
 				else{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
