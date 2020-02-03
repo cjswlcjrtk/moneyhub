@@ -65,13 +65,12 @@ $(function(){
 	
 	let chartLabels = []
 	let chartData = []
-	$.getJSON('/web/admin/feeDBCharts',d=>{
-		alert('aaaaa')
+	$.getJSON('/web/adminChart/feeDBCharts',d=>{
 		$.each(d.feeDBChart,(i,j)=>{
 			chartLabels.push(j+"월")
 		})
 		$.each(d.feeDBChartAMNT,(i,j)=>{
-			console.log(d.feeDBChartAMNT)
+//			console.log(d.feeDBChartAMNT)
 			chartData.push(j)
 		})
 		feeDBChartData = {

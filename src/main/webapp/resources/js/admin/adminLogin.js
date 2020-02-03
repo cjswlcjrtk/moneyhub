@@ -29,7 +29,6 @@ adminLogin =(()=>{
 	}
 	
 	let setContentView =()=>{
-		alert('adadad')
 		$('#root')
 		.html(login_vue.login_body())		
 		$(login_vue.login())
@@ -43,29 +42,28 @@ adminLogin =(()=>{
 		.appendTo('.moin-login form.login')
 		.click(e=>{
 			e.preventDefault()
-			adminIndex.onCreate()
-//			$.ajax({
-//				url : _ + '/admin/login',
-//				type : 'POST',
-//				data : JSON.stringify({
-//					cemail : $('#cemail').val(),
-//					cpwd : $('#cpwd').val()
-//				}),
-//				dataType : 'json',
-//				contentType : 'application/json',
-//				success : d=>{
-//					if(d.msg === 'SUCCESS'){
-//						mypage.onCreate()
-//					}
-//					else{
-//						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
-//						$('#login_pwd').css('color', 'red')
-//					}					
-//				},
-//				error : e=>{
-//					alert('login ajax 실패')
-//				}
-//			})
+			$.ajax({
+				url : _ + '/admin/login',
+				type : 'POST',
+				data : JSON.stringify({
+					amail : $('#amail').val(),
+					pwd : $('#pwd').val()
+				}),
+				dataType : 'json',
+				contentType : 'application/json',
+				success : d=>{
+					if(d.msg === 'SUCCESS'){
+						adminIndex.onCreate()
+					}
+					else{
+						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
+						$('#login_pwd').css('color', 'red')
+					}					
+				},
+				error : e=>{
+					alert('관리자login ajax 실패')
+				}
+			})
 		})
 	}	
 	

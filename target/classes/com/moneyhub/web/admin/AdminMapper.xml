@@ -48,5 +48,27 @@
 		SELECT SUM(AMNT) FROM FEEDB		
 		WHERE BDATE LIKE #{value}
 	</select>
-
+	
+	<select id="adminLogin" resultType="Admin">
+		SELECT *
+		FROM ADMIN
+		WHERE AMAIL = #{amail} AND PWD = #{pwd}
+	</select>
+	
+	<select id="memberList" resultType="map">
+		<![CDATA[
+		SELECT CNO, CEMAIL, CNAME, CPWD , AGE, DATE_FORMAT(SDATE, "%Y/%m/%d") AS SDATE, CSTCD 
+		FROM CUSTOMER
+		]]>
+	</select>
+	
+	<update id="memberUpdate" parameterType="Admin">
+		UPDATE CUSTOMER
+		SET CEMAIL = #{cemail},
+		CPWD = #{cpwd},
+		CNAME = #{cname},
+		CSTCD = #{cstcd}
+		WHERE CNO = #{cno}
+	</update>
 </mapper>
+

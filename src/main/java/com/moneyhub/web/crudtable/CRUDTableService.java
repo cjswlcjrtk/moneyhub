@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class CRUDTableService {
 	@Autowired CRUDCustomer customer;
 	@Autowired CRUDFeeDB feeDB;
+	@Autowired CRUDAdmin admin;
 	
 	@Autowired CRUDTableMapper crudTableMapper;
 	
@@ -38,6 +39,20 @@ public class CRUDTableService {
 	}	
 	public void dropFeeDB(HashMap<String, String> map) {
 		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFeeDB(p);
+		c.accept(map);
+	}
+	
+//	CRUDAdmin
+	public void createAdmin(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createAdmin(p);
+		c.accept(map);
+	}		
+	public void dropAdmin(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropAdmin(p);
+		c.accept(map);
+	}
+	public void insertAdmin(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.insertAdmin(p);
 		c.accept(map);
 	}
 	

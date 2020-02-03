@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class ExrateSevice {
 	@Autowired Exrate exrate;
 	@Autowired ExrateMapper exrateMapper;
-	public void insertExrate(Map<String, String> paramMap) {
+	
 
 	public void insertExrate(Exrate[] paramList) {
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
@@ -22,11 +22,7 @@ public class ExrateSevice {
 			exrate.setCrtmem("KMK");
 			c.accept(exrate);
 		}
-	}
-	
-	public ArrayList<Exrate> searchExrate(String s){
-		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
-	}
+	}	
 
 	public ArrayList<Exrate> cntcdSearchExrate(String s){	
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.cntcdSearchExrate(t);
@@ -53,3 +49,4 @@ public class ExrateSevice {
 		c.accept(map);
 	}
 }
+	

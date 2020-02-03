@@ -106,8 +106,33 @@ public class CRUDTableCtrl extends Proxy{
 		print("고객테이블 drop 진입");
 		HashMap<String, String> map = new HashMap<>();
 		map.put("DROP_FEEDB", SQL.DROP_FEEDB.toString());
-		crudTableService.dropFeeDB(map);
-		
+		crudTableService.dropFeeDB(map);		
+		map.clear();
+		map.put("result", "SUCCESS");
+		return map;
+	}
+	
+	//ADMIN
+	@RequestMapping("/create/createAdmin")
+	public Map<?,?> createAdminTable(){
+		print("admin테이블 생성 진입");
+		HashMap<String, String> map = new HashMap<>();
+		map.put("CREATE_ADMIN", SQL.CREATE_ADMIN.toString());
+		crudTableService.createAdmin(map);		
+		map.clear();
+		map.put("INSERT_ADMIN", SQL.INSERT_ADMIN.toString());
+		crudTableService.insertAdmin(map);
+		map.clear();
+		map.put("result", "SUCCESS");
+		return map;
+	}
+	
+	@RequestMapping("/drop/dropAdmin")
+	public Map<?,?> dropAdminTable(){
+		print("admin테이블 drop 진입");
+		HashMap<String, String> map = new HashMap<>();
+		map.put("DROP_ADMIN", SQL.DROP_ADMIN.toString());
+		crudTableService.dropAdmin(map);		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;

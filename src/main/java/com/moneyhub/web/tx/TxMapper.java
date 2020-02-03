@@ -14,8 +14,8 @@ public interface TxMapper {
 			"VALUES ( #{title}, #{content})")
 	public void insertFAQ(FAQ param);
 	
-	@Insert("INSERT INTO CUSTOMER ( CEMAIL, CPWD, AGE )\r\n "
-			+ "VALUES ( #{cemail}, #{cpwd}, #{age})")
+	@Insert("INSERT INTO CUSTOMER ( CEMAIL, CPWD, AGE, CNAME, SDATE, CSTCD)\r\n "
+			+ "VALUES ( #{cemail}, #{cpwd}, #{age}, #{cname}, #{sdate},  #{cstcd} )")
 	public void insertCustomer(CRUDCustomer param);
 	
 	@Insert("INSERT INTO FEEDB ( AMNT, BDATE )\r\n "

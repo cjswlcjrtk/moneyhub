@@ -16,7 +16,7 @@ import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/adminChart")
 public class AdminChartCtrl extends Proxy{
 	
 	@Autowired AdminChart adminChart;
@@ -51,8 +51,7 @@ public class AdminChartCtrl extends Proxy{
 		list.add("60");
 		list.add("70");
 		list.add("80");
-		list.add("90");
-		
+		list.add("90");		
 		ArrayList<String> list2 = new ArrayList<>();
 		list2 = adminChartService.memberPieChartCount(list);
 		System.out.println(list);

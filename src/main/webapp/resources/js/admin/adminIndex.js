@@ -41,7 +41,6 @@ adminIndex =(()=>{
 	}
 	
 	let setContentView =()=>{
-		alert('aaaa')
 		$(adminIndex_vue.main_head()).appendTo('head')
 		$('body').html(adminIndex_vue.main_body())			
 		leftMenuEvent()
@@ -49,36 +48,37 @@ adminIndex =(()=>{
 	
 	let leftMenuEvent = () => {
 		$('#adminHome').click(()=>{
-			alert('adminHome')			
 			$('div.container-fluid').empty()
+			$('head').empty()
+			$('div.container').empty()
+			$(adminIndexHome_vue.home_head()).appendTo('head')
 			$('div.container-fluid').html(adminIndexHome_vue.home_body())
 		})
 		$('#members').click(()=>{
-			alert('members')			
 			$('div.container-fluid').empty()
+			$('head').empty()
+			$('div.container').empty()
 			members.onCreate()
 		})
 		$('#membersChart').click(e=>{
-			alert('membersChart')	
 			e.preventDefault()
 			$('div.container-fluid').empty()
+			$('head').empty()
+			$('div.container').empty()
 			membersChart.onCreate()
 		})
 		$('#transactionChart').click(()=>{
-			alert('transactionChart')			
 			$('div.container-fluid').empty()
+			$('head').empty()
+			$('div.container').empty()
 			transactionChart.onCreate()
 		})
 		$('#profitChart').click(()=>{
-			alert('profitChart')			
 			$('div.container-fluid').empty()
+			$('head').empty()
+			$('div.container').empty()
 			profitChart.onCreate()
 		})
-//		$('#qna').click(()=>{
-//			alert('qna')			
-//			$('div.container-fluid').empty()
-//			qna.onCreate()
-//		})
 	}
 	
 	

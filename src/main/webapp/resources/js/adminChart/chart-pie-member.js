@@ -26,7 +26,7 @@ $(function(){
 	
 	let chartLabels = []
 	let chartData = []	
-	$.getJSON('/web/admin/memberPieChart',d=>{
+	$.getJSON('/web/adminChart/memberPieChart',d=>{
 		$.each(d.adminChart,(i,j)=>{	
 			chartLabels.push(j+"대")
 		})

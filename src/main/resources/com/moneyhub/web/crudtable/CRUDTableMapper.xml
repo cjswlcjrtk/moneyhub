@@ -28,4 +28,16 @@
 		${DROP_FEEDB}
 	</select>
 	
+	<select id="createAdmin" parameterType="map">
+		${CREATE_ADMIN}
+	</select>
+		
+	<select id="dropAdmin" parameterType="map">
+		${DROP_ADMIN}
+	</select>
+	
+	<select id="insertAdmin" parameterType="map">
+		${INSERT_ADMIN}
+	</select>
+	
 </mapper>

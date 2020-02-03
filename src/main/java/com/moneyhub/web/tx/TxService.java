@@ -14,10 +14,9 @@ import com.moneyhub.web.faq.FAQ;
 import com.moneyhub.web.faq.FAQMapper;
 import com.moneyhub.web.pxy.CrawlingProxy;
 import com.moneyhub.web.pxy.CustomerProxy;
-import com.moneyhub.web.pxy.FeeDBProxy;
-import com.moneyhub.web.pxy.KakaoFAQProxy;
 import com.moneyhub.web.pxy.ExrateStoreProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
+import com.moneyhub.web.pxy.FeeDBProxy;
 
 @Service
 public class TxService {
@@ -35,25 +34,19 @@ public class TxService {
 	
 	@Autowired CustomerProxy customerProxy;
 	@Autowired FeeDBProxy feeDBProxy;
-		
+	
 	@Transactional
 	public void crawling() {
 		crawler.insertCrawling();
 	}
 	
 	@Transactional
-	public void insertStore() {
-
-		for(int i=0; i< kakaoPxy.title_stores().length;i++) {
-			faq.setTitle(kakaoPxy.title_stores()[i]);
-			faq.setContent(kakaoPxy.content_stores()[i]);
-			txMapper.insertFAQ(faq);
-		}	
 	public void insertFAQStore() {
 		for(int i=0; i< faqPxy.title_stores().length;i++) {
 			faq.setTitle(faqPxy.title_stores()[i]);
 			faq.setContent(faqPxy.content_stores()[i]);
 			faqMapper.insertFAQ(faq);
+//			txMapper.insertFAQ(faq);
 		}
 	}
 	
@@ -65,6 +58,7 @@ public class TxService {
 			exrate.setCntcd("EUR");
 			exrate.setCrtmem("KMK");
 			exrateMapper.insertExrate(exrate);
+//		//	txMapper.insertFAQ(exrate);
 		}
 	}
 	
@@ -74,9 +68,11 @@ public class TxService {
 			crudCustomer.setCemail(customerProxy.makeCmail());
 			crudCustomer.setCpwd(customerProxy.makeCpwd());
 			crudCustomer.setAge(customerProxy.makeAge());
+			crudCustomer.setCname(customerProxy.makeCname());
+			crudCustomer.setSdate(customerProxy.makeStartYear());
+			crudCustomer.setCstcd(customerProxy.makeCSTCD());
 			txMapper.insertCustomer(crudCustomer);
-		}
-		
+		}		
 	}
 	
 	@Transactional
@@ -85,7 +81,6 @@ public class TxService {
 			crudFeeDB.setAmnt(feeDBProxy.makeAmnt());
 			crudFeeDB.setBdate(feeDBProxy.makebDate());
 			txMapper.insertFeeDB(crudFeeDB);
-		}
-		
+		}		
 	}
 }

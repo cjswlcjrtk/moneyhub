@@ -8,7 +8,7 @@ adminIndex_vue ={
 		'  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'+
 		'  <meta name="description" content="">'+
 		'  <meta name="author" content="">'+
-		' <title>SB Admin 2 - Dashboard</title>'+
+		' <title>HOME - Dashboard</title>'+
 		' <!-- Custom fonts for this template-->'+
 		'  <link href="/web/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">'+
 		'  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">'+
@@ -23,20 +23,12 @@ adminIndex_vue ={
 		'   <!-- Sidebar -->'+
 		'    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">'+
 		'     <!-- Sidebar - Brand -->'+
-		'      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">'+
+		'      <a class="sidebar-brand d-flex align-items-center justify-content-center" id="adminHome">'+
 		'        <div class="sidebar-brand-icon rotate-n-15">'+
 		'          <i class="fas fa-laugh-wink"></i>'+
 		'        </div>'+
-		'        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>'+
+		'        <div class="sidebar-brand-text mx-3">HOME</div>'+
 		'      </a>'+
-		'     <!-- Divider -->'+
-		'      <hr class="sidebar-divider my-0">'+
-		'     <!-- Nav Item - Dashboard -->'+
-		'      <li class="nav-item active">'+
-		'        <a class="nav-link" id="adminHome">'+
-		'          <i class="fas fa-fw fa-tachometer-alt"></i>'+
-		'          <span>Dashboard</span></a>'+
-		'      </li>'+
 		'     <!-- Divider -->'+
 		'      <hr class="sidebar-divider">'+
 		'     <!-- Heading -->'+
@@ -55,7 +47,7 @@ adminIndex_vue ={
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="membersChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>회원차트</span>'+
+		'          <span>수수료 조정</span>'+
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="transactionChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+

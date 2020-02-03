@@ -15,5 +15,10 @@ public interface CRUDTableMapper {
 	public void createFeeDB(HashMap<String, String> map);
 	public void truncateFeeDB(HashMap<String, String> map);
 	public void dropFeeDB(HashMap<String, String> map);
+	
+	//Admin
+	public void createAdmin(HashMap<String, String> map);
+	public void dropAdmin(HashMap<String, String> map);
+	public void insertAdmin(HashMap<String, String> map);
 
 }
