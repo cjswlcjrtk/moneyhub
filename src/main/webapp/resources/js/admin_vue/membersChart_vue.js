@@ -63,6 +63,8 @@ membersChart_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="chart-pie pt-4">'+
 //		'                    <canvas id="memberPieChart"></canvas>'+
+		'<div id=""></div>'+ 
+		
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
