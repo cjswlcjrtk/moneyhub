@@ -25,7 +25,6 @@ public class AdminChartCtrl extends Proxy{
 	
 	@GetMapping("/feeDBCharts")
 	public Map<?, ?> areaChart(){
-//		System.out.println("컨트롤 테스트");
 		ArrayList<String> list = new ArrayList<>();
 		list = adminChartService.feeDBChart();
 		ArrayList<String> list2 = new ArrayList<>();
@@ -33,25 +32,40 @@ public class AdminChartCtrl extends Proxy{
 		box.clear();
 		box.put("feeDBChart", list);
 		box.put("feeDBChartAMNT", list2);
-//		System.out.println(list2.toString()+"list2");
+		return box.get();
+	}
+	
+	@GetMapping("/feeChartsOne")
+	public Map<?, ?> feeChartsOne(){
+		ArrayList<String> list = new ArrayList<>();
+		list = adminChartService.feeDBChart();
+		ArrayList<String> list2 = new ArrayList<>();
+		list2 = adminChartService.feeChartOneAMNT(list);
+		box.clear();
+		box.put("feeDBChart", list);
+		box.put("feeChartOneAMNT", list2);
+		return box.get();
+	}
+	
+	@GetMapping("/feeChartsTwo")
+	public Map<?, ?> feeChartsTwo(){
+		ArrayList<String> list = new ArrayList<>();
+		list = adminChartService.feeDBChart();
+		ArrayList<String> list2 = new ArrayList<>();
+		list2 = adminChartService.feeChartTwoAMNT(list);
+		box.clear();
+		box.put("feeDBChart", list);
+		box.put("feeChartTwoAMNT", list2);
 		return box.get();
 	}
 	
 	@GetMapping("/memberPieChart")
 	public Map<?, ?> memberPieChart(){
 		System.out.println("파이 테스트");
-//		HashMap<String, String> list = new HashMap<>();
 		ArrayList<String> list = new ArrayList<>();
-//		list = adminChartService.memberPieChart();
-		list.add("10");
-		list.add("20");
-		list.add("30");
-		list.add("40");
-		list.add("50");
-		list.add("60");
-		list.add("70");
-		list.add("80");
-		list.add("90");		
+		for(int i=1; i<7 ;i++) {
+			list.add(i*10+"");
+		}
 		ArrayList<String> list2 = new ArrayList<>();
 		list2 = adminChartService.memberPieChartCount(list);
 		System.out.println(list);

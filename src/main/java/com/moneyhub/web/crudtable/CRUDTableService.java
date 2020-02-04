@@ -56,5 +56,19 @@ public class CRUDTableService {
 		c.accept(map);
 	}
 	
+//	CRUDFee
+	public void createFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createFee(p);
+		c.accept(map);
+	}		
+	public void dropFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFee(p);
+		c.accept(map);
+	}
+	public void insertFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.insertFee(p);
+		c.accept(map);
+	}
+	
 	
 }

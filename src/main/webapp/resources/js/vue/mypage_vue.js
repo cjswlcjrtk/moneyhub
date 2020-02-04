@@ -285,7 +285,7 @@ mypage_vue = {
 		return `<div class="container">
 					<div id="exchange_datepicker">
 						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
-						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker" class="form-control">
+						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datePicker" class="form-control">
 				    		<button>클릭</button>
 				    	</div>
 					</div>	

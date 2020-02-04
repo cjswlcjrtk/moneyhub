@@ -8,7 +8,7 @@ adminIndexHome_vue ={
 			'  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'+
 			'  <meta name="description" content="">'+
 			'  <meta name="author" content="">'+
-			' <title>HOME - Dashboard</title>'+
+			' <title>MONEYHUB ADMIN<</title>'+
 			' <!-- Custom fonts for this template-->'+
 			'  <link href="/web/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">'+
 			'  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">'+
@@ -162,14 +162,23 @@ adminIndexHome_vue ={
 		'                  </div>'+
 		'                  <div class="mt-4 text-center small">'+
 		'                    <span class="mr-2">'+
-		'                      <i class="fas fa-circle text-primary"></i> Direct'+
+		'                      <i class="fas fa-circle text-primary"></i> 10대'+
 		'                    </span>'+
 		'                    <span class="mr-2">'+
-		'                      <i class="fas fa-circle text-success"></i> Social'+
+		'                      <i class="fas fa-circle text-success"></i> 20대'+
 		'                    </span>'+
 		'                    <span class="mr-2">'+
-		'                      <i class="fas fa-circle text-info"></i> Referral'+
+		'                      <i class="fas fa-circle text-info"></i> 30대'+
 		'                    </span>'+
+		'                    <span class="mr-2">'+
+		'                    <span class="mr-2">'+
+		'                      <i class="fas fa-circle text-warning"></i> 40대'+
+		'                    </span>'+
+		'                    <span class="mr-2">'+
+		'                      <i class="fas fa-circle text-danger"></i> 50대'+
+		'                    </span>'+
+		'                    <span class="mr-2">'+
+		'                      <i class="fas fa-circle text-secondary"></i> 60대'+
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
@@ -207,57 +216,6 @@ adminIndexHome_vue ={
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
-//		'             <!-- Color System -->'+
-//		'              <div class="row">'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-primary text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Primary'+
-//		'                      <div class="text-white-50 small">#4e73df</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-success text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Success'+
-//		'                      <div class="text-white-50 small">#1cc88a</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-info text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Info'+
-//		'                      <div class="text-white-50 small">#36b9cc</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-warning text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Warning'+
-//		'                      <div class="text-white-50 small">#f6c23e</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-danger text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Danger'+
-//		'                      <div class="text-white-50 small">#e74a3b</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'                <div class="col-lg-6 mb-4">'+
-//		'                  <div class="card bg-secondary text-white shadow">'+
-//		'                    <div class="card-body">'+
-//		'                      Secondary'+
-//		'                      <div class="text-white-50 small">#858796</div>'+
-//		'                    </div>'+
-//		'                  </div>'+
-//		'                </div>'+
-//		'              </div>'+
 		'           </div>'+
 		'           <div class="col-lg-6 mb-4">'+
 		'             <!-- Illustrations -->'+
@@ -314,13 +272,6 @@ adminIndexHome_vue ={
 		'      </div>'+
 		'    </div>'+
 		'  </div>'+
-//		' <!-- Bootstrap core JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery/jquery.min.js"></script>'+
-//		'  <script src="/web/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>'+
-//		' <!-- Core plugin JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery-easing/jquery.easing.min.js"></script>'+
-//		' <!-- Custom scripts for all pages-->'+
-//		'  <script src="/web/resources/js/sb-admin-2.min.js"></script>'+
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+

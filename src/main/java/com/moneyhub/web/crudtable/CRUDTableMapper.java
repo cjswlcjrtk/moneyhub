@@ -20,5 +20,10 @@ public interface CRUDTableMapper {
 	public void createAdmin(HashMap<String, String> map);
 	public void dropAdmin(HashMap<String, String> map);
 	public void insertAdmin(HashMap<String, String> map);
+	
+	//FEE
+	public void createFee(HashMap<String, String> map);
+	public void dropFee(HashMap<String, String> map);
+	public void insertFee(HashMap<String, String> map);
 
 }

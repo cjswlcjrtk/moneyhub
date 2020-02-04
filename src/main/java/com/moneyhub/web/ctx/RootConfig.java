@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 @Configuration
 @MapperScan(basePackages = { "com.moneyhub.web" })
 @ComponentScan(basePackages = { "com.moneyhub.web" })

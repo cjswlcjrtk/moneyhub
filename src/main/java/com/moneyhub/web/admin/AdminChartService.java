@@ -24,7 +24,7 @@ public class AdminChartService {
 		return list;
 	}
 	
-	public ArrayList<String> feeDBChart(){
+	public ArrayList<String> feeDBChart(){//월별로 리스트 뽑음
 		Supplier<ArrayList<String>> f = () -> adminMapper.feeDBChart();
 		return f.get();
 	}
@@ -36,6 +36,24 @@ public class AdminChartService {
 			list.add(adminMapper.feeDBChartAMNT(p));
 		}	
 		return list;
-	}	
+	}
+	
+	@Transactional
+	public ArrayList<String> feeChartOneAMNT(ArrayList<String> s){
+		ArrayList<String> list = new ArrayList<>();
+		for(String p: s) {	
+			list.add(adminMapper.feeChartOneAMNT(p));
+		}	
+		return list;
+	}
+	
+	@Transactional
+	public ArrayList<String> feeChartTwoAMNT(ArrayList<String> s){
+		ArrayList<String> list = new ArrayList<>();
+		for(String p: s) {	
+			list.add(adminMapper.feeChartTwoAMNT(p));
+		}	
+		return list;
+	}
 	
 }

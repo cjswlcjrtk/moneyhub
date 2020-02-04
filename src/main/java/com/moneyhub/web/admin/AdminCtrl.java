@@ -36,7 +36,6 @@ public class AdminCtrl extends Proxy{
 	
 	@GetMapping("/member")
 	public Map<?, ?> memberList(){
-		System.out.println("memberList 들어옴");
 		ArrayList<Map<String, Object>> list = new ArrayList<>();
 		Supplier<ArrayList<Map<String, Object>>> f = () -> adminMapper.memberList();
 		list = f.get();
@@ -47,8 +46,37 @@ public class AdminCtrl extends Proxy{
 	
 	@PostMapping("/memberUpdate")
 	public Map<?, ?> memberListUpdate(@RequestBody Admin param){
-		System.out.println(param);		
 		Consumer<Admin> c = o -> adminMapper.memberUpdate(o);
+		c.accept(param);
+		box.clear();
+		box.put("msg", "SUCCESS");
+		return box.get();
+	}
+	
+	@GetMapping("/fee")
+	public Map<?, ?> feeSelect(){
+		Supplier<String> one = () -> adminMapper.feeSelectOne();
+		one.get();
+		Supplier<String> two = () -> adminMapper.feeSelectTwo();
+		two.get();
+		box.clear();
+		box.put("feeOne", one.get());
+		box.put("feeTwo", two.get());
+		return box.get();
+	}
+	
+	@PostMapping("/feeUpdateOne")
+	public Map<?, ?> feeUpdateOne(@RequestBody Map<String, String> param){	
+		Consumer<Map<String, String>> c = o -> adminMapper.feeUpdateOne(o);
+		c.accept(param);
+		box.clear();
+		box.put("msg", "SUCCESS");
+		return box.get();
+	}
+	
+	@PostMapping("/feeUpdateTwo")
+	public Map<?, ?> feeUpdateTwo(@RequestBody Map<String, String> param){	
+		Consumer<Map<String, String>> c = o -> adminMapper.feeUpdateTwo(o);
 		c.accept(param);
 		box.clear();
 		box.put("msg", "SUCCESS");

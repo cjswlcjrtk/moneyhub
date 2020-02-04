@@ -54,6 +54,7 @@
 	<!-- dateTimePicker -->
 	<script src="<%=application.getContextPath()%>/resources/js/datepicker/bootstrap-datepicker.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
@@ -90,27 +91,16 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange.js"></script>
 	
-	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/membersChart.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/profitChart.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndexHome_vue.js"></script>
-	
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminLogin.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/membersChart.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/admin/fee.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/profitChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndexHome_vue.js"></script>
-	
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange_test.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	

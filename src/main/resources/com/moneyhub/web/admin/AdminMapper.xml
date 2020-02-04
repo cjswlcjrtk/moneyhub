@@ -49,6 +49,20 @@
 		WHERE BDATE LIKE #{value}
 	</select>
 	
+	<select id="feeChartOneAMNT" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT SUM(AMNT) FROM FEEDB		
+		WHERE BDATE LIKE #{value} AND FEETYPCD = '1'
+	]]>
+	</select>
+	
+	<select id="feeChartTwoAMNT" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT SUM(AMNT) FROM FEEDB		
+		WHERE BDATE LIKE #{value} AND FEETYPCD = '2'
+	]]>
+	</select>
+	
 	<select id="adminLogin" resultType="Admin">
 		SELECT *
 		FROM ADMIN
@@ -70,5 +84,34 @@
 		CSTCD = #{cstcd}
 		WHERE CNO = #{cno}
 	</update>
+	
+	<select id="feeSelectOne" resultType="string">
+	<![CDATA[
+		SELECT AMNT FROM FEE	
+		WHERE FEETYPCD = '1'
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<select id="feeSelectTwo" resultType="string">
+	<![CDATA[
+		SELECT AMNT FROM FEE	
+		WHERE FEETYPCD = '2'
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<insert id="feeUpdateOne" parameterType="map">
+		INSERT INTO FEE (FEETYPCD, AMNT)
+		VALUES (1, #{feeOneValue})
+	</insert>
+	
+	<insert id="feeUpdateTwo" parameterType="map">
+		INSERT INTO FEE (FEETYPCD, AMNT)
+		VALUES (2, #{feeTwoValue})
+	</insert>
+	
 </mapper>
 

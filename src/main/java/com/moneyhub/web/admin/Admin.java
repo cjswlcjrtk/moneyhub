@@ -16,22 +16,9 @@ public class Admin {
 	
 	private String aid, amail, pwd;
 	
-	private String cno,
-	cemail,
-	cpwd,
-	cname,
-	cstcd,		// 고객상태코드
-	sdate,		// 가입일
-	wdate,		// 탈퇴일
-/*	crtmem,
-	crtdate,
-	upmem,*/
-	udate,
-	salt,
-	zip,
-	addr,
-	daddr,
-	birth;
+	private String cno, cemail, cpwd, cname, cstcd, sdate, wdate, 
+		udate, salt, zip, addr, daddr, birth;
+	//sdate 가입일  wdate 탈퇴일  cstcd, 고객상태코드
 	
 
 }
