@@ -42,10 +42,13 @@ common = (function(){
 			})
 		},
 		receive_value_calc : function(x){
+			
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
+				alert('>>>>'+common.comma_remove($('.form-calculator .amount-row input.send-amount').val())*x)
+			
 				receive_value = receive_value * x //* 0.985
 			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
-
+			alert('>>>>'+$('.form-calculator .amount-row input.send-amount').val())
 		}
 			
 	}

@@ -25,11 +25,16 @@ auth_mgmt =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
-		
-		$.getJSON(_+'/customers/CreateAcc/' + $('#cemail').val(), d=>{
+
+		$.getJSON(_+'/customers/getAcc/' + $('#cemail').val(), d=>{
 			cemail : sessionStorage.getItem('CEMAIL')
-			$('#account').text(d.cus.sdate.replace(/-/gi,"").substring(2)+d.cus.cno)
-			
+			if(d.msg === "SUCCESS"){
+				alert('성공')
+				$('#cname').text(d.cname)
+				$('#account').text(d.accNo)
+			}else{
+				alert('실패')
+			}
 		})
 		
 		$('#copy_btn').on('click', function(e){

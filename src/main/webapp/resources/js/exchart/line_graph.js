@@ -71,18 +71,24 @@ $(document).ready(function(){
 	let ctx = document.getElementById('canvas').getContext('2d');
 	
 	let cntcd = $('.form-calculator .amount-row .receive h3').text()
-	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
+	$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
-		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
-
+		config.options.title.text = `1 USD = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
+		
+		//송금 세션에 usd 환율 담음
+		deal.exrate = config.data.datasets[0].data[config.data.datasets[0].data.length -1]
+		sessionStorage.setItem('deal',JSON.stringify(deal))	
+		alert('라인그래프 환율'+deal.exrate)
+		
+		
 		//		수수료 1.5%
-		receive_value_calc()
+		/*receive_value_calc()
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
-		})
+		})*/
 		
 		window.myLine = new Chart(ctx, config);
 	})
@@ -92,7 +98,6 @@ $(document).ready(function(){
 							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] 
 		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 	}
-	
 
 })
 		

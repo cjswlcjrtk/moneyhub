@@ -45,7 +45,7 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<!-- kakao login -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 	
 	<!-- chart -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -55,7 +55,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/datepicker/bootstrap-datepicker.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/common.js"></script>

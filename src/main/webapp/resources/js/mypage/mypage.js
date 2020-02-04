@@ -10,7 +10,6 @@ mypage =(()=>{
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -36,16 +35,17 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
+			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			page_move()	
+			remit_receive()
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0})
-
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -57,13 +57,22 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		$.getScript(line_graph_js)
+		
+		//송금 usd 환율 세션에 저장
+		//	common.receive_value_calc(deal.exrate)
+		
 		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
+			alert("송금버튼 deal.trdusd"+deal.trdusd)
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert("마이페이지deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)
+			
 			foreignRemit.onCreate()
 		})
 
@@ -142,6 +151,20 @@ mypage =(()=>{
 			})
 		})
 	}
+	
+	let remit_receive = ()=>{
+		deal = $.deal()
+		
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			common.receive_value_calc(deal.exrate)
+			alert("마페환율"+deal.exrate)
+		})
+		alert(JSON.stringify(deal))
+		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+		alert("마페 deal.trdusd"+deal.trdusd)
+		sessionStorage.setItem('deal',JSON.stringify(deal))
+	}
+	
 	let remit_list =(x)=>{
 
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{
@@ -182,6 +205,8 @@ mypage =(()=>{
 					</div>`)
 			    .appendTo('.remits')
 			})
+			$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
+			
 			let pxy = d.pager
 			if(pxy.existPrev){
 				$(`<button class="control disabled" disabled="">
@@ -192,38 +217,42 @@ mypage =(()=>{
 		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
 		         })
 			}
-			$(`<ul class="list_paging"></ul>`)
-			.appendTo('.bundle_paging') 
+			$(`<button class="paginator current"></button>`)
+			.appendTo('.themoin-pagination') 
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){
-				if( pxy.nowPage == i ){
-					$(`<li class="on">
-							<a href="#" class="link_num">
-								<span class="screen_out">선택 됨</span>
+					$(`<button>
+							${i+1}
+						</button>`)
+				.appendTo('.themoin-pagination')
+				.click(function(e){
+					e.preventDefault()
+					mypage.remit_list({ nowPage : i})
+				})
+				
+				/*if( pxy.nowPage == i ){
+					$(`<button>
+							<span class="screen_out">선택 됨</span>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')		
+							</button>`)
+					.appendTo('.paginator current')		
 					$('html').scrollTop(0);
 				}else{
-					$(`<li class="">
-							<a href="#" class="link_num">
+					$(`<button>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')
+							</button>`)
+					.appendTo('.paginator current')
 					.click(function(e){
 						e.preventDefault()
-						faq.faq_list({ nowPage : i, keyword : x.keyword })
+						mypage.remit_list({ nowPage : i})
 					})
-				}
+				}*/
 			}
-			if(pxy.existNext){
-				$(`<a href="#" class="link_paging">
-						<span class="ico_pay ico_next"></span>다음
-		        	</a>`)
-		        .appendTo('.bundle_paging')
+			if(pxy.existNext){ //<button class="control disabled" disabled="">다음</button>
+				$(`<button class="control disabled" disabled="">다음
+		        	</button>`)
+		        .appendTo('.themoin-pagination')
 		        .click(()=>{
-		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
+		        	mypage.remit_list({ nowPage : pxy.nextBlock})
 		        })
 			}
 			//내역 눌렀을 때 상세 또는 수정 삭제

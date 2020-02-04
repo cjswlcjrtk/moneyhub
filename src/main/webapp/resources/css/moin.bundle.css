@@ -8011,6 +8011,9 @@ li {
 
 .modal-btn {
   color: white; }
+  
+.steps{float: left; text-align: center; max-width: none;}
+.threesteps{float: left; width: 33%;}
 
 /* chat plugin */
 @media (max-width: 700px) {

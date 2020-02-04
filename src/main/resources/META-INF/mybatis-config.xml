@@ -15,6 +15,7 @@
 		<typeAlias alias="TRD"  type="com.moneyhub.web.remit.domains.TRD"/>
 		<typeAlias alias="TRDHR"  type="com.moneyhub.web.remit.domains.TRDHR"/>
 		<typeAlias alias="RCPT"  type="com.moneyhub.web.remit.domains.RCPT"/>
+		<typeAlias alias="Fee"  type="com.moneyhub.web.remit.domains.Fee"/>
 		<typeAlias alias="Admin"  type="com.moneyhub.web.admin.Admin"/>
     </typeAliases>
 </configuration>

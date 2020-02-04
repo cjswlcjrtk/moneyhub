@@ -6,7 +6,7 @@ function Session(x){
 	sessionStorage.setItem('css', x + '/resources/css');
 	sessionStorage.setItem('img', x + '/resources/img');
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
-	var deal = new Object() // 송금 객체
+	var deal = {} // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
 	
 

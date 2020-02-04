@@ -14,15 +14,15 @@ remit_box =(()=>{
 	
 	let onCreate =x=>{
 		init(x)
-		$('#send_amount').val(1000)
 		
 		common.remit_send_focusout()
 
 		popup()
-		$.getScript(exrate_js)
+		
+		/*$.getScript(exrate_js)
 		.done(()=>{
 			exrate.onCreate()
-		})
+		})*/
 	}
 	
 	let popup =()=>{
@@ -47,7 +47,7 @@ remit_box =(()=>{
 					send_cntcd_filter(send_data)
 				})
 			}
-		//	
+			
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()
@@ -126,9 +126,15 @@ remit_box =(()=>{
 				if( j.flag === 'mypage'){
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-					$('#chart')
+					
+					/*$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
-					$.getScript(line_graph_js)
+					$.getScript(line_graph_js)*/
+					
+					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
+					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+					sessionStorage.setItem('deal',JSON.stringify(deal))
+					alert("레미트박스deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)
 					
 				}
 				else if(( j.flag === 'exchange')){
@@ -138,16 +144,11 @@ remit_box =(()=>{
 					exrate.onCreate()
 
 				}
-				else{
+				/*else{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-					
-					deal.cntp =$('.form-calculator .amount-row .receive p').text() 
-					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-					sessionStorage.setItem('deal',JSON.stringify(deal))
-					
 					exrate.onCreate()
-				}
+				}*/
 			})
 		})
 		

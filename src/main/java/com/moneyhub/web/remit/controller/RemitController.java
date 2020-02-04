@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
+import com.moneyhub.web.remit.serviceimpls.FeeServiceImpl;
+import com.moneyhub.web.remit.serviceimpls.RCPTServiceImpl;
 import com.moneyhub.web.remit.serviceimpls.RemitServiceImpl;
 import com.moneyhub.web.remit.serviceimpls.TRDHRServiceImpl;
+import com.moneyhub.web.remit.serviceimpls.TRDServiceImpl;
 
 @RestController
 @RequestMapping("/remit")
@@ -26,6 +29,9 @@ public class RemitController extends Proxy{
 		@Autowired
 		private RemitServiceImpl remitService;
 		@Autowired TRDHRServiceImpl trdhrService;
+		@Autowired TRDServiceImpl trdService;
+		@Autowired RCPTServiceImpl rcptService;
+		@Autowired FeeServiceImpl feeService;
 		
 		@PostMapping("/insert")
 		public void insertRemit(@RequestBody HashMap<String, Object> deal){

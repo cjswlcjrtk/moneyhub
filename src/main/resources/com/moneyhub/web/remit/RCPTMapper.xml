@@ -3,5 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.moneyhub.web.remit.mapper.RCPTMapper">
+<mapper namespace="com.moneyhub.web.remit.mappers.RCPTMapper">
+	<select id="createRCPT" parameterType="map">
+		${CREATE_RCPT}
+	</select>
+	
+	<select id="deleteRCPT" parameterType="map">
+		${DROP_RCPT}
+	</select>
 </mapper>

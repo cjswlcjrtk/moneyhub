@@ -54,15 +54,14 @@ app =(()=>{
 			$.getScript(adminLogin_js)
 		)
 		.done(()=>{
-			//============================================================= 송금 개발용
-			/*auth.onCreate('login')*/
-			//=============================================================
+			
 			setContentView()
 			page_move()
-			remit_box.onCreate({ flag : '', cntcd : '' })
+			/*remit_box.onCreate({ flag : '', cntcd : '' })
 			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert("deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)*/
 			
 		})
 		.fail(()=>{
@@ -74,7 +73,6 @@ app =(()=>{
 		$('head')
 		.append(cmm_vue.head())
 		
-		//================================================================= 송금 개발용
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
@@ -92,7 +90,7 @@ app =(()=>{
 			.append(main_vue.main())
 		}
 		$('#root').append(cmm_vue.footer())*/
-		//========================================================새로고침시 세션비우기 (연구중) EJ
+		//========================================================새로고침시 세션비우기 EJ
 		/*function Reload(){
 			if(event.keyCode == 116)
 				sessionStorage.clear()

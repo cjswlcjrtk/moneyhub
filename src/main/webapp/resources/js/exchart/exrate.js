@@ -22,13 +22,13 @@ exrate =(()=>{
 		}else{
 			cntcd = receive_cntcd
 		}
-	
+
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
 				exrate_arr.push(parseFloat(j.exrate))
 			})
-			deal.exrate = exrate_arr[0]
+			/*deal.exrate = exrate_arr[0]*/
 			receive_value_calc()
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 				receive_value_calc()
@@ -75,7 +75,7 @@ exrate =(()=>{
 			
 			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 
-			deal.amount = $('.form-calculator .amount-row input.send-amount').val()
+			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 		}
 	}

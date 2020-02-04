@@ -14,4 +14,11 @@
 		select count(*)
 		from TRDHR
 	</select>
+	<select id="createTRDHR" parameterType="map">
+		${CREATE_TRDHR}
+	</select>
+	
+	<select id="deleteTRDHR" parameterType="map">
+		${DROP_TRDHR}
+	</select>
 </mapper>

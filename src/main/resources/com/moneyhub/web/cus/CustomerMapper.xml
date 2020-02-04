@@ -100,10 +100,18 @@
 		AND CNO = #{cno}
 	</update>
 	
-	<select id="CreateAcc" resultType="Customer">
+	<!-- <select id="CreateAcc" resultType="Customer">
+	<![CDATA[
 		SELECT DATE_FORMAT(SDATE, '%y%m%d'), CNO
 		FROM CUSTOMER
 		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
+	]]>
+	</select> -->
+	
+	<select id="getInfo" resultType="Customer">
+		SELECT *
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail}
 	</select>
 	
 </mapper>

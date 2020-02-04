@@ -3,5 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.moneyhub.web.remit.mapper.TRDMapper">
+<mapper namespace="com.moneyhub.web.remit.mappers.TRDMapper">
+	<select id="createTRD" parameterType="map">
+		${CREATE_TRD}
+	</select>
+	
+	<select id="deleteTRD" parameterType="map">
+		${DROP_TRD}
+	</select>
 </mapper>

@@ -148,19 +148,47 @@ mypage_vue = {
 	},
 	auth_mgmt : ()=>{
 		return '<div><br>'+
-		'        <h1 style="text-align : center">인증관리</h1><br>'+
+		'        <h1 style="text-align : center">자산정보</h1><br>'+
 		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
 		'            <div class="head">발급된 가상계좌</div>'+
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>계좌번호</p>'+
-		'                    <p class="fs-block" id="bank">국민은행&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="account">9427010261003</p>'+
-		'                    <p class="fs-block" id="cname">&nbsp;&nbsp;김민국_머니허브</p>'+
+		'                    <p class="fs-block" id="bank" style="color:black">국민은행&nbsp;&nbsp;</p>'+
+		'                    <p class="fs-block" id="account" style="color:black">9427010261003</p>'+
+		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
+		'                    <p class="fs-block" id="cname" style="color:black"></p>'+
+		'                    <p class="fs-block" style="color:black">_머니허브</p>'+
 		'                </li>'+
 		'                <li class="control">'+
 		'                    <button class="text" id="copy_btn">가상계좌복사하기</button>'+
 		'                    <input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>'+
+		'                </li>'+
+		'            </ol>'+
+		'        </div>'+
+		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
+		'            <div class="head">잔액</div>'+
+		'            <ol>'+
+		'                <li>'+
+		'                    <p>현재잔액</p>'+
+		'                    <p class="fs-block" id="balance" style="color:black">100,000,000</p>'+
+		'                    <p class="fs-block">&nbsp;</p>'+
+		'                    <p class="fs-block" style="color:black">원</p>'+
+		'                </li>'+
+		'            </ol>'+
+		'        </div>'+
+		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
+		'            <div class="head">거래내역</div>'+
+		'            <ol>'+
+		'                <li>'+
+		'                    <p>HISTORY</p>'+
+		'                    <p class="fs-block" id="date" style="color:black">2020-02-04</p>'+
+		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
+		'                    <p class="fs-block" id="plM" style="color:black">+</p>'+
+		'                    <p class="fs-block">&nbsp;</p>'+
+		'                    <p class="fs-block" id="history" style="color:black">100,000,000</p>'+
+		'                    <p class="fs-block">&nbsp;</p>'+
+		'                    <p class="fs-block" style="color:black">원</p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div>'+

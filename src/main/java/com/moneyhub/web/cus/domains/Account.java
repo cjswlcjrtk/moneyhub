@@ -14,9 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Account {
 	
-	private String cno,
+	private String cemail,
 				bsdate,
 				acct_no,
+				balance,
+				deposit,
+				withdrawal,
 				achcntcd,
 				crtmem,
 				crtdt,

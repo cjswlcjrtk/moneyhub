@@ -5,13 +5,23 @@
     
 <mapper namespace="com.moneyhub.web.cus.mappers.AccountMapper">
 
-	<insert id="account" parameterType="Account">
-	    INSERT INTO ACCOUNT ( CNO, BSDATE, ACCT_NO, ACHCNTCD, CRTMEN, 
-	    			CRTDT, CPMEM, UPDT) 
-	    VALUES (
-	    	#{cno}, #{bsdate}, #{acct_no}, #{achcntcd}, #{crtmen}, 
-	    	#{crtdt}, #{cpmem}, #{updt}
-	    	)
+	<insert id="createAcc" parameterType="Account">
+	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL, 
+	    					ACHCNTCD, CRTMEM, CRTDT, UPMEM, UPDT) 
+	    VALUES (#{cemail}, #{bsdate}, #{acct_no}, #{balance}, #{deposit}, #{withdrawal},
+	    		#{achcntcd}, #{crtmem}, now(), #{upmem}, #{updt})
 	</insert>
+	
+	<select id="existAcc" resultType="integer">
+		SELECT COUNT(*) 
+		FROM ACCOUNT
+		WHERE ACCT_NO = #{acct_no}
+	</select>
+	
+	<select id="getAcc" resultType="Account">
+		SELECT *
+		FROM ACCOUNT
+		WHERE CEMAIL = #{cemail}
+	</select>
 	
 </mapper>
