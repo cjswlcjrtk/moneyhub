@@ -1,5 +1,5 @@
 package com.moneyhub.web.cus.services;
 
-public class CustomerService {
+public interface CustomerService {
 
 }

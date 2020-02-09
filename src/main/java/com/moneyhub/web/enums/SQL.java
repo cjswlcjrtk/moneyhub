@@ -7,10 +7,7 @@ public enum SQL {
 	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE,
 	CREATE_FEEDB, DROP_FEEDB, TRUNCATE_FEEDB,
 	CREATE_ADMIN, DROP_ADMIN, INSERT_ADMIN,
-	CREATE_FEE, DROP_FEE, INSERT_FEE_ONE, INSERT_FEE_TWO,
-	CREATE_TRDHR,DROP_TRDHR,CREATE_TRD,DROP_TRD,
-	CREATE_RCPT, DROP_RCPT,
-	CREATE_DATEPICKER, DROP_DATEPICKER, TRUNCATE_DATEPICKER
+	CREATE_FEE, DROP_FEE, INSERT_FEE_ONE, INSERT_FEE_TWO
 	;
 	@Override
 	public String toString() {
@@ -151,93 +148,8 @@ public enum SQL {
 			result = "DROP TABLE FEE";
 			break;	
 			
-		case CREATE_TRDHR :
-			result = "CREATE TABLE IF NOT EXISTS TRDHR\r\n"+
-					"(\r\n"+
-					"BSDATE VARCHAR(20) 		NOT NULL 	COMMENT'기준일자',\r\n"+
-					"MTCN VARCHAR(16) 			NOT NULL 	COMMENT'거래일련번호' ,\r\n"+
-					"CNO VARCHAR(12) 			NOT NULL 	COMMENT'고객번호',\r\n"+
-					"SEQ INT 					NOT NULL AUTO_INCREMENT  COMMENT'순번' UNIQUE,\r\n"+
-					"TRD_STAT_CD VARCHAR(2) 	NULL 		COMMENT'거래상태코드',\r\n"+
-					"CHNG_CAUS_CD VARCHAR(2) 	NULL 		COMMENT'변경사유코드',\r\n"+
-					"TRD_USD  VARCHAR(100) 		NULL 		COMMENT'송금액',\r\n"+
-					"TRD_KRW VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
-					"ACCT_NO VARCHAR(100) 		NULL 		COMMENT'계좌번호',\r\n"+
-					"CNTCD VARCHAR(3) 			NULL 		COMMENT'국가코드',\r\n"+
-					"EXRATE DOUBLE(12,2) 		NULL 		COMMENT'환율',\r\n"+
-					"CRTMEM VARCHAR(20) 		NULL 		COMMENT'생성아이디',\r\n"+
-					"CRTDT DATE 				NULL 		COMMENT'생성일자',\r\n"+
-					"UPMEM VARCHAR(20) 			NULL 		COMMENT'수정아이디',\r\n"+
-					"UPDT DATE 					NULL 		COMMENT'수정일자',\r\n"+
-					"PRIMARY KEY(BSDATE,MTCN,CNO)\r\n"+
-					")DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
-			break;
-		case DROP_TRDHR :
-			result = "DROP TABLE TRDHR";
-			break;
-		case CREATE_TRD : 
-			result = "CREATE TABLE IF NOT EXISTS TRD\r\n"+
-					"(\r\n"+
-					"BSDATE VARCHAR(20) NOT NULL COMMENT'기준일자',\r\n"+
-					"MTCN VARCHAR(16) NOT NULL COMMENT'거래일련번호',\r\n"+
-					"CNO VARCHAR(12) NOT NULL COMMENT'고객번호',\r\n"+
-					"TRD_STAT_CD VARCHAR(2) NULL COMMENT'거래상태코드',\r\n"+
-					"CHNG_CAUS_CD VARCHAR(2) NULL COMMENT'변경사유코드',\r\n"+
-					"TRD_USD  VARCHAR(100) 		NULL 		COMMENT'송금액',\r\n"+
-					"TRD_KRW VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
-					"ACCT_NO VARCHAR(100) NULL COMMENT'계좌번호',\r\n"+
-					"CNTCD VARCHAR(3) NULL COMMENT'국가코드',\r\n"+
-					"EXRATE DOUBLE(12,2) NULL COMMENT'환율',\r\n"+
-					"CRTMEM VARCHAR(20) NULL COMMENT'생성아이디',\r\n"+
-					"CRTDT DATE NULL COMMENT'생성일자',\r\n"+
-					"UPMEM VARCHAR(20) NULL COMMENT'수정아이디',\r\n"+
-					"UPDT DATE NULL COMMENT'수정일자',\r\n"+
-					"PRIMARY KEY(BSDATE,MTCN,CNO)\r\n"+
-					")DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
-			break;
-		case DROP_TRD : 
-			result = "DROP TABLE TRD";
-			break;
-		case CREATE_RCPT : 
-			result = "CREATE TABLE IF NOT EXISTS RCPT\r\n"+
-					"(\r\n"+
-					"BSDATE VARCHAR(20) NOT NULL COMMENT'기준일자',\r\n"+
-					"MTCN VARCHAR(16) NOT NULL COMMENT'거래일련번호',\r\n"+
-					"CNO VARCHAR(12) NOT NULL COMMENT'고객번호' ,\r\n"+
-					"SEQ INT(4) NOT NULL AUTO_INCREMENT COMMENT'순번'UNIQUE,\r\n"+
-					"RCP VARCHAR(1) NULL COMMENT'수취여부',\r\n"+
-					"RCP_DT DATE NULL COMMENT'수취일',\r\n"+
-					"CNTP VARCHAR(10) NULL COMMENT'수취국가명',\r\n"+
-					"PASS_FNM VARCHAR(20) NULL COMMENT'여권이름',\r\n"+
-					"PASS_LNM VARCHAR(10) NULL COMMENT'여권성',\r\n"+
-					"RCEMAIL VARCHAR(30) NULL COMMENT'수취이메일',\r\n"+
-					"CRTMEM VARCHAR(20) NULL COMMENT'생성아이디',\r\n"+
-					"CRTDT DATE NULL COMMENT'생성일자',\r\n"+
-					"UPMEM VARCHAR(20) NULL COMMENT'수정아이디',\r\n"+
-					"UPDT DATE NULL COMMENT'수정일자',\r\n"+
-					"PRIMARY KEY(BSDATE,MTCN,CNO)\r\n"+
-					")DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
-			break;
-		case DROP_RCPT :
-			result = "DROP TABLE DROP_RCPT";
-			break;
-		case CREATE_DATEPICKER :
-			result = "CREATE TABLE IF NOT EXISTS DATEPICKER (\r\n" + 
-					"SEQ INT AUTO_INCREMENT NOT NULL COMMENT'일련번호',\r\n" + 
-					"DDATE VARCHAR(12) NULL COMMENT'휴일일자' ,\r\n" + 
-					"DNAME VARCHAR(12) NULL COMMENT'휴일명',\r\n" + 
-					"PRIMARY KEY(SEQ)\r\n" + 
-					")DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
-			break;
-			
-		case DROP_DATEPICKER :
-			result = "DROP TABLE DATEPICKER";
-			break;
-			
-		case TRUNCATE_DATEPICKER :
-			result = "TRUNCATE TABLE DATEPICKER";
-			break;
-			}	
+		}
+		
 		return result;
 	}
 }

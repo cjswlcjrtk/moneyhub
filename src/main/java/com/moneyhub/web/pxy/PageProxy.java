@@ -1,11 +1,12 @@
 package com.moneyhub.web.pxy;
 
+import java.util.function.Supplier;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.moneyhub.web.faq.FAQMapper;
-import com.moneyhub.web.remit.mappers.TRDHRMapper;
 
 import lombok.Data;
 
@@ -18,10 +19,9 @@ public class PageProxy extends Proxy {
 				blockCount, nowBlock, blockSize, prevBlock, nextBlock;
 	private boolean existPrev, existNext;
 
-	private String keyword,cno;
+	private String keyword;
 	
 	@Autowired FAQMapper faqMapper;
-	@Autowired TRDHRMapper trdhrMapper;
 	
 	public void paging() {
 		pageCount = ( rowCount % pageSize != 0 ) 

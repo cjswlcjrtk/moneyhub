@@ -1,3 +1,4 @@
+//		window.onload = function() {//
 $(document).ready(function(){
 	let config = {
 		type: 'line',
@@ -66,7 +67,8 @@ $(document).ready(function(){
 			}
 		}
 	};
-	let ctx = document.getElementById('canvas').getContext('2d');
+	alert('그래프')
+	let ctx = document.getElementById('canvas2').getContext('2d');
 	
 	let cntcd = $('.form-calculator .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
@@ -88,7 +90,7 @@ $(document).ready(function(){
 	let receive_value_calc =()=>{
 		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
 							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
-		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
+		$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 	}
 	
 	let comma_create =x=>{

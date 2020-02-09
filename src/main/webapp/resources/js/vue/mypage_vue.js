@@ -148,47 +148,19 @@ mypage_vue = {
 	},
 	auth_mgmt : ()=>{
 		return '<div><br>'+
-		'        <h1 style="text-align : center">자산정보</h1><br>'+
+		'        <h1 style="text-align : center">인증관리</h1><br>'+
 		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
 		'            <div class="head">발급된 가상계좌</div>'+
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>계좌번호</p>'+
-		'                    <p class="fs-block" id="bank" style="color:black; font-weight:bold;">국민은행&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="account" style="color:black; font-weight:bold;"></p>'+
-		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="cname" style="color:black; font-weight:bold;"></p>'+
-		'                    <p class="fs-block" style="color:black; font-weight:bold;">_머니허브</p>'+
+		'                    <p class="fs-block" id="bank">국민은행&nbsp;&nbsp;</p>'+
+		'                    <p class="fs-block" id="account">9427010261003</p>'+
+		'                    <p class="fs-block" id="cname">&nbsp;&nbsp;김민국_머니허브</p>'+
 		'                </li>'+
 		'                <li class="control">'+
 		'                    <button class="text" id="copy_btn">가상계좌복사하기</button>'+
 		'                    <input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>'+
-		'                </li>'+
-		'            </ol>'+
-		'        </div>'+
-		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
-		'            <div class="head">잔액</div>'+
-		'            <ol>'+
-		'                <li>'+
-		'                    <p>현재잔액</p>'+
-		'                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;"></p>'+
-		'                    <p class="fs-block">&nbsp;</p>'+
-		'                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>'+
-		'                </li>'+
-		'            </ol>'+
-		'        </div>'+
-		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
-		'            <div class="head">거래내역</div>'+
-		'            <ol>'+
-		'                <li>'+
-		'                    <p>HISTORY</p>'+
-		'                    <p class="fs-block" id="date" style="color:black">2020-02-04</p>'+
-		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="pm" style="color:black">+</p>'+
-		'                    <p class="fs-block">&nbsp;</p>'+
-		'                    <p class="fs-block" id="history" style="color:black">100,000,000</p>'+
-		'                    <p class="fs-block">&nbsp;</p>'+
-		'                    <p class="fs-block" style="color:black">원</p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div>'+
@@ -309,37 +281,22 @@ mypage_vue = {
 		'    </div>'
 	},
 	exchange_test : ()=>{
-//		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0">
+//		let exrate = $.exrate().bdate	${$.exrate().bdate}
+		return `<div class="container">
 					<div id="exchange_datepicker">
-
 						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
 						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datePicker" class="form-control">
 				    		<button>클릭</button>
 				    	</div>
-
 					</div>	
-					<div id="world_map">
-					    <div class="mapcontainer">
-					        <div class="map">
-					            <span>Alternative content for the map</span>
-					        </div>
-					    </div>
-					</div>
-				    <div>
-				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
-					    	<ol style="border-bottom-width: 0px;"></ol>
-					    	<div style="width:100%">
-					    		<div id="init_btn"></div>
-					    		<div id="save_btn"></div>
-					    	</div>
-					    	<div id="test_history"></div>
-					    </div>
-				    	<div id="exchange_test_chart" style="width:67%;float:left">                         
-				 	      	<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas> 
-						</div> 
+				    <div class="mapcontainer">
+				        <div class="map">
+				            <span>Alternative content for the map</span>
+				        </div>
 				    </div>
-				    
+				    <div id="amount" class="themoin-info-preview" style="width:400px">
+				    	<ol style="border-bottom-width: 0px;"></ol>
+				    </div>
 				</div>`
 	},
 	exchange_test_head : ()=>{
@@ -386,10 +343,8 @@ mypage_vue = {
     <script src="/web/resources/js/maps/global_map.js"></script>
 	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
     <script src="/web/resources/js/maps/world_countries.js"></script>
+
 `
-//		<script src="/web/resources/js/datepicker/bootstrap-datepicker.js"></script>
-//<script src="/web/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
-//<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	},
 	exchange_popup : ()=>{	//themoin-remit-component
 		return `<div class="moin-popup">
@@ -436,8 +391,7 @@ mypage_vue = {
 		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
-		'<div id="chart" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
-		'	<div class="check_font" id="exchange_check" ></div>'+
+		'<div id="divToggle" style="display: none;"><canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
@@ -453,7 +407,7 @@ mypage_vue = {
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>예상 비용</p>'+
-		'						<input class="receive-amount" id="expect" type="text" tabindex="0" placeholder="0.00" readonly="">'+
+		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>미국</p>'+

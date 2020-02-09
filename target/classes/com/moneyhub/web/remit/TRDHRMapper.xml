@@ -4,30 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.moneyhub.web.remit.mappers.TRDHRMapper">
-	<select id="selectAll" resultType="Map"  parameterType="PageProxy">
-		SELECT C.CNO cno,T.BSDATE bsdate,T.MTCN mtcn,T.TRD_USD trdUsd,T.TRD_KRW trdKrw,T.CNTCD cntCd,R.PASS_FNM passFnm,R.PASS_LNM passLnm,T.EXRATE exrate
-		FROM ( SELECT C.CNO 
-				FROM CUSTOMER C 
-				WHERE CNO = #{cno}
-				) C,TRDHR T, RCPT R
-		WHERE T.CNO = C.CNO 
-		AND C.CNO = R.CNO
-		AND T.MTCN = R.MTCN
+	<select id="selectAll" resultType="TRDHR"  parameterType="PageProxy">
+		select T.* 
+		from TRDHR T, CUSTOMER C
+		WHERE T.CNO = C.CNO
 		LIMIT ${startRow}, ${pageSize}
 	</select>
 	<select id="countTRDHR" resultType="String" parameterType="PageProxy">
 		select count(*)
-		from ( SELECT C.CNO 
-				FROM CUSTOMER C 
-				WHERE CNO = #{cno}
-				) C,TRDHR T
-		WHERE T.CNO = C.CNO
-	</select>
-	<select id="createTRDHR" parameterType="map">
-		${CREATE_TRDHR}
-	</select>
-	
-	<select id="deleteTRDHR" parameterType="map">
-		${DROP_TRDHR}
+		from TRDHR
 	</select>
 </mapper>

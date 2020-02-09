@@ -28,21 +28,11 @@
 	</select> -->
 	
 	<select id="cntcdSearchExrate" resultType="Exrate">
-		<!-- SELECT * 
+		SELECT * 
 		FROM EXRATE 
 		WHERE CNTCD LIKE #{cntcd}
 		ORDER BY bdate DESC
-		limit 0, 10 -->
-		<!--  --> 
-		SELECT *
-		FROM (SELECT * FROM EXRATE WHERE CNTCD = #{cntcd}) A
-		WHERE A.SEQ IN (SELECT MAX(SEQ)
-						FROM (SELECT *
-								FROM EXRATE
-								WHERE CNTCD = #{cntcd}) B
-								GROUP BY bdate)
-		ORDER BY BDATE DESC
-		LIMIT 0,10
+		limit 0, 10 
 	</select>
 	
 	<select id="bdateSearchExrate" resultType="Exrate">

@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
-import com.moneyhub.web.remit.serviceimpls.FeeServiceImpl;
-import com.moneyhub.web.remit.serviceimpls.RCPTServiceImpl;
 import com.moneyhub.web.remit.serviceimpls.RemitServiceImpl;
 import com.moneyhub.web.remit.serviceimpls.TRDHRServiceImpl;
-import com.moneyhub.web.remit.serviceimpls.TRDServiceImpl;
 
 @RestController
 @RequestMapping("/remit")
@@ -29,9 +26,6 @@ public class RemitController extends Proxy{
 		@Autowired
 		private RemitServiceImpl remitService;
 		@Autowired TRDHRServiceImpl trdhrService;
-		@Autowired TRDServiceImpl trdService;
-		@Autowired RCPTServiceImpl rcptService;
-		@Autowired FeeServiceImpl feeService;
 		
 		@PostMapping("/insert")
 		public void insertRemit(@RequestBody HashMap<String, Object> deal){
@@ -39,11 +33,10 @@ public class RemitController extends Proxy{
 		remitService.insertRemit(deal);
 		}
 		
-		@GetMapping("/lists/page/{nowPage}/search/{cno}")
-		public Map<?, ?> trdhrList(@PathVariable String nowPage,@PathVariable String cno) {
-			print("송금 리스트 진입 - nowPage : " + nowPage+"cno"+cno);
+		@GetMapping("/lists/page/{nowPage}/search")
+		public Map<?, ?> trdhrList(@PathVariable String nowPage) {
+			print("송금 리스트 진입 - nowPage : " + nowPage);
 			int pageSize = 5, blockSize = 5;
-			pager.setCno(cno);
 			pager.setPageSize(pageSize);
 			pager.setNowPage(integer(nowPage));
 			pager.setBlockSize(blockSize);

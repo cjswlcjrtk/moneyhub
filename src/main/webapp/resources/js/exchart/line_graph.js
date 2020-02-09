@@ -69,38 +69,31 @@ $(document).ready(function(){
 	};
 //	alert('그래프')
 	let ctx = document.getElementById('canvas').getContext('2d');
-	let getProfitsChart = $.profitsChart()
-
-	if( $.chartFlag() === 'profitsChart'){
-//		let ctx2 = document.getElementById('pofitsCanvas').getContext('2d');
-		
-		alert('profisChart length - ' + getProfitsChart.length)
-		config.data.labels = []
-		config.data.datasets[0].data = []
-		
-		$.each(getProfitsChart, (i, j)=>{
-			config.data.labels[i] = j.bdate.substr(-5).replace('-', '/')
-			config.data.datasets[0].data[i] = parseFloat(j.profits)
+	
+	let cntcd = $('.form-calculator .amount-row .receive h3').text()
+	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
+		$.each(d.exlist.reverse(), (i, j)=>{
+			config.data.labels.push(j.bdate.substr(-2))
+			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
-		console.log(config.data.labels)
-		console.log(config.data.datasets[0].data)
-		config.options.title.text = `날짜별 수익금 차트`
+		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
+
+		//		수수료 1.5%
+		receive_value_calc()
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			receive_value_calc()
+		})
 		
 		window.myLine = new Chart(ctx, config);
-		
-	}else{
-		let cntcd = $('.form-calculator .amount-row .receive h3').text()
-		$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
-			$.each(d.exlist.reverse(), (i, j)=>{
-				config.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
-				config.data.datasets[0].data[i] = parseFloat(j.exrate)
-			})
-			config.options.title.text = `1 USD = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
-			window.myLine = new Chart(ctx, config);
-		})
+	})
+	
+	let receive_value_calc =()=>{
+		let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] 
+		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 	}
 	
-	
+
 })
 		
 

@@ -1,9 +1,9 @@
 "use strict"
 var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
+	
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
-	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,
-		amount,deal,remit_box_js,clock,cus
+	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,amount,deal,remit_box_js,clock,cus
 
 	let init = ()=>{
 		_ = $.ctx()
@@ -14,20 +14,22 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-// 		remit_box_js = js + '/remit/remit_box.js'
+	//	remit_box_js = js + '/remit/remit_box.js'
+
 	}
 
 	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(remit_vue_js)
-// 			$.getScript(remit_box_js)
+	//		$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			remit_deal()
-// 			remit_box.onCreate('')
-//			window.remit_send()
+		//	remit_box.onCreate('')
+			window.Remit_send()
+			
 			
 		})
 		.fail(()=>{
@@ -39,42 +41,43 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
+		
 		$('#popup-exchange').empty()
+		
+		$('.form-calculator .amount-row .receive')
+    	.css({ cursor : 'text',
+    		'background-image' : 'none'})
+    		
+    	common.remit_send_focusout()
+    	let exrate_arr = []
+    	$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
+			$.each(d.exlist.reverse(), (i, j)=>{
+				exrate_arr.push(parseFloat(j.exrate))
+			})
+			common.receive_value_calc(exrate_arr[exrate_arr.length -1])
+			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+				common.receive_value_calc(exrate_arr[exrate_arr.length -1])
+			})
+		})
 	}
 	
 	let remit_deal = ()=>{
-		// 송금 금액 5000으로 제한 alert 띄우기
-		//실시간 환율 연동하기.....
-		//글자들 임팩트 주기
-		
-		common.remit_send_focusout()
-		
-		if(deal.trdusd >= 3000)
+		if(deal.amount >= 3000)
 		{$('#fee_check').text('12')}
 		else {$('#fee_check').text('6')}
 		
-		common.receive_value_calc(deal.exrate)
-		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
-			common.receive_value_calc(deal.exrate)
-			if(common.comma_remove($('#sd_amount').val()) >= 3000){
-				$('#fee_check').text('12')}
-			else {$('#fee_check').text('6')}
-			/*$('.form-calculator .amount-row input.send-amount').replace(/\B(?=(\d{3})+(?!\d))/g, ",")*/
-		})
-		
-		/*$('#sd_amount').keyup(()=>{
+		$('#sd_amount').keyup(()=>{
 			if($('#sd_amount').val() >= 3000)
 			{$('#fee_check').text('12')}
 			else {$('#fee_check').text('6')}
-		})*/
+		})
 		
 		$('#first_remit_btn').click(()=>{
-			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을 바꿨을떄 금액
-			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
+			deal.amount = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') //송금액을 바꿨을 때 금액
+			alert(deal.amount)
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
-			
 			})
 	}
 	let remit_cusInfo =()=>{
@@ -91,11 +94,9 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_rcpt(deal))
 		$('#third_remit_btn').click(()=>{
-			deal.rcpsf =  document.getElementById('pass_fnm').value  // 수취인
-																		// 이름
-			deal.rcpsl =  document.getElementById('pass_lnm').value	// 수취인 성
-			deal.rcemail =  document.getElementById('rcpt_email').value // 수취인
-																		// 이메일
+			deal.rcpsf =  document.getElementById('pass_fnm').value  //수취인 이름
+			deal.rcpsl =  document.getElementById('pass_lnm').value	//수취인 성
+			deal.rcemail =  document.getElementById('rcpt_email').value //수취인 이메일
 			deal.cno = cus.cno
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_review()
@@ -109,13 +110,12 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_review(deal)) 
 		
 		$('#complete_remit_btn')
-		.click( e => {  // 송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
+		.click( e => {  //송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
 			e.preventDefault()
-			// ======================================화면 작업용 no 에이작스
-			/*
-			 * remit_complete() $('html').scrollTop(0);
-			 */
-			// =============================================
+			//======================================화면 작업용 no 에이작스
+			/*remit_complete()
+			$('html').scrollTop(0);*/
+			//=============================================
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
@@ -137,38 +137,9 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_complete(deal))
 		setInterval(msg_time, 1000);
 		$('#main_user_btn').click(()=>{
-			deal.trdusd = null
-			mypage.onCreate()
+			deal.amount = null
+			mypage.onCreate('remit_complete')
 			$('html').scrollTop(0);
-		})
-		
-		$('#copy_btn').on('click', function(e){
-			$('#clip_target').val(common.comma_remove($('#copy_amt').html()))
-			$('#clip_target').select()
-			try { 
-				var successful = document.execCommand('copy');
-				if(successful){
-					alert('복사되었습니다.')
-				}else{
-					alert('복사실패')
-				}
-			} catch (err) { 
-				alert('이 브라우저는 지원하지 않습니다.') 
-			}
-		})
-		$('#copy_acc_btn').on('click', function(e){
-			$('#clip_acc').val(common.comma_remove($('#copy_acc').html()))
-			$('#clip_acc').select()
-			try { 
-				var successful = document.execCommand('copy');
-				if(successful){
-					alert('복사되었습니다.')
-				}else{
-					alert('복사실패')
-				}
-			} catch (err) { 
-				alert('이 브라우저는 지원하지 않습니다.') 
-			}
 		})
 	}
 	
