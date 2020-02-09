@@ -100,10 +100,10 @@
 		AND CNO = #{cno}
 	</update>
 	
-	<select id="CreateAcc" resultType="Customer">
-		SELECT DATE_FORMAT(SDATE, '%y%m%d'), CNO
+	<select id="getInfo" resultType="Customer">
+		SELECT *
 		FROM CUSTOMER
-		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
+		WHERE CEMAIL = #{cemail} AND CNO = #{cno}
 	</select>
 	
 </mapper>

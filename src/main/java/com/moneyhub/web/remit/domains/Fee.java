@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Fee {
 
-	private String bsdate,mpcn,cno,feeStatCd,crtmem,crtdt,upmem,updt;
+	private String bsdate,mtcn,cno,feeStatCd,crtmem,crtdt,upmem,updt; 
 	private int feeAmnt,seq;
 }

@@ -6236,10 +6236,11 @@ _:-ms-fullscreen, :root .themoin-unit-dropdown {
         letter-spacing: -0.5px;
         color: #747f9b; }
       .themoin-remit-success .box .remit_info div .copy_text {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1;
         letter-spacing: -0.5px;
-        color: #2e374e; }
+        color: #2e374e;
+        float:left }
     .themoin-remit-success .box .remit_info button {
       min-width: 140px;
       width: 140px;
@@ -8011,7 +8012,10 @@ li {
 
 .modal-btn {
   color: white; }
-
+  
+.steps{float: left; text-align: center; max-width: none; cursor: pointer;}
+.threesteps{float: left; width: 33%;}
+.steps img{vertical-align: super;}
 /* chat plugin */
 @media (max-width: 700px) {
   #moin-ch-plugin-root #ch-plugin-core > div {

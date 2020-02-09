@@ -22,6 +22,10 @@ public class Proxy {
 		return f.apply(param);
 	}
 	
+/*	public float ffloat(Object param) {
+		Function<Object, Float> f = Float :: parseFloat;
+		return f.apply(param);
+	}*/
 	public boolean equal(String t, String u) {
 	//	BiPredicate<String, String> f = (t, u)-> t.equals(u);
 		BiPredicate<String, String> f = String :: equals;

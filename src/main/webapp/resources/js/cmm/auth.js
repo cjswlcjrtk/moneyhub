@@ -46,8 +46,9 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('1')
-		$('#cpwd').val('1')
+		$('#cemail').val('11')
+		$('#cpwd').val('11')
+
 
 		join_2_page_btn()
 	}
@@ -79,20 +80,22 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-//						alert(d.cus.cname+'님 환영합니다.')
+						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						sessionStorage.setItem('ACC', JSON.stringify(d.result))
 						//======================================================
 						//====================================================== MK
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
-						sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
 						sessionStorage.setItem('CNO', d.cus.cno)
+						sessionStorage.setItem('ACC', JSON.stringify(d.result))*/
 						//======================================================
 						mypage.onCreate()
 					
@@ -298,6 +301,16 @@ auth =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
+				$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
+					if(d.msg === "SUCCESS"){
+						$('#cname').text(d.cname)
+						$('#account').text(d.acc.acctNo)
+						$('#balance').text(common.comma_create(d.acc.balance))
+						sessionStorage.setItem('acctNo',d.acc.acctNo)
+					}else{
+						alert('실패')
+					}
+				})
 				$.ajax({
 					url : _+'/customers/',
 					type : 'POST',
@@ -325,11 +338,11 @@ auth =(()=>{
 						}
 					},
 					error : e=>{
-						alert('join ajax 실패')
+						alert('잘못 입력된 부분이 있습니다.')
 					}
 				})
 			}else{
-				alert('비번 틀림')
+				alert('잘못 입력된 부분이 있습니다.')
 			}
 		})
 	}
@@ -366,7 +379,7 @@ auth =(()=>{
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.ajax({
-					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()),
+					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()) + '/',
 					type: 'GET',
 					data: JSON.stringify({
 						cemail : $('#cemail').val()

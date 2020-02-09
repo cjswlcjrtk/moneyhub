@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.exth.ExthMapper">
+
+	<insert id="insertExth" parameterType="Exth">
+	    INSERT INTO EXTH ( CNO, TOTAL, KRW, USD, EUR, AUD, CNY, JPY, RERATE, BDATE, PROFITS ) VALUES (
+	    	#{cno}, #{total}, #{krw}, #{usd}, #{eur}, #{aud}, #{cny}, #{jpy}, #{rerate}, #{bdate}, #{profits}
+	    )
+	</insert>
+	
+	<select id="selectAllByCno" resultType="Exth">
+		SELECT * 
+		FROM EXTH
+		WHERE CNO = #{cno}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM EXTH
+		WHERE CNO = #{cno}
+	</select>
+	
+	<delete id="deleteExthByCno">
+		DELETE FROM EXTH
+		WHERE CNO = #{cno}
+	</delete>
+</mapper>
+
+<!-- cno, total, krw, usd, eur, aud, cny, jpy, rerate, bdate, profits -->

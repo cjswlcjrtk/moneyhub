@@ -1,7 +1,13 @@
 "use strict"
+<<<<<<< HEAD:src/main/webapp/resources/js/admin_vue/exchange_vue.js
 var exchange_vue = exchange_vue || {}
 exchange_vue ={
 	exchange_head : ()=>{
+=======
+var fee_vue = fee_vue || {}
+fee_vue ={
+	fee_head : ()=>{
+>>>>>>> develop:src/main/webapp/resources/js/admin_vue/fee_vue.js
 		return '<head>'+
 		' <meta charset="utf-8">'+
 		'  <meta http-equiv="X-UA-Compatible" content="IE=edge">'+
@@ -16,7 +22,11 @@ exchange_vue ={
 		'  <link href="/web/resources/css/sb-admin-2.min.css" rel="stylesheet">'+
 		'</head>'
 	},
+<<<<<<< HEAD:src/main/webapp/resources/js/admin_vue/exchange_vue.js
 	exchange_body : () =>{
+=======
+	fee_body : () =>{
+>>>>>>> develop:src/main/webapp/resources/js/admin_vue/fee_vue.js
 		return '<body id="page-top">'+
 		' <!-- Page Wrapper -->'+
 		'  <div id="wrapper">'+
@@ -32,11 +42,30 @@ exchange_vue ={
 		'             <!-- Area Chart -->'+
 		'              <div class="card shadow mb-4">'+
 		'                <div class="card-header py-3">'+
+<<<<<<< HEAD:src/main/webapp/resources/js/admin_vue/exchange_vue.js
 		'                  <h6 class="m-0 font-weight-bold text-primary">환전시 발생하는 수익(단위 1만달러)</h6>'+
 		'                </div>'+
 		'                <div class="card-body">'+
 		'                  <div class="chart-area">'+
 		'                    <canvas id="areaChartExchagne"></canvas>'+
+=======
+		'                  <h6 class="m-0 font-weight-bold text-primary">3천달러 미만 수수료 수익(단위 1만달러)</h6>'+
+		'                </div>'+
+		'                <div class="card-body">'+
+		'                  <div class="chart-area">'+
+		'                    <canvas id="areaChartFeeOne"></canvas>'+
+		'                  </div>'+
+		'                </div>'+
+		'              </div>'+
+		'             <!-- Bar Chart -->'+
+		'              <div class="card shadow mb-4">'+
+		'                <div class="card-header py-3">'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">3천달러 이상 수수료 수익(단위 1만달러)</h6>'+
+		'                </div>'+
+		'                <div class="card-body">'+
+		'                  <div class="chart-bar">'+
+		'                    <canvas id="areaChartFeeTwo"></canvas>'+
+>>>>>>> develop:src/main/webapp/resources/js/admin_vue/fee_vue.js
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
@@ -46,6 +75,7 @@ exchange_vue ={
 		'              <div class="card shadow mb-4">'+
 		'                <!-- Card Header - Dropdown -->'+
 		'                <div class="card-header py-3">'+
+<<<<<<< HEAD:src/main/webapp/resources/js/admin_vue/exchange_vue.js
 		'                  <h6 class="m-0 font-weight-bold text-primary">환전시 수수료율 조정</h6>'+
 		'                </div>'+
 		'                <div class="form-group row">'+		
@@ -57,9 +87,40 @@ exchange_vue ={
 		'                  </div>'+
 		'				 </div>'+
 		'                <a href="#" id="exchangeUpdate" class="btn btn-facebook btn-user btn-block">'+
+=======
+		'                  <h6 class="m-0 font-weight-bold text-primary">3천달러 미만 수수료 조정</h6>'+
+		'                </div>'+
+		'                <div class="form-group row">'+		
+		'                  <div class="col-sm-6">'+
+		'                    <input type="text" id="feeOneReadOnly" class="form-control form-control-user" readonly="true">'+
+		'                  </div>'+		
+		'                  <div class="col-sm-6">'+
+		'                    <input type="text" class="form-control form-control-user" id="feeOneUpdateValue" placeholder="수수료 변경 금액 입력">'+
+		'                  </div>'+
+		'				 </div>'+
+		'                <a href="#" id="feeOneUpdate" class="btn btn-facebook btn-user btn-block">'+
+>>>>>>> develop:src/main/webapp/resources/js/admin_vue/fee_vue.js
 		'                  수수료 정보 변경 하기'+
 		'                </a>'+
 		'              </div>'+
+		'           <!-- 3천달러 이상 수수료 조정 -->'+
+		'              <div class="card shadow mb-4">'+
+		'                <!-- Card Header - Dropdown -->'+
+		'                <div class="card-header py-3">'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">3천달러 이상 수수료 조정</h6>'+
+		'                </div>'+
+		'                <div class="form-group row">'+		
+		'                  <div class="col-sm-6">'+
+		'                    <input type="text" id="feeTwoReadOnly" class="form-control form-control-user" readonly="true">'+
+		'                  </div>'+		
+		'                  <div class="col-sm-6">'+
+		'                    <input type="text" class="form-control form-control-user" id="feeTwoUpdateValue" placeholder="수수료 변경 금액 입력">'+
+		'                  </div>'+
+		'				 </div>'+
+		'                <a href="#" id="feeTwoUpdate" class="btn btn-google btn-user btn-block">'+
+		'                  수수료 정보 변경 하기'+
+		'                </a>'+
+		'              </div>'+		
 		'            </div>'+
 		'          </div>'+
 		'       </div>'+
@@ -104,7 +165,12 @@ exchange_vue ={
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
+<<<<<<< HEAD:src/main/webapp/resources/js/admin_vue/exchange_vue.js
 		'  <script src="/web/resources/js/adminChart/chart-area-exchange.js"></script>'+
+=======
+		'  <script src="/web/resources/js/adminChart/chart-area-fee-one.js"></script>'+
+		'  <script src="/web/resources/js/adminChart/chart-area-fee-two.js"></script>'+
+>>>>>>> develop:src/main/webapp/resources/js/admin_vue/fee_vue.js
 		'</body>'
 	}
 }

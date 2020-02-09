@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TRDHR {
 
-	private String bsdate,mtcn,cno,trdAmnt,trdSend,acctNo,cntcd,crtmem,crtdt,upmem,updt;
+	private String bsdate,mtcn,cno,trdUsd,trdKrw,acctNo,cntcd,crtmem,crtdt,upmem,updt;
 	private int seq,trdStatCd,chngCausCd;
 	private double exrate;
 }

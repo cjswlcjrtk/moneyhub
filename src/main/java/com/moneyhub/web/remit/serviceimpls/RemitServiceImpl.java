@@ -38,8 +38,9 @@ public class RemitServiceImpl implements RemitService{
 		trd.setCno(deal.get("cno").toString());
 		trd.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
 		trd.setChngCausCd(0);
-		trd.setTrdAmnt(deal.get("amount").toString());
-		trd.setCntcd(deal.get("cntcd").toString());
+		trd.setTrdUsd(deal.get("trdusd").toString());
+		trd.setTrdKrw(deal.get("trdkrw").toString());
+		trd.setCntcd("1");
 		trd.setExrate((double) deal.get("exrate"));
 		trd.setCrtmem("LEJ");
 		trd.setCrtdt(sdf.format(date));
@@ -51,7 +52,8 @@ public class RemitServiceImpl implements RemitService{
 		trdhr.setCno(deal.get("cno").toString());
 		trdhr.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
 		trdhr.setChngCausCd(0);
-		trdhr.setTrdAmnt(deal.get("amount").toString());
+		trdhr.setTrdUsd(deal.get("trdusd").toString());
+		trdhr.setTrdKrw(deal.get("trdkrw").toString());
 		trdhr.setCntcd(deal.get("cntcd").toString());
 		trdhr.setExrate((double) deal.get("exrate"));
 		trdhr.setCrtmem("LEJ");
@@ -71,10 +73,12 @@ public class RemitServiceImpl implements RemitService{
 		rcpt.setCrtdt(sdf.format(date));
 		remitMapper.insertRCPT(rcpt);
 		
-		/* 입금 확인시 수수료 테이블 인설트
-		 * remitMapper.insertFee(deal); 
+		/*
+		 * //수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
+		 * fee.setCno(deal.get("cno").toString()); fee.setCrtmem("LEJ");
+		 * fee.setCrtdt(sdf.format(date)); fee.setFeeAmnt((int) deal.get("fee"));
+		 * remitMapper.insertFee(fee);
 		 */
-		
 	}
 
 }

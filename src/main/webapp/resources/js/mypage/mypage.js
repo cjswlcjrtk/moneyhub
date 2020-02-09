@@ -5,12 +5,12 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal,guide_recieve_js, remit_box_js,clock
+		line_graph_js,deal, remit_box_js, clock, profitsChart,cus
 
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		deal = $.deal()
+		cus = $.cusInfo()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -18,11 +18,14 @@ mypage =(()=>{
 		compo_js = js + '/cmm/compo.js'
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
-		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
+		
+		profitsChart = {}
+		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
+		sessionStorage.setItem('chartFlag', '')
 	}
 	
 	let onCreate =()=>{
@@ -35,17 +38,18 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(guide_recieve_js),
+			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			page_move()	
+			remit_receive()
 			setInterval(clock_excute, 1000)
-			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
+			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분,
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
-			remit_list({ nowPage : 0})
-
+			remit_list({ nowPage : 0, cno : cus.cno})
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -53,21 +57,21 @@ mypage =(()=>{
 		
 	}
 	let setContentView =()=>{
+		$('#remit_slider').hide()
+		
 		$('#root')
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		$.getScript(line_graph_js)
 		
-		$('<button/>')
-		.text('송금하기')
-		.addClass('index-send-btn moin-body')
-		.appendTo('#remit_box')
-		.click(()=>{
-			foreignRemit.onCreate()
-		})
+		$.getScript(line_graph_js)
 
 		$('#popup-exchange').empty()
+		
+		$('#remit_btn')
+		.click(function(){
+		$("#remit_slider").toggle()
+		})
 
 	}
 
@@ -80,8 +84,11 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
-			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
+			sessionStorage.setItem('cus', JSON.stringify({})); // 로그아웃 클릭하면 세션에 담긴 고객정보를
+			sessionStorage.setItem('deal', JSON.stringify({}));
+			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
+			$('html').scrollTop(0);
 		})
 		$('#compo')
 		.click(()=>{
@@ -96,11 +103,6 @@ mypage =(()=>{
 		$('#faq')
 		.click(()=>{
 			faq.onCreate(main_class)
-		})
-		
-		$('#guide')
-		.click(()=>{
-			guide_recieve.onCreate(main_class)
 		})
 		
 		$('.themoin-header a.logo')
@@ -142,110 +144,142 @@ mypage =(()=>{
 			})
 		})
 	}
-	let remit_list =(x)=>{
-
-		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{
-			$('.remits').empty()
+	
+	let remit_receive = ()=>{
+		deal = $.deal()
+			let exrate_arr = []
+			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	//합친뒤 리버스 걸기
+				$.each(d.exlist, (i, j)=>{
+					exrate_arr.push(parseFloat(j.exrate))
+				})
+				deal.exrate = exrate_arr[0]
+				sessionStorage.setItem('deal',JSON.stringify(deal))
+			})
+				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+					common.receive_value_calc(deal.exrate)
+				})
+	
+		$('<button/>')
+		.text('송금하기')
+		.addClass('index-send-btn moin-body')
+		.appendTo('#remit_box')
+		.click(()=>{
 			
-			$.each(d.trdhr, (i, j)=>{  //숙제 테이블 두개 정보 받아 넣기
-				$(`<div class="themoin-main-remititem">
-						<div class="simple">
-							<div class="unit-flag">
-								<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
-							</div>
-							<div class="simple-nametime">
-								<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a"></span>
-								</h3>
-								<p class="create-time">${j.bsdate}</p>
-							</div>
-							<div class="simple-spacer"></div>
-							<div class="simple-amount">
-								<div class="user-sendlistdetail-amount">
-									<h3 class="user-sendlist-send">
-										<span class="user-sendlist-send">${j.trdSend}</span> <span
-											class="user-sendlist-sendunit">KRW</span>
-									</h3>
-									<img src="https://img.themoin.com/public/img/ic-next-p.png"
-										class="user-sendlist-ic">
-									<h3 class="user-sendlist-receive">
-										<span class="user-sendlist-receive">${j.trdAmnt}</span> <span
-											class="user-sendlist-receiveunit">USD</span>
-									</h3>
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			foreignRemit.onCreate()
+			
+		})
+	}
+	
+	let remit_list =(x)=>{
+		// 송금내역이 있으면 get 없으면 빈화면/카운트가 0이면 빈화면 0이상이면 GET
+		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
+			let pxy = d.pager
+			/* console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt)) */
+			$('.remits').empty()
+			if(pxy.rowCount != 0){
+				$.each(d.map, (i, j)=>{ 
+					$(`<div class="themoin-main-remititem">
+							<div class="simple">
+								<div class="unit-flag">
+									<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
 								</div>
-								<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
-								<div class="send-due">
-									<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
+								<div class="simple-nametime">
+									<h3 class="username">
+									<span class="fs-block" lang="en" title="a aaa a">${j.passLnm} ${j.passFnm}</span>
+									</h3>
+									<p class="create-time">${j.bsdate}</p>
+								</div>
+								<div class="simple-spacer"></div>
+								<div class="simple-amount">
+									<div class="user-sendlistdetail-amount">
+										<h3 class="user-sendlist-send">
+											<span class="user-sendlist-send">${j.trdKrw}</span> <span
+												class="user-sendlist-sendunit">KRW</span>
+										</h3>
+										<img src="https://img.themoin.com/public/img/ic-next-p.png"
+											class="user-sendlist-ic">
+										<h3 class="user-sendlist-receive">
+											<span class="user-sendlist-receive">${j.trdUsd}</span> <span
+												class="user-sendlist-receiveunit">USD</span>
+										</h3>
+									</div>
+									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
+									<div class="send-due">
+										<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>`)
-			    .appendTo('.remits')
-			})
-			let pxy = d.pager
-			if(pxy.existPrev){
-				$(`<button class="control disabled" disabled="">
-		         	이전
-		         </button>`)
-		         .appendTo('.themoin-pagination')
-		         .click(()=>{
-		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
-		         })
-			}
-			$(`<ul class="list_paging"></ul>`)
-			.appendTo('.bundle_paging') 
-			for(let i = pxy.startPage; i<= pxy.endPage; i++){
-				if( pxy.nowPage == i ){
-					$(`<li class="on">
-							<a href="#" class="link_num">
-								<span class="screen_out">선택 됨</span>
+						`)
+				    .appendTo('.remits')
+				})
+				
+				
+				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
+				
+				if(pxy.existPrev){
+					$(`<button class="control disabled">
+			         	이전
+			         </button>`)
+			         .appendTo('.themoin-pagination')
+			         .click(()=>{
+			        	 mypage.remit_list({ nowPage : pxy.prevBlock, cno : cus.cno})
+			         })
+				}
+				$(`<button class="paginator"></button>`)
+				.appendTo('.themoin-pagination') 
+				for(let i = pxy.startPage; i<= pxy.endPage; i++){
+						$(`<button class="paginator current>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')		
-					$('html').scrollTop(0);
-				}else{
-					$(`<li class="">
-							<a href="#" class="link_num">
-								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')
+							</button>`)
+					.appendTo('.paginator')
 					.click(function(e){
 						e.preventDefault()
-						faq.faq_list({ nowPage : i, keyword : x.keyword })
+						mypage.remit_list({ nowPage : i, cno : cus.cno})
 					})
-				}
-			}
-			if(pxy.existNext){
-				$(`<a href="#" class="link_paging">
-						<span class="ico_pay ico_next"></span>다음
-		        	</a>`)
-		        .appendTo('.bundle_paging')
-		        .click(()=>{
-		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
-		        })
-			}
-			//내역 눌렀을 때 상세 또는 수정 삭제
+					
+					if( pxy.nowPage == i ){
 
-			/*$('div.box')
-		    .click(function(){
-		    	if($(this).children('.answer').hasClass('show') == false){
-		    		$('div.box').children('.answer').attr('class', 'answer')
-		    		$(this).children('.answer').attr('class', 'answer show')
-		    	}else{
-		    		$('div.box').children('.answer').attr('class', 'answer')
-//		    		$(this).children('.answer').attr('class', 'answer')
-		    	}
-			/*<div class="themoin-pagination"></div>
-			<button class="control disabled" disabled="">이전</button>
-			<button class="paginator current">1</button>
-			<button class="control disabled" disabled="">다음</button>
-		</div>
-	</div>*/
+						$(`<button>
+									${i+1}
+								</button>`)
+						.appendTo('.themoin-pagination')		
+						$('html').scrollTop(0);
+					}else{
+						$(`<button>
+									${i+1}
+								</button>`)
+						.appendTo('.themoin-pagination')
+
+						.click(function(e){
+							e.preventDefault()
+							mypage.remit_list({ nowPage : i, cno : cus.cno})
+						})
+					}
+				}
+				if(pxy.existNext){
+					$(`<button class="control disabled">다음
+			        	</button>`)
+			        .appendTo('.themoin-pagination')
+			        .click(()=>{
+			        	mypage.remit_list({ nowPage : pxy.nextBlock, cno : cus.cno})
+			        })
+				}
+			}else if(pxy.rowCount == 0){
+				$(`<div class="remits empty">
+					<br><h3>아직 송금 내역이 없습니다.</h3>
+					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>
+					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
+				</div>`).appendTo('.user-limit')
+			}
+			
 
 		})
 	}
 	
-	return { onCreate }
+	return { onCreate,remit_list }
 })()

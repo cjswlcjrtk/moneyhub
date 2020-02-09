@@ -32,7 +32,31 @@ retention_amount =(()=>{
 			
 			$('#amount')
 			.css({ float : 'left'})
-			
+		})
+		$('#init_btn').css({
+			width:'50%',
+			float : 'left',
+			'text-align' : 'center'
+		})
+		$('<button/>')
+		.text('초기화')
+		.addClass('btn btn-lg btn-primary')
+		.appendTo('#init_btn')
+		.click(()=>{
+			alert('초기화')
+			common.amount_init()
+		})
+		$('#save_btn').css({
+			width:'50%',
+			float : 'left',
+			'text-align' : 'left'
+		})
+		$('<button/>')
+		.text('저장')
+		.addClass('btn btn-lg btn-primary')
+		.appendTo('#save_btn')
+		.click(()=>{
+			alert('저장')
 		})
 	}
 

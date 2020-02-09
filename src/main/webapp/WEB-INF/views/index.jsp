@@ -31,10 +31,11 @@
 	
 	<link href="https://www.kakaobank.com/products_static/css/event/list/style.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 	<!-- maps -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
 	
@@ -45,7 +46,7 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<!-- kakao login -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<!-- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 	
 	<!-- chart -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -56,6 +57,11 @@
 	<script src="<%=application.getContextPath()%>/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	
+
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/common.js"></script>
@@ -73,12 +79,9 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/event_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/faq.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/faq_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/cmm/guide_recieve.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/vue/guide_vue.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_dropdown.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_box.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info.js"></script>
@@ -96,8 +99,10 @@
 	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/fee.js"></script>
+
 	<script src="<%=application.getContextPath()%>/resources/js/admin/exchangeDB.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/simulateChart.js"></script>
+
 	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
@@ -117,6 +122,7 @@
 	<div id="popup-exchange"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
+// test.onCreate()
 	</script>
 </body>
 </html>

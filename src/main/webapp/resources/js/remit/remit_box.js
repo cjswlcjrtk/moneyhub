@@ -1,28 +1,31 @@
 "use strict"
 var remit_box = remit_box || {}
 remit_box =(()=>{
-	let _, js, line_graph_js, exrate_js, flag, cntcd, deal
+	let _, js, line_graph_js, exrate_js, flag, cntcd, deal, exChart_js
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
 		deal = $.deal()
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
+		exChart_js = js + '/mypage/exChart.js'
 		flag = x.flag
 		cntcd = x.cntcd
 	}
 	
 	let onCreate =x=>{
 		init(x)
-		$('#send_amount').val(1000)
 		
 		common.remit_send_focusout()
 
 		popup()
-		$.getScript(exrate_js)
-		.done(()=>{
-			exrate.onCreate()
-		})
+		
+		if(flag === 'exchange'){
+			$.getScript(exrate_js)
+			.done(()=>{
+				exrate.onCreate()
+			})
+		}
 	}
 	
 	let popup =()=>{
@@ -35,7 +38,7 @@ remit_box =(()=>{
 							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' }]
 			
 			if( cntcd === 'KRW' ){
-//				alert('cntcd : ' + cntcd)
+//				alert('cntcd : ' + cntcd) cntcd = 국가코드
 				$('.form-calculator .amount-row .send')	// send cntcd 클릭 시
 				.click(e=>{
 					e.preventDefault()
@@ -47,7 +50,7 @@ remit_box =(()=>{
 					send_cntcd_filter(send_data)
 				})
 			}
-		//	
+			
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()
@@ -63,7 +66,7 @@ remit_box =(()=>{
 					{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '' },
 					{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
 					{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '' },
-					{ img : 'np', cntcd : 'NPR', curr : '네팔 루피', flag : '' },
+					{ img : 'vn', cntcd : 'VND', curr : '베트남 동', flag : '' },
 					{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '' },
 					{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '' },
 					{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' },
@@ -124,33 +127,67 @@ remit_box =(()=>{
 				$('#popup_box input').val('')
 
 				if( j.flag === 'mypage'){
+
+					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-					$('#chart')
+					
+					/*$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
-					$.getScript(line_graph_js)
+					$.getScript(line_graph_js)*/
+
+					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
+					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+					sessionStorage.setItem('deal',JSON.stringify(deal))
+					alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)
 					
 				}
 				else if(( j.flag === 'exchange')){
 					$('.form-calculator .amount-row .send p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
+				
 					$('#popup-exchange').show()
 					exrate.onCreate()
 
 				}
-				else{
+				else if( j.flag === 'exchange2'){
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
+					sessionStorage.setItem('exch',JSON.stringify(exch))
+					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
 					
-					deal.cntp =$('.form-calculator .amount-row .receive p').text() 
-					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-					sessionStorage.setItem('deal',JSON.stringify(deal))
+					let cntcd = $('.form-calculator .amount-row .receive h3').text()
+					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
+						if(d.msg === 'UP'){
+							$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
+							$('#exchange_check').css('color', 'blue')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
+						}else{
+							$('#exchange_check').text('최근 약 2주간 해당 환율은 하락세입니다.')
+							$('#exchange_check').css('color', 'red')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
+						}
+					})
+
+					exch.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명
+					exch.cntcd = $('.form-calculator .amount-row .receive h3').text() //국가코드
+
+					sessionStorage.setItem('exch',JSON.stringify(exch))
+					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
+					$('#chart')
+					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
+					$.getScript(exChart_js)
 					
-					exrate.onCreate()
+				}
+				else{
+					/*$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
+					exrate.onCreate()*/
 				}
 			})
 		})
-		
 	}
 	return { onCreate }
 })()

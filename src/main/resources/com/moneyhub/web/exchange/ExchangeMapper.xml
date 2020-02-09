@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.exchange.mappers.ExchangeMapper">
+
+	<insert id="insertEx" parameterType="Exchange">
+	    INSERT INTO EXCHANGE (CEMAIL, BSDATE, MH_RATE, EXCH_KRW, EXCH_CNT,
+					EX_FEE, ACCT_NO, CNTCD, FEE_EXRATE, MTCN, TRD_STAT_CD, CHNG_CAUS_CD)
+		VALUES (
+	    	#{cemail}, now(), #{mhRate}, #{exchKrw}, #{exchCnt},
+	    	#{exFee}, #{acctNo}, #{cntcd}, #{feeExrate}, #{mtcn}, #{trdStatCd}, #{chngCausCd}
+	    )
+	</insert>
+	
+	<select id="exTrend" parameterType="string" resultType="Exrate">
+		SELECT *
+		FROM (SELECT * FROM EXRATE WHERE CNTCD = #{cntcd}) A
+		WHERE A.SEQ IN (SELECT MAX(SEQ)
+						FROM (SELECT *
+								FROM EXRATE
+								WHERE CNTCD = #{cntcd}) B
+								GROUP BY BDATE)
+		ORDER BY BDATE DESC
+		LIMIT 0,10
+	</select>
+	
+	<!-- <select id="exTrend1" resultType="Exrate">
+		SELECT *
+		FROM (SELECT *
+				FROM EXRATE
+				WHERE CNTCD = 'USD') F
+		WHERE BDATE = (SELECT MAX(BDATE)
+						FROM(SELECT *
+							FROM EXRATE WHERE SEQ IN (SELECT MAX(SEQ)
+														FROM (SELECT *
+																FROM EXRATE
+																WHERE CNTCD = 'USD') B
+														GROUP BY BDATE)
+							ORDER BY BDATE
+		                    DESC LIMIT 0,20) A)
+	</select>
+	
+	<select id="exTrend2" resultType="Exrate">
+		SELECT *
+		FROM (SELECT *
+				FROM EXRATE
+				WHERE CNTCD = 'USD') F
+		WHERE BDATE = (SELECT MIN(BDATE)
+					FROM(SELECT *
+							FROM EXRATE
+		                    WHERE SEQ IN (SELECT MAX(SEQ)
+											FROM (SELECT *
+													FROM EXRATE
+													WHERE CNTCD = 'USD') C
+											GROUP BY BDATE)
+							ORDER BY BDATE
+		                    DESC LIMIT 0,20) D)
+	</select> -->
+	
+	<!-- <select id="exTrend" resultType="Exrate">
+		SELECT *
+		FROM (SELECT *
+				FROM EXRATE
+				WHERE CNTCD = 'USD') F
+		WHERE BDATE = (SELECT MAX(BDATE)
+						FROM(SELECT *
+							FROM EXRATE WHERE SEQ IN (SELECT MAX(SEQ)
+														FROM (SELECT *
+																FROM EXRATE
+																WHERE CNTCD = 'USD') B
+														GROUP BY BDATE)
+							ORDER BY BDATE
+		                    DESC LIMIT 0,20) A)
+		OR BDATE = (SELECT MIN(BDATE)
+					FROM(SELECT *
+							FROM EXRATE
+		                    WHERE SEQ IN (SELECT MAX(SEQ)
+											FROM (SELECT *
+													FROM EXRATE
+													WHERE CNTCD = 'USD') C
+											GROUP BY BDATE)
+							ORDER BY BDATE
+		                    DESC LIMIT 0,20) D);
+	</select> -->
+	  
+</mapper>

@@ -25,6 +25,11 @@ sidebar = (()=>{
 		$('#root div.themoin-main')
 		.html(nav_vue.sidebar_cus())
 		cus_info.onCreate()
+		
+		$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
+			cemail : sessionStorage.getItem('CEMAIL')
+			$('#mypageId').text(d.cus.cemail)
+		})
 	}
 	
 	let mypage_move =()=>{

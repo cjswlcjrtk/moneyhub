@@ -83,5 +83,11 @@ public class CustomerProxy extends Proxy{
 		Collections.shuffle(cstcd);
 		return cstcd.get(0);
 	}
+	
+	/*
+	 * public String makeAccount() {
+	 * 
+	 * }
+	 */
 
 }

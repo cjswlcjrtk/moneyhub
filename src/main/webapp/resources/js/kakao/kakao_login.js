@@ -1,4 +1,4 @@
-Kakao.init('0a12b00f4d7ca8dab74be5cd92f7e359')
+/*Kakao.init('0a12b00f4d7ca8dab74be5cd92f7e359')
 //카카오 로그인 버튼을 생성합니다.
 Kakao.Auth.createLoginButton({
 	container : '#kakao-login-btn',
@@ -21,3 +21,4 @@ Kakao.Auth.createLoginButton({
 		alert(JSON.stringify(err));
 	}
 })
+*/

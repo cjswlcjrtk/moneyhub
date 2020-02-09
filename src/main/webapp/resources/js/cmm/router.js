@@ -1,14 +1,16 @@
 "use strict"
 function Session(x){	
-	let exrate = {}
+//	var exrateSess = {}
+//	var money = {}
 	sessionStorage.setItem('ctx', x);
 	sessionStorage.setItem('js', x + '/resources/js');
 	sessionStorage.setItem('css', x + '/resources/css');
 	sessionStorage.setItem('img', x + '/resources/img');
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
-	var deal = new Object() // 송금 객체
+	var deal = {} // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
-	
+	var exch = {} // 환전 객체
+	sessionStorage.setItem('exch',JSON.stringify(exch));
 
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
@@ -18,7 +20,14 @@ function Session(x){
 		jsp : ()=>{return sessionStorage.getItem('jsp');},
 		deal : ()=>{return JSON.parse(sessionStorage.getItem('deal'))},
 		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))},
-		exrate : ()=>{ return JSON.parse(sessionStorage.getItem('exrate'))}
+		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
+
+		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
+		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
+		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays'))},
+		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
+		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
+		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
 	}
 }
 function Customer_Info(x){

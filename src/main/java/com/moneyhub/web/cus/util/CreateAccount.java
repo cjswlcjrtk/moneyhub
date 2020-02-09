@@ -7,10 +7,7 @@ public class CreateAccount {
 		String accNum = "";
 		
 		//난수
-		int ran = (int)(Math.random()*100); 
-		if(ran < 10) {
-			ran = ran*10+1;
-		}
+		int ran = (int) (Math.random()*10000);
 		
 		
 	}
