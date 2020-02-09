@@ -102,7 +102,7 @@
 
 	<script src="<%=application.getContextPath()%>/resources/js/admin/exchangeDB.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/simulateChart.js"></script>
-
+	<script src="<%=application.getContextPath()%>/resources/js/admin/profitChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>

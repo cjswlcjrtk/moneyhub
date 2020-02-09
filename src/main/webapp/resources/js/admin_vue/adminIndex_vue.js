@@ -43,15 +43,15 @@ adminIndex_vue ={
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="fee" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>송금 수익 조정</span>'+
+		'          <span>수수료 조정</span>'+
 		'        </a>'+
-		'        <a class="nav-link collapsed" id="exchangeDB" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
+		'        <a class="nav-link collapsed" id="transactionChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>환전 수익 조정</span>'+
+		'          <span>거래차트</span>'+
 		'        </a>'+
-		'        <a class="nav-link collapsed" id="simulateChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
+		'        <a class="nav-link collapsed" id="profitChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>예상수익 모의차트</span>'+
+		'          <span>수익차트</span>'+
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="qna" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-folder"></i>'+		

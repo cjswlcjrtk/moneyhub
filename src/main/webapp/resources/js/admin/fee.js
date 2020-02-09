@@ -35,8 +35,8 @@ fee =(()=>{
 			$(fee_vue.fee_body(d)).appendTo('div.container-fluid')
 			$('#feeOneUpdateValue').val('')
 			$('#feeTwoUpdateValue').val('')
-			$('#feeOneReadOnly').val(`현재 수수료 ${d.feeOne} 달러 적용중`)
-			$('#feeTwoReadOnly').val(`현재 수수료 ${d.feeTwo} 달러 적용중`)
+			$('#feeOneReadOnly').val(`현재 수수료 ${d.feeOne} 적용중`)
+			$('#feeTwoReadOnly').val(`현재 수수료 ${d.feeTwo} 적용중`)
 			updateFee()
 		})
 	}

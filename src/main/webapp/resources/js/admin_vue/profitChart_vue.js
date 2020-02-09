@@ -1,7 +1,7 @@
 "use strict"
-var simulateChart_vue = simulateChart_vue || {}
-simulateChart_vue ={
-		simulateChart_head : ()=>{
+var profitChart_vue = profitChart_vue || {}
+profitChart_vue ={
+	profitChart_head : ()=>{
 		return '<head>'+
 		' <meta charset="utf-8">'+
 		'  <meta http-equiv="X-UA-Compatible" content="IE=edge">'+
@@ -16,7 +16,7 @@ simulateChart_vue ={
 		'  <link href="/web/resources/css/sb-admin-2.min.css" rel="stylesheet">'+
 		'</head>'
 	},
-	simulateChart_body : ()=>{
+	profitChart_body : ()=>{
 		return '<body id="page-top">'+
 		' <!-- Page Wrapper -->'+
 		'  <div id="wrapper">'+
@@ -27,7 +27,8 @@ simulateChart_vue ={
 		'       <!-- Begin Page Content -->'+
 		'        <div class="container-fluid">'+
 		'         <!-- Page Heading -->'+
-		'          <h1 class="h3 mb-2 text-gray-800">모의수익률 분석차트</h1>'+
+		'          <h1 class="h3 mb-2 text-gray-800">Charts</h1>'+
+		'          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>'+
 		'         <!-- Content Row -->'+
 		'          <div class="row">'+
 		'           <div class="col-xl-8 col-lg-7">'+
@@ -58,61 +59,21 @@ simulateChart_vue ={
 		'                </div>'+
 		'              </div>'+
 		'           </div>'+
-		'           <!-- 입력Area -->'+
+		'           <!-- Donut Chart -->'+
 		'            <div class="col-xl-4 col-lg-5">'+
-		'           <!-- 기간설정 -->'+
 		'              <div class="card shadow mb-4">'+
 		'                <!-- Card Header - Dropdown -->'+
 		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">기간설정</h6>'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>'+
 		'                </div>'+
-		'                <div class="form-group row">'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" id="feeOneReadOnly" class="form-control form-control-user" readonly="true">'+
-		'                  </div>'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" class="form-control form-control-user" id="feeOneUpdateValue" placeholder="수수료 변경 금액 입력">'+
+		'                <!-- Card Body -->'+
+		'                <div class="card-body">'+
+		'                  <div class="chart-pie pt-4">'+
+		'                    <canvas id="memberPieChart"></canvas>'+
 		'                  </div>'+
-		'				 </div>'+
-		'                <a href="#" id="feeOneUpdate" class="btn btn-facebook btn-user btn-block">'+
-		'                  기간 변경 하기'+
-		'                </a>'+
-		'              </div>'+
-		'           <!-- 금액설정 -->'+
-		'              <div class="card shadow mb-4">'+
-		'                <!-- Card Header - Dropdown -->'+
-		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">금액설정</h6>'+
+		'                  <hr>'+
+		'                  Styling for the donut chart can be found in the <code>/js/adminChart/chart-pie-demo.js</code> file.'+
 		'                </div>'+
-		'                <div class="form-group row">'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" id="feeOneReadOnly" class="form-control form-control-user" readonly="true">'+
-		'                  </div>'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" class="form-control form-control-user" id="feeOneUpdateValue" placeholder="수수료 변경 금액 입력">'+
-		'                  </div>'+
-		'				 </div>'+
-		'                <a href="#" id="feeOneUpdate" class="btn btn-facebook btn-user btn-block">'+
-		'                  수수료 정보 변경 하기'+
-		'                </a>'+
-		'              </div>'+
-		'           <!-- 국가설정 -->'+
-		'              <div class="card shadow mb-4">'+
-		'                <!-- Card Header - Dropdown -->'+
-		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">국가설정</h6>'+
-		'                </div>'+
-		'                <div class="form-group row">'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" id="feeOneReadOnly" class="form-control form-control-user" readonly="true">'+
-		'                  </div>'+		
-		'                  <div class="col-sm-6">'+
-		'                    <input type="text" class="form-control form-control-user" id="feeOneUpdateValue" placeholder="수수료 변경 금액 입력">'+
-		'                  </div>'+
-		'				 </div>'+
-		'                <a href="#" id="feeOneUpdate" class="btn btn-facebook btn-user btn-block">'+
-		'                  수수료 정보 변경 하기'+
-		'                </a>'+
 		'              </div>'+
 		'            </div>'+
 		'          </div>'+
@@ -120,6 +81,15 @@ simulateChart_vue ={
 		'        <!-- /.container-fluid -->'+
 		'     </div>'+
 		'      <!-- End of Main Content -->'+
+		'     <!-- Footer -->'+
+		'      <footer class="sticky-footer bg-white">'+
+		'        <div class="container my-auto">'+
+		'          <div class="copyright text-center my-auto">'+
+		'            <span>Copyright &copy; Your Website 2019</span>'+
+		'          </div>'+
+		'        </div>'+
+		'      </footer>'+
+		'      <!-- End of Footer -->'+
 		'   </div>'+
 		'    <!-- End of Content Wrapper -->'+
 		' </div>'+
@@ -146,6 +116,13 @@ simulateChart_vue ={
 		'      </div>'+
 		'    </div>'+
 		'  </div>'+
+//		' <!-- Bootstrap core JavaScript-->'+
+//		'  <script src="/web/resources/vendor/jquery/jquery.min.js"></script>'+
+//		'  <script src="/web/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>'+
+//		' <!-- Core plugin JavaScript-->'+
+//		'  <script src="/web/resources/vendor/jquery-easing/jquery.easing.min.js"></script>'+
+//		' <!-- Custom scripts for all pages-->'+
+//		'  <script src="/web/resources/js/sb-admin-2.min.js"></script>'+
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
