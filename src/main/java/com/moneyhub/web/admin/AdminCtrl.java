@@ -82,5 +82,27 @@ public class AdminCtrl extends Proxy{
 		box.put("msg", "SUCCESS");
 		return box.get();
 	}
+	
+	@GetMapping("/exchangeDB")
+	public Map<?, ?> exchangeSelect(){
+		System.out.println("여기로 들어옴");
+//		Supplier<String> one = () -> adminMapper.feeSelectOne();
+//		one.get();
+//		box.clear();
+//		box.put("feeOne", one.get());
+//		return box.get();
+		return null;
+	}
+	
+	@PostMapping("/exchangeUpdate")
+	public Map<?, ?> exchangeUpdate(@RequestBody Map<String, String> param){
+		System.out.println("여기로 들어옴");
+//		Consumer<Map<String, String>> c = o -> adminMapper.feeUpdateTwo(o);
+//		c.accept(param);
+//		box.clear();
+//		box.put("msg", "SUCCESS");
+//		return box.get();
+		return null;
+	}
 
 }
