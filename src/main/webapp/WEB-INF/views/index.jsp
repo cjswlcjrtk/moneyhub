@@ -97,13 +97,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/admin/members.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/fee.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/exchangeDB.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/simulateChart.js"></script>
-<<<<<<< HEAD
-	<script src="<%=application.getContextPath()%>/resources/js/admin/profitChart.js"></script>
-=======
->>>>>>> parent of 78e3860... Merge branch 'develop' into phjin20200203
 	<script src="<%=application.getContextPath()%>/resources/js/admin/qna.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/admin/transactionChart.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndexHome_vue.js"></script>
 	

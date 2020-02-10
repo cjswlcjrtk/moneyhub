@@ -20,8 +20,10 @@ public interface AdminMapper {
 	public void memberUpdate(Admin param);
 	
 	public String feeSelectOne();
-	public String feeSelectTwo();
-	
+	public String feeSelectTwo();	
 	public void feeUpdateOne(Map<String, String> param);
 	public void feeUpdateTwo(Map<String, String> param);
+	
+	public String exchangeDBSelect();
+	public void exchangeDBUpdate(Map<String, String> param);
 }

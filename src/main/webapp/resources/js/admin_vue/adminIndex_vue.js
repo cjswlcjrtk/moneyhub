@@ -43,20 +43,16 @@ adminIndex_vue ={
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="fee" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>수수료 조정</span>'+
+		'          <span>송금수수료 조정</span>'+
 		'        </a>'+
-		'        <a class="nav-link collapsed" id="transactionChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
+		'        <a class="nav-link collapsed" id="exchangeDB" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>거래차트</span>'+
+		'          <span>환전수수료 조정</span>'+
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="profitChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>수익차트</span>'+
+		'          <span>모의환전차트</span>'+
 		'        </a>'+
-		'        <a class="nav-link collapsed" id="qna" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
-		'          <i class="fas fa-fw fa-folder"></i>'+		
-		'          <span>테이블 생성</span>'+
-		'        </a>'+		
 		'     <!-- Divider -->'+
 		'      <hr class="sidebar-divider d-none d-md-block">'+
 		'     <!-- Sidebar Toggler (Sidebar) -->'+

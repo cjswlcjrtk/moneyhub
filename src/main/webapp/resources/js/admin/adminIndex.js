@@ -3,7 +3,7 @@ var adminIndex = adminIndex || {}
 adminIndex =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cookie_js, adminIndex_vue_js, members_js
-		,fee_js, transactionChart_js, profitChart_js
+		,fee_js, exchangeDB_js, profitChart_js
 		, qna_js, adminIndexHome_vue_js
 	
 	let init =()=>{
@@ -13,7 +13,7 @@ adminIndex =(()=>{
 		adminIndex_vue_js = js + '/admin_vue/adminIndex_vue.js'
 		members_js = js + '/admin/members.js'
 		fee_js = js + '/admin/fee.js'
-		transactionChart_js = js + '/admin/transactionChart.js'
+		exchangeDB_js = js + '/admin/exchangeDB.js'
 		profitChart_js = js + '/admin/profitChart.js'
 		qna_js = js + '/admin/qna.js'
 		adminIndexHome_vue_js = js + '/admin_vue/adminIndexHome_vue.js'
@@ -26,7 +26,7 @@ adminIndex =(()=>{
 			$.getScript(adminIndex_vue_js),
 			$.getScript(members_js),
 			$.getScript(fee_js),
-			$.getScript(transactionChart_js),
+			$.getScript(exchangeDB_js),
 			$.getScript(profitChart_js),
 			$.getScript(qna_js),
 			$.getScript(adminIndexHome_vue_js)
@@ -68,11 +68,11 @@ adminIndex =(()=>{
 			$('div.container').empty()
 			fee.onCreate()
 		})
-		$('#transactionChart').click(()=>{
+		$('#exchangeDB').click(()=>{
 			$('div.container-fluid').empty()
 			$('head').empty()
 			$('div.container').empty()
-			transactionChart.onCreate()
+			exchangeDB.onCreate()
 		})
 		$('#profitChart').click(()=>{
 			$('div.container-fluid').empty()

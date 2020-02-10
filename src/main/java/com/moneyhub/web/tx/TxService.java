@@ -1,13 +1,11 @@
 package com.moneyhub.web.tx;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moneyhub.web.crudtable.CRUDCustomer;
-import com.moneyhub.web.crudtable.CRUDFeeDB;
+import com.moneyhub.web.crudtable.CRUDFee;
 import com.moneyhub.web.exr.Exrate;
 import com.moneyhub.web.exr.ExrateMapper;
 import com.moneyhub.web.faq.FAQ;
@@ -16,7 +14,7 @@ import com.moneyhub.web.pxy.CrawlingProxy;
 import com.moneyhub.web.pxy.CustomerProxy;
 import com.moneyhub.web.pxy.ExrateStoreProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
-import com.moneyhub.web.pxy.FeeDBProxy;
+import com.moneyhub.web.pxy.FeeProxy;
 
 @Service
 public class TxService {
@@ -30,10 +28,10 @@ public class TxService {
 	@Autowired TxMapper txMapper;
 		
 	@Autowired CRUDCustomer crudCustomer;
-	@Autowired CRUDFeeDB crudFeeDB;
+	@Autowired CRUDFee crudFee;
 	
 	@Autowired CustomerProxy customerProxy;
-	@Autowired FeeDBProxy feeDBProxy;
+	@Autowired FeeProxy feeProxy;
 	
 	@Transactional
 	public void crawling() {
@@ -76,11 +74,11 @@ public class TxService {
 	}
 	
 	@Transactional
-	public void insertFeeDB() {
+	public void insertFee() {
 		for(int i=0; i<1000; i++) {
-			crudFeeDB.setAmnt(feeDBProxy.makeAmnt());
-			crudFeeDB.setBdate(feeDBProxy.makebDate());
-			txMapper.insertFeeDB(crudFeeDB);
+			crudFee.setFee_amnt(feeProxy.makeAmnt());
+			crudFee.setBsdate(feeProxy.makebDate());
+			txMapper.insertFeeDB(crudFee);
 		}		
 	}
 }

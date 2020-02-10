@@ -17,8 +17,8 @@ import com.moneyhub.web.tx.TxService;
 public class CRUDTableCtrl extends Proxy{
 	
 	@Autowired CRUDCustomer customer;
-	@Autowired CRUDFeeDB feeDB;
-	@Autowired CRUDFee fee;
+	@Autowired CRUDFeeDB fee;
+	@Autowired CRUDFee feeDB;
 	
 	@Autowired Box<Object> box;	
 	@Autowired CRUDTableService crudTableService;
@@ -70,44 +70,44 @@ public class CRUDTableCtrl extends Proxy{
 	}
 	
 //	CRUDFeeDB
-	@RequestMapping("/create/createFeeDB")
-	public Map<?,?> createFeeDBTable(){
+	@RequestMapping("/create/createFee")
+	public Map<?,?> createFeeTable(){
 		print("고객테이블 생성 진입");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("CREATE_FEEDB", SQL.CREATE_FEEDB.toString());
-		crudTableService.createFeeDB(map);
+		map.put("CREATE_FEE", SQL.CREATE_FEE.toString());
+		crudTableService.createFee(map);
 		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
 	}
 	
-	@RequestMapping("/insert/insertFeeDB")
-	public Map<?,?> insertFeeDBTable(){
+	@RequestMapping("/insert/insertFee")
+	public Map<?,?> insertFeeTable(){
 		print("고객테이블 insert 진입");
-		txService.insertFeeDB();
+		txService.insertFee();
 		box.put("result", "SUCCESS");
 		return box.get();
 	}
 	
-	@RequestMapping("/truncate/truncateFeeDB")
-	public Map<?,?> deleteFeeDBTable(){
+	@RequestMapping("/truncate/truncateFee")
+	public Map<?,?> deleteFeeTable(){
 		print("고객테이블 truncate 진입");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("TRUNCATE_FEEDB", SQL.TRUNCATE_FEEDB.toString());
-		crudTableService.truncateFeeDB(map);
+		map.put("TRUNCATE_FEEDB", SQL.TRUNCATE_FEE.toString());
+		crudTableService.truncateFee(map);
 		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
 	}
 	
-	@RequestMapping("/drop/dropFeeDB")
-	public Map<?,?> dropFeeDBTable(){
+	@RequestMapping("/drop/dropFee")
+	public Map<?,?> dropFeeTable(){
 		print("고객테이블 drop 진입");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("DROP_FEEDB", SQL.DROP_FEEDB.toString());
-		crudTableService.dropFeeDB(map);		
+		map.put("DROP_FEE", SQL.DROP_FEE.toString());
+		crudTableService.dropFee(map);		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
@@ -139,30 +139,30 @@ public class CRUDTableCtrl extends Proxy{
 		return map;
 	}
 	
-	//FEE
-	@RequestMapping("/create/createFee")
-	public Map<?,?> createFeeTable(){
+	//FEEDB
+	@RequestMapping("/create/createFeeDB")
+	public Map<?,?> createFeeDBTable(){
 		print("fee테이블 생성 진입");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("CREATE_FEE", SQL.CREATE_FEE.toString());
-		crudTableService.createFee(map);		
+		map.put("CREATE_FEEDB", SQL.CREATE_FEEDB.toString());
+		crudTableService.createFeeDB(map);		
 		map.clear();
-		map.put("INSERT_FEE", SQL.INSERT_FEE_ONE.toString());
-		crudTableService.insertFee(map);
+		map.put("INSERT_FEEDB", SQL.INSERT_FEEDB_ONE.toString());
+		crudTableService.insertFeeDB(map);
 		map.clear();
-		map.put("INSERT_FEE", SQL.INSERT_FEE_TWO.toString());
-		crudTableService.insertFee(map);
+		map.put("INSERT_FEEDB", SQL.INSERT_FEEDB_TWO.toString());
+		crudTableService.insertFeeDB(map);
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
 	}
 	
-	@RequestMapping("/drop/dropFee")
-	public Map<?,?> dropFeeTable(){
-		print("fee테이블 drop 진입");
+	@RequestMapping("/drop/dropFeeDB")
+	public Map<?,?> dropFeeDBTable(){
+		print("feeDB테이블 drop 진입");
 		HashMap<String, String> map = new HashMap<>();
-		map.put("DROP_FEE", SQL.DROP_FEE.toString());
-		crudTableService.dropFee(map);		
+		map.put("DROP_FEEDB", SQL.DROP_FEEDB.toString());
+		crudTableService.dropFeeDB(map);		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;

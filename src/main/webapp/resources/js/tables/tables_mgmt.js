@@ -73,13 +73,13 @@ tables_mgmt =(()=>{
 						customer_mgmt()
 						break	
 					case '수수료내역Table' :
-						fee_db_mgmt()
+						fee_mgmt()
 						break	
 					case '관리자Table' :
 						admin_mgmt()
 						break
 					case '수수료Table' :
-						fee_mgmt()
+						feedb_mgmt()
 						break
 					}
 			})
@@ -232,50 +232,9 @@ tables_mgmt =(()=>{
 			
 		})
 	}
-	let fee_db_mgmt =()=>{
-		$('#right').empty()
-		$(`<br><br><h3><a>수수료 내역 테이블 생성</a></h3><br><br>`)
-		.appendTo('#right')
-		.click(e=>{
-			e.preventDefault()
-			$.getJSON( _ + '/crudtable/create/createFeeDB', d=>{
-				alert(`테이블 성공여부 : ${d.result}`)
-			})
-		})
-		
-		$(`<h3><a>수수료 내역 Insert</a></h3><br><br>`)
-		.appendTo('#right')
-		.click(e=>{
-			e.preventDefault()
-			$.getJSON( _ + `/crudtable/insert/insertFeeDB`, d=>{
-				alert(`테이블 DATA Insert 성공여부 : ${d.result}`)
-			})
-		})
-		
-		$(`<h3><a>수수료 내역 테이블  DATA 삭제</a></h3><br><br>`)
-		.appendTo('#right')
-		.click(e=>{
-			e.preventDefault()
-			$.getJSON( _ + `/crudtable/truncate/truncateFeeDB`, d=>{
-				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
-			})
-			
-		})
-		
-		$(`<h3><a>수수료 내역 테이블 삭제</a></h3><br><br>`)
-		.appendTo('#right')
-		.click(e=>{
-			e.preventDefault()
-			$.getJSON( _ + `/crudtable/drop/dropFeeDB`, d=>{
-				alert(`테이블 삭제 성공여부 : ${d.result}`)
-			})
-			
-		})
-	}
-	
 	let fee_mgmt =()=>{
 		$('#right').empty()
-		$(`<br><br><h3><a>수수료 테이블 생성 및 인서트</a></h3><br><br>`)
+		$(`<br><br><h3><a>수수료 내역 테이블 생성</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
@@ -284,7 +243,16 @@ tables_mgmt =(()=>{
 			})
 		})
 		
-		$(`<h3><a>수수료 테이블  DATA 삭제</a></h3><br><br>`)
+		$(`<h3><a>수수료 내역 Insert</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/insert/insertFee`, d=>{
+				alert(`테이블 DATA Insert 성공여부 : ${d.result}`)
+			})
+		})
+		
+		$(`<h3><a>수수료 내역 테이블  DATA 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
@@ -294,11 +262,43 @@ tables_mgmt =(()=>{
 			
 		})
 		
-		$(`<h3><a>수수료 테이블 삭제</a></h3><br><br>`)
+		$(`<h3><a>수수료 내역 테이블 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
 			$.getJSON( _ + `/crudtable/drop/dropFee`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+			
+		})
+	}
+	
+	let feedb_mgmt =()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>수수료 테이블 생성 및 인서트</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createFeeDB', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		
+		$(`<h3><a>수수료 테이블  DATA 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/truncate/truncateFeeDB`, d=>{
+				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
+			})
+			
+		})
+		
+		$(`<h3><a>수수료 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropFeeDB`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 			

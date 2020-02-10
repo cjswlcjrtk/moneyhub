@@ -39,27 +39,27 @@
 	</select>
 	
 	<select id="feeDBChart" resultType="string">
-		SELECT DISTINCT (BDATE) 
-		FROM FEEDB
-		ORDER BY BDATE
+		SELECT DISTINCT (BSDATE) 
+		FROM FEE
+		ORDER BY BSDATE
 	</select>
 	
 	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
-		SELECT SUM(AMNT) FROM FEEDB		
-		WHERE BDATE LIKE #{value}
+		SELECT SUM(FEE_AMNT) FROM FEE	
+		WHERE BSDATE LIKE #{value}
 	</select>
 	
 	<select id="feeChartOneAMNT" parameterType="string" resultType="string">
 	<![CDATA[
-		SELECT SUM(AMNT) FROM FEEDB		
-		WHERE BDATE LIKE #{value} AND FEETYPCD = '1'
+		SELECT SUM(FEE_AMNT) FROM FEE	
+		WHERE BSDATE LIKE #{value} AND FEE_STAT_CD = '1'
 	]]>
 	</select>
 	
 	<select id="feeChartTwoAMNT" parameterType="string" resultType="string">
 	<![CDATA[
-		SELECT SUM(AMNT) FROM FEEDB		
-		WHERE BDATE LIKE #{value} AND FEETYPCD = '2'
+		SELECT SUM(FEE_AMNT) FROM FEE	
+		WHERE BSDATE LIKE #{value} AND FEE_STAT_CD = '2'
 	]]>
 	</select>
 	
@@ -87,7 +87,7 @@
 	
 	<select id="feeSelectOne" resultType="string">
 	<![CDATA[
-		SELECT AMNT FROM FEE	
+		SELECT AMNT FROM FEEDB	
 		WHERE FEETYPCD = '1'
 		ORDER BY SEQ
 		DESC LIMIT 1
@@ -96,7 +96,7 @@
 	
 	<select id="feeSelectTwo" resultType="string">
 	<![CDATA[
-		SELECT AMNT FROM FEE	
+		SELECT AMNT FROM FEEDB	
 		WHERE FEETYPCD = '2'
 		ORDER BY SEQ
 		DESC LIMIT 1
@@ -104,13 +104,26 @@
 	</select>
 	
 	<insert id="feeUpdateOne" parameterType="map">
-		INSERT INTO FEE (FEETYPCD, AMNT)
+		INSERT INTO FEEDB (FEETYPCD, AMNT)
 		VALUES (1, #{feeOneValue})
 	</insert>
 	
 	<insert id="feeUpdateTwo" parameterType="map">
-		INSERT INTO FEE (FEETYPCD, AMNT)
+		INSERT INTO FEEDB (FEETYPCD, AMNT)
 		VALUES (2, #{feeTwoValue})
+	</insert>
+	
+	<select id="exchangeDBSelect" resultType="string">
+	<![CDATA[
+		SELECT AMNT FROM EXCHAGEDB
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<insert id="exchangeDBUpdate" parameterType="map">
+		INSERT INTO EXCHAGEDB (AMNT)
+		VALUES (#{exchangeDBValue})
 	</insert>
 	
 </mapper>

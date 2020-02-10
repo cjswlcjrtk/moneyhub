@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CRUDTableService {
 	@Autowired CRUDCustomer customer;
-	@Autowired CRUDFeeDB feeDB;
 	@Autowired CRUDAdmin admin;
 	
 	@Autowired CRUDTableMapper crudTableMapper;
@@ -29,16 +28,16 @@ public class CRUDTableService {
 	}
 	
 //	CRUDFeeDB
-	public void createFeeDB(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createFeeDB(p);
+	public void createFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createFee(p);
 		c.accept(map);
 	}	
-	public void truncateFeeDB(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.truncateFeeDB(p);
+	public void truncateFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.truncateFee(p);
 		c.accept(map);
 	}	
-	public void dropFeeDB(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFeeDB(p);
+	public void dropFee(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFee(p);
 		c.accept(map);
 	}
 	
@@ -57,16 +56,16 @@ public class CRUDTableService {
 	}
 	
 //	CRUDFee
-	public void createFee(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createFee(p);
+	public void createFeeDB(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.createFeeDB(p);
 		c.accept(map);
 	}		
-	public void dropFee(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFee(p);
+	public void dropFeeDB(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.dropFeeDB(p);
 		c.accept(map);
 	}
-	public void insertFee(HashMap<String, String> map) {
-		Consumer<HashMap<String, String>> c = p -> crudTableMapper.insertFee(p);
+	public void insertFeeDB(HashMap<String, String> map) {
+		Consumer<HashMap<String, String>> c = p -> crudTableMapper.insertFeeDB(p);
 		c.accept(map);
 	}
 	

@@ -7,15 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.moneyhub.web.crudtable.CRUDFeeDB;
+import com.moneyhub.web.crudtable.CRUDFee;
 import com.moneyhub.web.crudtable.CRUDTableMapper;
 import com.moneyhub.web.tx.TxMapper;
 
 @Component("feeDBProxy")
-public class FeeDBProxy extends Proxy{
+public class FeeProxy extends Proxy{
 	@Autowired CRUDTableMapper crudTableMapper;
 	@Autowired TxMapper txMapper;
-	@Autowired CRUDFeeDB crudFeeDB;
+	@Autowired CRUDFee crudFeeDB;
 	
 	public String makeAmnt() {
 		List<String> amnt = Arrays.asList("6", "12");

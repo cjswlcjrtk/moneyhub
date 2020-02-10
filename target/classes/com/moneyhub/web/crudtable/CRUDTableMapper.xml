@@ -16,16 +16,16 @@
 		${DROP_CUSTOMER}
 	</select>
 	
-	<select id="createFeeDB" parameterType="map">
-		${CREATE_FEEDB}
+	<select id="createFee" parameterType="map">
+		${CREATE_FEE}
 	</select>
 	
-	<select id="truncateFeeDB" parameterType="map">
-		${TRUNCATE_FEEDB}
+	<select id="truncateFee" parameterType="map">
+		${TRUNCATE_FEE}
 	</select>
 	
-	<select id="dropFeeDB" parameterType="map">
-		${DROP_FEEDB}
+	<select id="dropFee" parameterType="map">
+		${DROP_FEE}
 	</select>
 	
 	<select id="createAdmin" parameterType="map">
@@ -40,16 +40,16 @@
 		${INSERT_ADMIN}
 	</select>
 	
-	<select id="createFee" parameterType="map">
-		${CREATE_FEE}
+	<select id="createFeeDB" parameterType="map">
+		${CREATE_FEEDB}
 	</select>
 		
-	<select id="dropFee" parameterType="map">
-		${DROP_FEE}
+	<select id="dropFeeDB" parameterType="map">
+		${DROP_FEEDB}
 	</select>
 	
-	<select id="insertFee" parameterType="map">
-		${INSERT_FEE}
+	<select id="insertFeeDB" parameterType="map">
+		${INSERT_FEEDB}
 	</select>
 	
 </mapper>
