@@ -39,9 +39,11 @@
 	</select>
 	
 	<select id="feeDBChart" resultType="string">
+	<![CDATA[
 		SELECT DISTINCT (BSDATE) 
 		FROM FEE
-		ORDER BY BSDATE
+		ORDER BY BSDATE+0
+	]]>	
 	</select>
 	
 	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
