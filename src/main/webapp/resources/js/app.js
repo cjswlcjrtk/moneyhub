@@ -5,9 +5,9 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js, remit_box_js,deal,adminLogin_js
+		tables_mgmt_js, remit_box_js,deal,adminLogin_js,
+		guide_recieve_js
 
-	
 	let run =x=>{
 		$.when(
 			$.getScript( x + '/resources/js/cmm/router.js'),
@@ -35,6 +35,7 @@ app =(()=>{
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_box_js = js + '/remit/remit_box.js'
 		adminLogin_js = js + '/admin/adminLogin.js'
+		guide_recieve_js = js + '/cmm/guide_recieve.js'
 	}
 	
 	let onCreate =()=>{
@@ -49,13 +50,12 @@ app =(()=>{
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
 			$.getScript(remit_box_js),
+			$.getScript(guide_recieve_js),
 			$.getScript(adminLogin_js)
 		)
 		.done(()=>{
-			
 			setContentView()
 			page_move()
-			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -63,6 +63,7 @@ app =(()=>{
 	}
 	
 	let setContentView =()=>{
+		$('#intro').remove()
 		$('head')
 		.append(cmm_vue.head())
 		
@@ -70,51 +71,27 @@ app =(()=>{
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
-		//================================================================= EJ
-		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
-			alert('로그인된 세션'+$.cusInfo())
-			$('#root')
-			.html(nav_vue.logined_nav(_))
-			.append(main_vue.logined_main())
-		}else{
-			alert('로그인 전  세션'+$.cusInfo())
-			$('#root')
-			.html(nav_vue.nav(_))
-			.append(main_vue.main())
-		}
-		$('#root').append(cmm_vue.footer())*/
-		//========================================================새로고침시 세션비우기 EJ
-		/*function Reload(){
-			if(event.keyCode == 116)
-				sessionStorage.clear()
-		}
-		document.onkeydown = Reload;*/
-		//=========================================================
 		
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-
-		$('#idx_exchg_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
-		$('#idx_remit_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
-		$('#idx_testexchg_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
 		
 		$('#popup-exchange').empty()
 	}
 	
 	let page_move =()=>{
+		nav_move()
+		main_move()
+		foot_move()
+	}
+	
+	let nav_move = ()=>{
+		$('.themoin-header a.logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0);
+		})
+		
 		$('#join')
 		.click(()=>{
 			auth.onCreate('join')	
@@ -134,7 +111,26 @@ app =(()=>{
 		.click(()=>{
 			adminLogin.onCreate('admin_login')
 		})
-
+	}
+	
+	let main_move = ()=>{
+		$('#idx_exchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_remit_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_testexchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+	}
+	
+	let foot_move = ()=>{
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -149,14 +145,12 @@ app =(()=>{
 		.click(()=>{
 			faq.onCreate(main_class)
 		})
-		
-		$('.themoin-header a.logo')
+		$('#guide')
 		.click(()=>{
-			app.onCreate()
-			$('html').scrollTop(0);
+			guide_recieve.onCreate(main_class)
 		})
-	
 	}
+	
 
 	return { run, onCreate }
 })()

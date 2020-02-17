@@ -13,7 +13,6 @@ cmm_vue = {
 			<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script> 
 		 
 		<!-- End Google Tag Manager --> 
-			 
 
 			<!-- Bootstrap core CSS --> 
 		<style>
@@ -40,6 +39,10 @@ cmm_vue = {
 					<div class="links"> 
 		        		<h3><b><a id="event" class="">이벤트 페이지</a></b></h3> 
 					</div> 
+					<div class="spacer"></div>
+					<div class="social">
+						<h3><b><a id="guide" class="">WU 수취 가이드</a></b></h3>
+					</div>
 				</div> 
 				<div class="section bottom"> 
 					<div class="company"> 

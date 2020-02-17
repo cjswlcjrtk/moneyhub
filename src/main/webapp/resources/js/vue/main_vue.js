@@ -198,7 +198,6 @@ main_vue ={
 		deal = $.deal()
 		cus = $.cusInfo()
 		acc = $.acc()
-		accHis = $.accHis()
 		return `<div class="themoin-main"> 
 			<div class="themoin-currency-component" style="height: 230px;"> 
 		   	  	<div class="content"> 
@@ -264,22 +263,23 @@ main_vue ={
 						</div> 
 					</div>
 				</div> 
-
-
-	<div class="user-remit-container"> 
+	<div class="user-remit-container" id="trade_history"> 
 				<div class="user-title"> 
-					<h3>내 입금 계좌</h3> 
+					<h3>내 허브 페이</h3> 
 				</div> 
 				<div class="user-account"> 
 					<p class="warning"> 
-						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
-					</p> 
+						내 허브 페이 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
+					</p>
+					<a id="account_go" style="cursor: pointer;    color: cornflowerblue;"> 
+						허브페이 상세 보기
+					</a>
 				</div> 
 				<div class="user-title"> 
-					<h3>송금 내역</h3> 
+					<h3>거래 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
-					<p>계좌 잔액 :<span id="acc_bal"> ${common.comma_create(accHis.balance)}</span> 원</p> 
+					<p>계좌 잔액 :<span id="acc_bal"></span>${common.comma_create(acc.balance)} 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 

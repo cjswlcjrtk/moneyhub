@@ -39,7 +39,7 @@ public class TRDHRServiceImpl{
 		box.put("pager", pager);
 		
 		pxy.print(box.get("pager").toString());
-		pxy.print(box.get("map").toString());
+		pxy.print(">>>>>리스트 :" + box.get("map").toString());
 		
 		return box.get();
 	}

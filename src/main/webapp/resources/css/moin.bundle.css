@@ -4315,7 +4315,7 @@ select::-ms-expand {
 
 .themoin-info-preview {
   padding: 20px 0 20px 0;
-  max-width: 620px !important;
+  max-width: 680px !important;
   /* TODO: @extend is sometimes very danger... */
   display: -ms-flexbox;
   display: flex;
@@ -8019,6 +8019,37 @@ li {
 .steps{float: left; text-align: center; max-width: none; cursor: pointer;}
 .threesteps{float: left; width: 33%;}
 .steps img{vertical-align: super;}
+
+.themoin-info-preview h1{
+  font-size: 30px;color: #747f9b;text-transform: uppercase;font-weight: 300;text-align: center;margin-bottom: 15px;
+}
+
+.tbl-header table , .tbl-content table{width:100%;table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:300px;overflow-x:auto;margin-top: 0px;border: 1px solid white;
+}
+.tbl-header th{
+  padding: 10px 0px; text-align: center;  font-weight: 500;  font-size: 14px;  color: #747f9b;  text-transform: uppercase; background-color: #fafbff;
+}
+.tbl-content td{
+  padding: 8px;  text-align: center;  vertical-align:middle;  font-weight: 300;  font-size: 12px; color: #747f9b;  border-bottom: solid 1px white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+
 /* chat plugin */
 @media (max-width: 700px) {
   #moin-ch-plugin-root #ch-plugin-core > div {

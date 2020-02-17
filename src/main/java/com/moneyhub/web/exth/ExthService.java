@@ -26,7 +26,7 @@ public class ExthService {
 //		System.out.println(paramList.get(0).getTotal() + " - " + Float.parseFloat(deposit)
 //		+ " = rerate : " + profits);
 		
-		paramList.forEach( i -> System.out.println(i));
+//		paramList.forEach( i -> System.out.println(i));
 		
 		for( Exth e : paramList ) {
 			e.setProfits(e.getTotal() - pxy.integer(deposit));

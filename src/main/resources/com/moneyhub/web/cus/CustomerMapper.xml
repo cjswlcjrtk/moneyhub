@@ -70,6 +70,7 @@
 		DELETE
 		FROM CUSTOMER
 		WHERE CEMAIL = #{cemail}
+		AND CPWD = #{cpwd}
 	</delete>
 
 	
@@ -97,7 +98,6 @@
 		UPDATE CUSTOMER
 		SET CPWD = #{cpwd}
 		WHERE CEMAIL = #{cemail}
-		AND CNO = #{cno}
 	</update>
 	
 	<select id="getInfo" resultType="Customer">

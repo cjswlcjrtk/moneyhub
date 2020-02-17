@@ -34,13 +34,14 @@ public class RemitServiceImpl{
 		trd.setBsdate(sdf.format(date));
 		trd.setMtcn(mtcn);
 		trd.setCno(deal.get("cno").toString());
-		trd.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
-		trd.setChngCausCd(0);
-		trd.setTrdUsd(deal.get("trdusd").toString());
-		trd.setTrdKrw(deal.get("trdkrw").toString());
-		trd.setCntcd("1");
+		trd.setTrdStatCd(deal.get("trdStatCd").toString());  //1.입금 2.출금
+		trd.setTrdTypeCd(deal.get("trdTypeCd").toString());  //1.송금 2.환전
+		trd.setChngCausCd("1");
+		trd.setTrdRcv(deal.get("trdrcv").toString());
+		trd.setTrdSnd(deal.get("trdsnd").toString());
+		trd.setCntcd(deal.get("cntcd").toString());
 		trd.setExrate(deal.get("exrate").toString());
-		trd.setCrtmem("LEJ");
+		trd.setCrtmem(deal.get("crtmem").toString()); //yhm수정
 		trd.setCrtdt(sdf.format(date));
 		remitMapper.insertTRD(trd);
 		
@@ -48,13 +49,14 @@ public class RemitServiceImpl{
 		trdhr.setBsdate(sdf.format(date));
 		trdhr.setMtcn(mtcn);
 		trdhr.setCno(deal.get("cno").toString());
-		trdhr.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
-		trdhr.setChngCausCd(0);
-		trdhr.setTrdUsd(deal.get("trdusd").toString());
-		trdhr.setTrdKrw(deal.get("trdkrw").toString());
+		trdhr.setTrdStatCd(deal.get("trdStatCd").toString());  //1.입금 2.출금
+		trdhr.setTrdTypeCd(deal.get("trdTypeCd").toString());  //1.송금 2.환전
+		trdhr.setChngCausCd("1");
+		trdhr.setTrdRcv(deal.get("trdrcv").toString());
+		trdhr.setTrdSnd(deal.get("trdsnd").toString());
 		trdhr.setCntcd(deal.get("cntcd").toString());
 		trdhr.setExrate(deal.get("exrate").toString());
-		trdhr.setCrtmem("LEJ");
+		trdhr.setCrtmem(deal.get("crtmem").toString()); //yhm수정
 		trdhr.setCrtdt(sdf.format(date));
 		remitMapper.insertTRDHR(trdhr);
 		
@@ -64,8 +66,8 @@ public class RemitServiceImpl{
 		rcpt.setCno(deal.get("cno").toString());
 		rcpt.setRcp(0); //0 미수취
 		rcpt.setCntp(deal.get("cntp").toString()); 
-		rcpt.setPassFnm(deal.get("rcpsf").toString());
-		rcpt.setPassLnm(deal.get("rcpsl").toString());
+		rcpt.setPassName(deal.get("passName").toString());
+//		rcpt.setPassLnm(deal.get("rcpsl").toString());
 		rcpt.setRcemail(deal.get("rcemail").toString());
 		rcpt.setCrtmem("LEJ");
 		rcpt.setCrtdt(sdf.format(date));
@@ -75,11 +77,69 @@ public class RemitServiceImpl{
 	  fee.setBsdate(sdf.format(date));
 	  fee.setMtcn(mtcn);
 	  fee.setCno(deal.get("cno").toString()); 
-	  fee.setCrtmem("LEJ");
+	  fee.setCrtmem(deal.get("crtmem").toString()); //yhm수정
 	  fee.setCrtdt(sdf.format(date)); 
-	  fee.setFeeAmnt(Integer.valueOf(deal.get("fee").toString()));
+	  fee.setFeeAmnt(deal.get("fee").toString());
 	  remitMapper.insertFee(fee);
-		 
+	}
+	
+	@Transactional
+	public void insertExch(HashMap<String, Object> deal) {
+		String mtcn = CharUtil.excuteGenerate();
+		Date date = new Date();
+		//거래,acctNo
+		trd.setBsdate(sdf.format(date));
+		trd.setMtcn(mtcn);
+		trd.setCno(deal.get("cno").toString());
+		trd.setTrdStatCd(deal.get("trdStatCd").toString());  //1.입금 2.출금
+		trd.setTrdTypeCd(deal.get("trdTypeCd").toString());  //1.송금 2.환전
+		trd.setChngCausCd("1");
+		trd.setTrdRcv(deal.get("trdrcv").toString());
+		trd.setTrdSnd(deal.get("trdsnd").toString());
+		trd.setCntcd(deal.get("cntcd").toString());
+		trd.setExrate(deal.get("exrate").toString());
+		trd.setCrtmem(deal.get("crtmem").toString()); //yhm수정
+		trd.setCrtdt(sdf.format(date));
+		remitMapper.insertTRD(trd);
+		
+		//거래내역,acctNo
+		trdhr.setBsdate(sdf.format(date));
+		trdhr.setMtcn(mtcn);
+		trdhr.setCno(deal.get("cno").toString());
+		trdhr.setTrdStatCd(deal.get("trdStatCd").toString());  //1.입금 2.출금
+		trdhr.setTrdTypeCd(deal.get("trdTypeCd").toString());  //1.송금 2.환전
+		trdhr.setChngCausCd("1");
+		trdhr.setTrdRcv(deal.get("trdrcv").toString());
+		trdhr.setTrdSnd(deal.get("trdsnd").toString());
+		trdhr.setCntcd(deal.get("cntcd").toString());
+		trdhr.setExrate(deal.get("exrate").toString());
+		trdhr.setCrtmem(deal.get("crtmem").toString()); //yhm수정
+		trdhr.setCrtdt(sdf.format(date));
+		remitMapper.insertTRDHR(trdhr);
+		
+		//수취
+		rcpt.setBsdate(sdf.format(date));
+		rcpt.setMtcn(mtcn);
+		rcpt.setCno(deal.get("cno").toString());
+		rcpt.setRcp(0); //0 미수취 1수취
+		rcpt.setCntp(deal.get("cntp").toString()); 
+		rcpt.setPassName(deal.get("passName").toString());
+//		rcpt.setPassLnm(deal.get("rcpsl").toString());
+		rcpt.setRcemail(deal.get("rcemail").toString());
+		rcpt.setCrtmem("LEJ");
+		rcpt.setCrtdt(sdf.format(date));
+		remitMapper.insertRCPT(rcpt);
+		
+		//수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
+		System.out.println("deal.get('fee')는1? " + deal.get("fee").toString());
+		fee.setBsdate(sdf.format(date));
+		fee.setMtcn(mtcn);
+		fee.setCno(deal.get("cno").toString()); 
+		fee.setCrtmem(deal.get("crtmem").toString()); //yhm수정
+		fee.setCrtdt(sdf.format(date)); 
+		fee.setFeeAmnt(deal.get("fee").toString());
+		
+		remitMapper.insertFee(fee);
 	}
 
 }

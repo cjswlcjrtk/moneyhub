@@ -90,9 +90,9 @@ compo_vue ={
 			<div class="divider"></div>
 			<div id="map" style="width:60%;height:450px;margin:0 auto;"></div>
 			<div class="company-map">
-			<div style="padding:5px;">머니허브<br>
-			<a href="https://map.kakao.com/link/map/MONEYHUB,37.5523419,126.9377159" style="color:blue" target="_blank">큰지도보기</a>
-			<a href="https://map.kakao.com/link/to/MONEYHUB,37.5523419,126.9377159" style="color:blue" target="_blank">길찾기</a>
+			<div style="padding:5px; font-size:large; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">머니허브<br>
+			<a href="https://map.kakao.com/link/map/MONEYHUB,37.5523419,126.9377159" style="color:blue; font-size:large; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif" target="_blank">큰지도보기</a>
+			<a href="https://map.kakao.com/link/to/MONEYHUB,37.5523419,126.9377159" style="color:blue; font-size:large; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif" target="_blank">길찾기</a>
 			</div>
 			</div>
 			<div class="company-info">

@@ -5,11 +5,11 @@ $(document).ready(function(){
 			labels: [],
 			datasets: [{
 				label: '머니허브 환율',
-				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				backgroundColor: 'rgba(45, 204, 214, 0.2)',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
-				lineTension : 0,
+//				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -33,7 +33,7 @@ $(document).ready(function(){
 						return `머니허브 환율`
 					},
 					label : function(tooltipItem, data){
-						return config.data.datasets[0].data[tooltipItem['index']]
+						return common.comma_create(config.data.datasets[0].data[tooltipItem['index']])
 					}
 				},
 				intersect: false
@@ -46,7 +46,7 @@ $(document).ready(function(){
 				xAxes: [{
 					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
 						display: false,
@@ -54,41 +54,48 @@ $(document).ready(function(){
 					}
 				}],
 				yAxes: [{
-					display: false,
+					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: 'Value'
-					}
+					},
+					ticks: {
+//						stepSize : 5,
+		                beginAtZero: false,
+		                callback: function(value, index, values) {
+		                	return common.comma_create(value)
+					        
+					    }
+		            }
 				}]
 			}
 		}
-	};
-	let ctx = document.getElementById('canvas').getContext('2d');
+	}
+	let ctx = document.getElementById('canvas1').getContext('2d');
 	
-	let cntcd = $('.form-calculator .amount-row .receive h3').text()
-	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
+	let cntcd = $('#receive_exch h3').text()
+	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
-//			alert('exchart j.exrate는? ' + config.data.datasets[0].data[config.data.datasets[0].data.length -1])
 		})
 		config.options.title.text = `머니허브환율 1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
 
-		//		수수료 1.5%
 		receive_value_calc()
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
 		})
 		
-		window.myLine = new Chart(ctx, config);
+		window.myLine = new Chart(ctx, config)
 	})
 	
-	let receive_value_calc =(x)=>{
-		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * x
+	let receive_value_calc =()=>{
+		let send_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+		let receive_value = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
+		receive_value = send_value / config.data.datasets[0].data[config.data.datasets[0].data.length -1]
 		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 	}
 	

@@ -50,7 +50,7 @@ nav_vue = {
 				</a> 
 				<ul class="">
 					<li><a id="exch">환전</a></li>
-					<li><a id="remit">해외 송금</a></li>
+					<li><a id="nav_remit">해외 송금</a></li>
 					<li><a id="testexch">모의 환전</a></li>
 					<li><a id="mgmt">내 계정 관리</a></li> 
 					<li><a id="logout">로그아웃</a></li> 
@@ -59,43 +59,14 @@ nav_vue = {
 			</div> 
 		</nav`
 	},
-	/*sidebar_admin : ()=>{
-		return `<div class="themoin-mypage">
-			<div class="tab-container">
-				<div class="tab">
-					<!-- <a v-for="list of lists" :key="list.aclick" @click="list.aclick" class="list.isShow"> {{list.text}}</a> -->
-					<a class="active1" @click.prevent="admin_a">관리자 변경</a>
-					<a class="" @click.prevent="pwdchg_a">비밀번호 변경</a>
-					<a class="" @click.prevent="studentList_a">학생 목록</a>
-					<a class="" @click.prevent="studentsFindSome_a">조건별 학생 검색</a>
-					<a class="" @click.prevent="scoreEdit_a">학생 성적 수정</a>
-					<a class="" @click.prevent="idSearch_a">ID 학생 검색</a>
-					<div class="spacer"></div>
-					<img src="https://img.themoin.com/public/img/img-man-s.svg">
-					<p>{{cemail}}</p>
-				</div>
-			</div>
-		</div>`
-	},*/
 	sidebar_cus : ()=>{
 		return `<div class="themoin-mypage"> 
 		<div class="tab-container"> 
 			<div class="tab"> 
-				
-				
 			</div> 
 		</div> 
 		<div class="mypage"></div> 
 		</div`
 
 	}
-/*	<a id="cus_info" class="active" data-tab="tab-1" style="margin-right: 50px">회원 정보</a> 
-	<a id="pwd_chg" class="active_a" data-tab="tab-2" style="margin-right: 50px">비밀번호 변경</a> 
-	<a id="auth_mgmt" class="active_a" data-tab="tab-3" style="margin-right: 50px">머니허브 계좌</a> 
-	<a id="exchange_test" class="active_a" data-tab="tab-4" style="margin-right: 50px">모의 환전</a> 
-	<a id="exchange" class="active_a" data-tab="tab-5" style="margin-right: 50px">환전</a> 
-	<a id="withdrawal" class="active_a" data-tab="tab-6" style="margin-right: 50px">회원 탈퇴</a>
-	<div class="spacer"></div> 
-	<img src="https://img.themoin.com/public/img/img-man-s.svg">
-	<p id="mypageId"></p> */
 }

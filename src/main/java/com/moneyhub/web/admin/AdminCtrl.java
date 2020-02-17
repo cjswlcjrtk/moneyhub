@@ -41,7 +41,7 @@ public class AdminCtrl extends Proxy{
 		Supplier<Integer> usd = () -> adminMapper.exchangeUSDCount();
 		Supplier<Integer> cny = () -> adminMapper.exchangeCNYCount();
 		Supplier<Integer> jpy = () -> adminMapper.exchangeJPYCount();
-		Supplier<Integer> eur = () -> adminMapper.exchangeEURCount();		
+		Supplier<Integer> eur = () -> adminMapper.exchangeEURCount();	
 		box.clear();
 		box.put("exchangeUSDPercentage", usd.get()*100/total.get());
 		box.put("exchangeCNYPercentage", cny.get()*100/total.get());
@@ -112,7 +112,6 @@ public class AdminCtrl extends Proxy{
 	
 	@GetMapping("/fee")
 	public Map<?, ?> feeSelect(){
-		//null 값 뜨는 이유를 모르겠음..
 		Supplier<String> one = () -> adminMapper.feeSelectOne();
 		one.get();
 		Supplier<String> two = () -> adminMapper.feeSelectTwo();
@@ -160,5 +159,4 @@ public class AdminCtrl extends Proxy{
 		box.put("msg", "SUCCESS");
 		return box.get();
 	}
-
 }

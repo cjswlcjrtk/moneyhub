@@ -40,6 +40,12 @@ public class RemitController extends Proxy{
 		remitService.insertRemit(deal);
 		}
 		
+		@PostMapping("/insert/exch")
+		public void insertExch(@RequestBody HashMap<String, Object> deal){
+		System.out.println("ajax가 보낸 deal"+ deal);
+		remitService.insertExch(deal);
+		}
+		
 		@GetMapping("/lists/page/{nowPage}/search/{cno}")
 		public Map<?, ?> trdhrList(@PathVariable String nowPage,@PathVariable String cno) {
 			print("송금 리스트 진입 - nowPage : " + nowPage+"cno"+cno);

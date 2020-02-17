@@ -10,20 +10,20 @@
 	    )
 	</insert>
 	<insert id="insertRCPT" parameterType="RCPT">
-	    INSERT INTO RCPT ( BSDATE, MTCN, CNO, RCP,RCP_DT,CNTP,PASS_FNM,PASS_LNM,RCEMAIL,CRTMEM,CRTDT ) 
+	    INSERT INTO RCPT ( BSDATE, MTCN, CNO, RCP,RCP_DT,CNTP,PASS_NAME,PASS_FNM,PASS_LNM,RCEMAIL,CRTMEM,CRTDT ) 
 	    VALUES ( 
-	    #{bsdate}, #{mtcn}, #{cno}, #{rcp},#{rcpDt},#{cntp}, #{passFnm}, #{passLnm},#{rcemail}, #{crtmem},#{crtdt}
+	    #{bsdate}, #{mtcn}, #{cno}, #{rcp},#{rcpDt},#{cntp}, #{passName},#{passFnm}, #{passLnm},#{rcemail}, #{crtmem},#{crtdt}
 	    )
 	</insert>
 	<insert id="insertTRDHR" parameterType="TRDHR">
-	    INSERT INTO TRDHR (BSDATE, MTCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_USD,TRD_KRW,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) 
+	    INSERT INTO TRDHR (BSDATE, MTCN, CNO, TRD_STAT_CD, TRD_TYPE_CD, CHNG_CAUS_CD, TRD_SND, TRD_RCV, ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) 
 	    VALUES ( 
-	    #{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdUsd},#{trdKrw}, #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
+	    #{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{trdTypeCd},#{chngCausCd}, #{trdRcv},#{trdSnd}, #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
 	    )
 	</insert>
 	<insert id="insertTRD" parameterType="TRD">
-	   INSERT INTO TRD (BSDATE, MTCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_USD,TRD_KRW,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) VALUES (
-	    	#{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdUsd},#{trdKrw},  #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
+	   INSERT INTO TRD (BSDATE, MTCN, CNO, TRD_STAT_CD, TRD_TYPE_CD, CHNG_CAUS_CD, TRD_SND,TRD_RCV,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) VALUES (
+	    	#{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{trdTypeCd},#{chngCausCd}, #{trdRcv},#{trdSnd},  #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
 	    )
 	</insert>
 </mapper>

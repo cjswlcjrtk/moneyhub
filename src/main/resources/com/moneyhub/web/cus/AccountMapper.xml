@@ -5,22 +5,9 @@
     
 <mapper namespace="com.moneyhub.web.cus.mappers.AccountMapper">
 
-	<!-- <insert id="createAcc" parameterType="Account">
-	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL, 
-	    					ACHCNTCD, CRTMEM, CRTDT, UPMEM, UPDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal},
-	    		#{achcntcd}, #{crtmem}, now(), #{upmem}, #{updt})
-	</insert> -->
-	
 	<insert id="createAcc" parameterType="Account">
 	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, BALANCE, ACCT_NO, ACHCNTCD, CRTMEM, CRTDT) 
 	    VALUES (#{cemail},now(),#{balance},#{acctNo},#{achcntcd}, #{crtmem}, now())
-	</insert>
-	
-	<insert id="createAccHistory" parameterType="AccountHistory">
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL,COMMENT, ASTATCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal}, #{comment},
-	    		#{astatcd}, #{crtmem}, now())
 	</insert>
 	
 	<select id="existAcc" resultType="integer"> <!--계좌 중복방지   -->
@@ -28,35 +15,46 @@
 		FROM ACCOUNT
 		WHERE ACCT_NO = #{acctNo}
 	</select>
-	
-	 <select id="getAcc" resultType="Account"> <!--모든 고객 계좌 조회  -->
-        SELECT CEMAIL cemail, ACCT_NO acctNo,  CRTDT crtdt
+		
+	<select id="getAcc" resultType="Account"> <!--모든 고객 계좌 조회  -->
+        SELECT CEMAIL cemail, ACCT_NO acctNo,  CRTDT crtdt,BALANCE balance
         FROM ACCOUNT
         WHERE CEMAIL = #{cemail}
    	 </select>
    	 
-   	  <select id="getAccHis" resultType="AccountHistory"><!--고객 계좌내역  -->
-        SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt,DEPOSIT deposit,
-        				WITHDRAWAL withdrawal,ATYPECD atypecd,ASTATCD astatcd, COMMENT comment
-        FROM ACCOUNT_HISTORY
-        WHERE CEMAIL = #{cemail}
+   	  <select id="getBalance" resultType="Integer"> <!--잔액 조회  -->
+        SELECT BALANCE balance
+        FROM ACCOUNT
+        WHERE ACCT_NO = #{acctNo}
    	 </select>
    	 
-   	 <update id="balance" parameterType="Account"> <!--테스트 필요  -->
+   	  <select id="getAccHis" resultType="AccountHistory"><!--고객 계좌내역  -->
+        SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt,DEPOSIT deposit,
+        				WITHDRAWAL withdrawal,ATYPECD atypecd,ASTATCD astatcd, COMMENT comment,
+        				BSDATE bsdate
+        FROM ACCOUNT_HISTORY
+        WHERE CEMAIL = #{cemail}
+        AND ACCT_NO = #{acctNo}
+        ORDER BY BSDATE,SEQ DESC
+        
+   	 </select>
+   	 
+   	 <update id="updateBalance" parameterType="Account"> <!--고객 잔액 업데이트  -->
 		UPDATE ACCOUNT
 		SET BALANCE = #{balance},
-		BSDATE = now()
+				BSDATE = now()
 		WHERE CEMAIL = #{cemail}
+		AND ACCT_NO = #{acctNo}
 	</update>
 	
-	<insert id="withdrawal" parameterType="AccountHistory"> <!--테스트 필요  --> 
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT, ASTATCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{astatcd}, #{crtmem}, now())
+	<insert id="withDrawal" parameterType="AccountHistory"> <!--테스트 필요  --> 
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT,ATYPECD, ASTATCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{atypecd},#{astatcd}, #{crtmem}, now())
 	</insert>
 	
-	<insert id="deposit" parameterType="AccountHistory"> <!--테스트 필요  -->
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT,COMMENT, ASTATCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{comment},#{astatcd}, #{crtmem}, now())
+	<insert id="insertDeposit" parameterType="AccountHistory"> <!--고객 계좌 내역 인설트  -->
+	   INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL,COMMENT, ASTATCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal}, #{comment},#{astatcd}, #{crtmem}, now())
 	</insert>
 	
 </mapper>

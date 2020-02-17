@@ -23,8 +23,13 @@
 	    )
 	</insert>
 	
+	<select id="getExchangeFee" resultType="map">
+		SELECT * 
+		FROM EXCHANGEDB 
+		where SDATE = (SELECT MAX(SDATE) FROM EXCHANGEDB )
+	</select>
 <!-- 	<select id="searchExrate" resultType="Exrate">
-		SELECT * FROM EXRATE WHERE CNTCD LIKE #{cntcd}
+		SELECT AMNT FROM EXCHANGEDB WHERE CNTCD LIKE #{cntcd}
 	</select> -->
 	
 	<select id="cntcdSearchExrate" resultType="Exrate">

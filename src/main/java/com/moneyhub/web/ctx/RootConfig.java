@@ -20,11 +20,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
+
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://moneyhub.cfa9kh7porrz.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC");
-		dataSource.setUsername("moneyhub");
-		dataSource.setPassword("moneyhub");
+		dataSource.setUrl("jdbc:mysql://moneyhubdb.caqbtdlh14ub.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC");
+		dataSource.setUsername("admin");
+		dataSource.setPassword("moneyhubdb");
 		return dataSource;
 	}
 	

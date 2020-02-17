@@ -62,7 +62,7 @@ public class ExchangeService {
 		box.clear();
 		if(list.get(0).getExrate() > avg) {
 			box.put("msg","UP");
-		}else {
+		}else if(list.get(0).getExrate() < avg){
 			box.put("msg","DOWN");
 		}
 		return box.get();

@@ -19,4 +19,5 @@ public interface ExrateMapper {
 	public ArrayList<Exrate> cntcdSearchExrate(String s);
 	public ArrayList<Exrate> bdateSearchExrate(String s);
 	public ArrayList<Exrate> exchangeTestSelect();
+	public HashMap<String, Float> getExchangeFee();
 }

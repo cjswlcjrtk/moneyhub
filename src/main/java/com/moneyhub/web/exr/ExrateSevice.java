@@ -1,5 +1,6 @@
 package com.moneyhub.web.exr;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -7,20 +8,26 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.json.JSONArray;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.ExrateProxy;
 import com.moneyhub.web.pxy.Inventory;
+import com.moneyhub.web.pxy.Typetester;
 
 @Service
-public class ExrateSevice {
+public class ExrateSevice extends Typetester{
 	@Autowired Exrate exrate;
 	@Autowired ExrateMapper exrateMapper;
 	@Autowired ExrateProxy exPxy;
 	@Autowired Box<Object> box;
+	@Autowired Inventory<Exrate> inven;
 	
 	public Map<?, ?> exchangeTestSelect(String bdate){
 	
@@ -73,15 +80,33 @@ public class ExrateSevice {
 			c.accept(exrate);
 		}
 	}	
-
-	public ArrayList<Exrate> cntcdSearchExrate(String s){	
-		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.cntcdSearchExrate(t);
-		return f.apply(s);
+	public ArrayList<Exrate> cntcdSearchExrate(String cntcd){	
+		HashMap<String, Float> map = new HashMap<>();
+		map = exrateMapper.getExchangeFee();
+		inven.clear();
+		System.out.println("cntcd 수수료 계산 전 : " + exrateMapper.cntcdSearchExrate(cntcd));
+		System.out.println("수수료 : " + map.get("AMNT"));
+		for(Exrate e : exrateMapper.cntcdSearchExrate(cntcd)) {
+			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
+									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
+			inven.add(e);
+		}
+//		System.out.println("cntcd 수수료 계산 후 : " + inven.get());
+		return inven.get();
 	}
 	
-	public ArrayList<Exrate> bdateSearchExrate(String s){	
-		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.bdateSearchExrate(t);
-		return f.apply(s);
+	public ArrayList<Exrate> bdateSearchExrate(String bdate){	
+		HashMap<String, Float> map = new HashMap<>();
+		map = exrateMapper.getExchangeFee();
+		inven.clear();
+//		System.out.println("bdate 수수료 계산 전 : " + exrateMapper.bdateSearchExrate(bdate));
+		for(Exrate e : exrateMapper.bdateSearchExrate(bdate)) {
+			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
+									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
+			inven.add(e);
+		}
+//		System.out.println("bdate 수수료 계산 후 : " + inven.get());
+		return inven.get();
 	}
 	
 	public void createExrate(HashMap<String, String> map) {
@@ -97,6 +122,39 @@ public class ExrateSevice {
 	public void truncateExrate(HashMap<String, String> map) {
 		Consumer<HashMap<String, String>> c = p -> exrateMapper.truncateExrate(p);
 		c.accept(map);
+	}
+	@Transactional
+//	@Scheduled(fixedDelay=10000)
+	@Scheduled(cron="0 0 5 * * *")
+	public void schedulerEx() {
+		try {
+//			System.out.println("스케쥴 동작");
+			final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
+			
+			String exrateUrl = "https://api.manana.kr/exchange/rate/KRW/KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json";
+			try {
+				Connection.Response homePage = Jsoup.connect(exrateUrl)
+												.method(Connection.Method.GET)
+												.userAgent(USER_AGENT)
+												.ignoreContentType(true)
+												.execute();
+				JSONArray jsonArr = new JSONArray(homePage.parse().select("body").text());
+//				System.out.println(jsonArr.length());
+//				System.out.println(jsonArr);
+				
+				for( int i = 0; i< jsonArr.length(); i++ ) {
+					exrate.setBdate(jsonArr.getJSONObject(i).get("date").toString().substring(0, 10));
+					exrate.setExrate(Math.round(Float.parseFloat(jsonArr.getJSONObject(i).get("rate").toString()) * 100) /100.0d);
+					exrate.setCntcd(jsonArr.getJSONObject(i).get("name").toString().substring(0, 3));
+					exrateMapper.insertExrate(exrate);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (Exception e) {
+			System.out.println("스케쥴 에러");
+		}
 	}
 }
 	

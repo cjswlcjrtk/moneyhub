@@ -18,7 +18,8 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
+									<input id="send_input" class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdrcv}" numberOnly maxlength="5" style="width: 50%;"> 
+
 									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
@@ -28,7 +29,7 @@ remit_vue = {
 							<div class="description"> 
 								<i class="empty"></i> 
 								<div class="spacer"></div> 
-								<p><span id="fee_check" style="font-size: initial; color:darkgray;"></span> USD (수수료)</p>
+								<p><span id="fee_check" style="font-size: initial; color:darkgray;"></span> USD (수수료 별도)</p>
 								<div class="spacer"></div> 
 							</div> 
 							<div class="description"> 
@@ -278,11 +279,11 @@ remit_vue = {
 									<p>보내는 금액</p>
 								<div>
 									<div class="amount">
-										<p >${common.comma_create(deal.trdkrw)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD</p>
+										<p >${common.comma_create(deal.trdsnd)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD (포함)</p>
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p >${common.comma_create(deal.trdusd)}<span class="unit">USD</span></p><p>적용 환율 : 1 USD = ${deal.exrate} KRW</p>
+										<p >${common.comma_create(deal.trdrcv)}<span class="unit">USD</span></p><p>적용 환율 : 1 USD = ${deal.exrate} KRW</p>
 									</div>
 								</div>
 							</div>
@@ -295,8 +296,8 @@ remit_vue = {
 										<tr>
 											<td style="width: 100px;">여권 이름</td>
 											<td class="color-grey-1 name fs-block">
-												<span lang="en">${deal.rcpsl}</span>
-												<span lang="en">${deal.rcpsf}</span>
+												<span lang="en">${deal.passLnm}</span>
+												<span lang="en">${deal.passFnm}</span>
 											</td>
 										</tr>
 										<tr>
@@ -359,6 +360,7 @@ remit_vue = {
 			</div>`
 		},
 		remit_complete:()=>{
+			acc = $.acc()
 			cus = $.cusInfo()
 			deal = $.deal()
 			return `<div class="themoin-remit-success">
@@ -367,14 +369,13 @@ remit_vue = {
 							<h1 id="deposit_hour" type="text">입금 기한 60:00</h1>
 							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span id="remit_clock">2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
-								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>
 								진행 상황은 메인화면의 송금 내역에서 확인하실 수 있습니다.<br>
 							</div>
 							<div class="box">
 								<div class="remit_info" >
 									<div>
 										<p class="info_desc">입금할 금액</p>
-										<p class="copy_text" id="copy_amt" style="float:left">${common.comma_create(deal.trdkrw)}</p>
+										<p class="copy_text" id="copy_amt" style="float:left">${common.comma_create(deal.trdsnd)}</p>
 										<p class="copy_text"> &nbsp;&nbsp; KRW</p>
 									</div>
 									<button id="copy_btn">금액 복사하기</button>
@@ -392,17 +393,17 @@ remit_vue = {
 									<input id="clip_acc" type="text" value="" style="position:absolute;top:-9999em;"/>
 								</div>
 								<div class="remit_info">
-									<button class="user-send-btn" style="background-color: #1b4d72;color: white;border: outset;width: 100%;">허브페이로 입금 하기</button>
+									<button id="hubpay_btn" class="user-send-btn" style="background-color: #1b4d72;color: white;border: outset;width: 100%;">허브페이로 입금 하기</button>
 								</div>
-								<div class="remit_info" style="display: block;text-align-last: center;">
+								<div  id= "hubpay" class="remit_info" style="display: block;text-align-last: center;">
 									<div style="">
 									<p class="info_desc" style=" padding: 0 0px 9px 0px;">허브페이 잔액
-									<input type="text" value="" readOnly="" style="margin: 0 0 0 15px;"/>
+									<input type="text" value="${common.comma_create(acc.balance)}" readOnly="" style="margin: 0 0 0 15px;"/>
 									</p>
 										<p class="info_desc" style=" padding: 0px 0px 14px 0px;">입금할 금액
-										<input type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
+										<input id="send_money" type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
 									</div>
-									<button style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
+									<button id="remit_wd"style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
 							</div>

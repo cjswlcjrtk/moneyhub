@@ -6,14 +6,14 @@ mypage =(()=>{
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
 		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch,
-		exchange_js
+		exchange_js,account_js,guide_recieve_js
 
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		cus = $.cusInfo()
 		exch = $.exch()
-		
+		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -25,7 +25,9 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
-		exchange_js = js + '/mypage/exchange.js'
+		exchange_js = js + '/remit/exchange.js'
+		account_js = js + '/mypage/account.js'
+		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		
 		profitsChart = {}
 		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
@@ -43,6 +45,7 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(remit_box_js),
+			$.getScript(guide_recieve_js),
 			$.getScript(exchange_js)
 		)
 		.done(()=>{
@@ -50,15 +53,14 @@ mypage =(()=>{
 			page_move()	
 			remit_receive()
 			setInterval(clock_excute, 1000)
-			setInterval(exchange_API, 1000 * 60 * 60 * 12)
-			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+//			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0, cno : cus.cno})
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})
-		
 	}
+	
 	let setContentView =()=>{
 		$('#remit_slider').hide()
 		
@@ -70,40 +72,40 @@ mypage =(()=>{
 		$.getScript(line_graph_js)
 
 		$('#popup-exchange').empty()
-		
-		$('#remit_btn')
-		.click(function(){
-		$("#remit_slider").show();
-		var top = $('#remit_slider').offset().top - 75;
-		$('html').scrollTop(top);
-		$('#exchange_slider').hide()
-		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
-		})
-		
-		$('#exchange_btn')
-		.click(function(){
-			exchange.onCreate()
-		})
-	}
 
+	}
+	
 	let page_move =()=>{
+		nav_move()
+		main_move()
+		foot_move()
+	}
+	
+	let nav_move = ()=>{
+		$('.themoin-header a.logo')
+		.click(()=>{
+			mypage.onCreate()
+			$('html').scrollTop(0);
+		})
+		
 		$('#exch')
 		.click(()=>{
-			/*alert('클릭')*/
-//			sidebar.onCreate('')
 			exchange.onCreate('')
 			$('html').scrollTop(0);
 		})
 		
-		$('#remit')
-		.click(()=>{
-			
+		$('#nav_remit').click(()=>{
+			deal.cntp = '미국'
+			deal.cntcd = 'USD'
+			deal.trdusd = 0
+			sessionStorage.setItem('deal', JSON.stringify(deal))
+			foreignRemit.onCreate()
 			$('html').scrollTop(0);
 		})
 		
 		$('#testexch')
 		.click(()=>{
-			
+			exchange_test.onCreate()
 			$('html').scrollTop(0);
 		})
 		
@@ -121,6 +123,36 @@ mypage =(()=>{
 			app.onCreate()
 			$('html').scrollTop(0)
 		})
+	}
+	
+	let main_move = ()=>{
+		$('#exchange_btn')
+		.click(function(){
+			exchange.onCreate()
+		})
+		
+		$('#remit_btn')
+		.click(function(){
+			$("#remit_slider").show();
+			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
+			var top = $('#remit_slider').offset().top - 75;
+			$('html').scrollTop(top);
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+		})
+		
+		$('#exchange_test_btn')
+		.click(()=>{
+			exchange_test.onCreate()
+			$('html').scrollTop(0);
+		})
+
+		$('#account_go').click(()=>{
+			sidebar.onCreate('account')
+			$('html').scrollTop(0);
+		})
+		
+	}
+	let foot_move = ()=>{
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -136,18 +168,10 @@ mypage =(()=>{
 			faq.onCreate(main_class)
 		})
 		
-		$('.themoin-header a.logo')
+		$('#guide')
 		.click(()=>{
-			mypage.onCreate()
-			$('html').scrollTop(0);
+			guide_recieve.onCreate(main_class)
 		})
-		
-		$('#exchange_test_btn')
-		.click(()=>{
-			exchange_test.onCreate()
-			$('html').scrollTop(0);
-		})
-		
 	}
 	
 	let clock_excute =()=>{
@@ -179,7 +203,6 @@ mypage =(()=>{
 				error : e=>{
 					alert('전송 실패')
 				}
-				
 			})
 		})
 	}
@@ -187,9 +210,32 @@ mypage =(()=>{
 	let remit_receive = ()=>{
 		deal = $.deal()
 		
-		if(deal.cntp == '미국'){
+		if(deal.cntp === '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
+		
+//		let deal_cntp = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '', cntp : '일본' },
+//			{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '', cntp : '중국' },
+//			{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '', cntp : '미국' },
+//			{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '', cntp : '싱가포르' },
+//			{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '', cntp : '호주' },
+//			{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '', cntp : '영국' },
+//			{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '', cntp : '벨기에' },
+//			{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '', cntp : '프랑스' },
+//			{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '', cntp : '독일' },
+//			{ img : 'it', cntcd : 'EUR', curr : '이탈리아 유로', flag : '', cntp : '이탈리아' },
+//			{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '', cntp : '네덜란드' },
+//			{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '', cntp : '포르투갈' },
+//			{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '', cntp : '스페인' }]
+		
+//			$.each(deal_cntp, (i, j)=>{
+//				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
+//					i.img = j.img
+//					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
+//				}
+//			})
+//		
+//		$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${img}.svg`)
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
@@ -215,9 +261,13 @@ mypage =(()=>{
 			.addClass('index-send-btn moin-body')
 			.appendTo('#remit_box')
 			.click(()=>{
-				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+				deal.cntp = $('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-				deal.trdusd = common.comma_remove(send_amount.val())
+				deal.trdrcv = common.comma_remove(send_amount.val())
+				deal.passFnm = $('#pass_fnm').text()
+				deal.passLnm = $('#pass_lnm').text()
+				deal.passName =  JSON.stringify(deal.passFnm) + JSON.stringify(deal.passLnm)
+				deal.trdTypeCd = '송금' //환전
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 				foreignRemit.onCreate()
 				$('html').scrollTop(top);
@@ -226,9 +276,10 @@ mypage =(()=>{
 	
 	let remit_list =(x)=>{
 		deal = $.deal()
-		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
+		$.getJSON( `${$.ctx()}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
+			
 			let pxy = d.pager
-
+//			alert('pxy.rowCount : ' + pxy.rowCount)
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
 				{ img : 'cn', cntcd : 'CNY', curr : '중국'},
 				{ img : 'us', cntcd : 'USD', curr : '미국'},
@@ -246,14 +297,21 @@ mypage =(()=>{
 			
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
-				
 				$.each(d.map, (i, j)=>{
+					let btn_color
+					if(j.trdTypeCd === '환전'){
+						btn_color = '#3ea3e8'
+					}else if(j.trdTypeCd === '송금'){
+						btn_color = '#f26178'
+					}
+					
 					$.each(receive_data, (i, k)=>{
 						if(j.cntCd == k.cntcd && j.cntp == k.curr){
 							j.img = k.img
+							$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 						}
 					})
-
+					
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
 								<div class="unit-flag">
@@ -261,7 +319,7 @@ mypage =(()=>{
 								</div>
 								<div class="simple-nametime">
 									<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a">${j.passLnm} ${j.passFnm}</span>
+									<span class="fs-block" lang="en" title="aa">${j.passName}</span>
 									</h3>
 									<p class="create-time">${j.bsdate}</p>
 								</div>
@@ -269,33 +327,33 @@ mypage =(()=>{
 								<div class="simple-amount">
 									<div class="user-sendlistdetail-amount">
 										<h3 class="user-sendlist-send">
-											<span class="user-sendlist-send">${common.comma_create(j.trdKrw)}</span> <span
-												class="user-sendlist-sendunit">KRW</span>
+											<span class="user-sendlist-send">${common.comma_create(j.trdSnd)}</span> <span
+												class="user-sendlist-sendunit">${j.cntCd}</span>
 										</h3>
 										<img src="https://img.themoin.com/public/img/ic-next-p.png"
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
-											<span class="user-sendlist-receive">${common.comma_create(j.trdUsd)}</span> <span
-												class="user-sendlist-receiveunit">USD</span>
+											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span>
+											<span class="user-sendlist-receiveunit">KRW</span>
 										</h3>
 									</div>
 									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
 									<div class="send-due">
-										<p>송금이 정상적으로 완료되었습니다.</p>
+										<p>${j.trdTypeCd}이 정상적으로 완료되었습니다.</p>
 									</div>
 								</div>
 								<div class="simple-spacer"></div>
-								<div class="user-sendlist-status">
-								<div class="user-sendlist-state">
-								<div class="user-sendlist-state-text moin-body">거래 완료</div>
+								<div class="user-sendlist-status" style="justify-content:center">
+								<button id="listButton" style="background-color:${btn_color}; border:none; color:#fff; padding:15px 0; text-align:center; text-decoration:none;
+									display:inline-block; font-size:16px; margin:4px; cursor:pointer; border-radius:10px">${j.trdTypeCd}</button>
 								</div>
-								<a id = "delete_history" class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
-								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
 								</div>
 							</div>
 						</div>`)
 				    .appendTo('.remits')
 				})
+				
+				
 				
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
@@ -369,5 +427,5 @@ mypage =(()=>{
 		})
 	}
 	
-	return { onCreate,remit_list }
+	return { onCreate, remit_list }
 })()

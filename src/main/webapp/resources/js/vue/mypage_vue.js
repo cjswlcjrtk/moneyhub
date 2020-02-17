@@ -146,58 +146,6 @@ mypage_vue = {
 			    </div>
 			</div>`
 	},
-	auth_mgmt : ()=>{
-		cus = $.cusInfo()
-		acc = $.acc()
-		accHis = $.accHis()
-		return `<div><br>
-			        <h1 style="text-align : center; margin:30px 0 10px 0">자산정보</h1><br>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">발급된 가상계좌</div>
-			            <ol>
-			                <li>
-			                    <p>계좌번호</p>
-			                    <p class="fs-block" id="bank" style="color:black; font-weight:bold;">국민은행&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="account" style="color:black; font-weight:bold;">${acc.acctNo}</p>
-			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="cname" style="color:black; font-weight:bold;">${cus.cname}</p>
-			                    <p class="fs-block" style="color:black; font-weight:bold;">_머니허브</p>
-			                </li>
-			                <li class="control">
-			                    <button class="text" id="copy_btn">가상계좌복사하기</button>
-			                    <input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>
-			                </li>
-			            </ol>
-			        </div>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">잔액</div>
-			            <ol>
-			                <li>
-			                    <p>현재잔액</p>
-			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${common.comma_create(accHis.balance)}</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>
-			                </li>
-			            </ol>
-			        </div>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">거래내역</div>
-			            <ol>
-			                <li>
-			                    <p>HISTORY</p>
-			                    <p class="fs-block" id="hisdate" style="color:black">2020-02-04</p>
-			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="hispm" style="color:black">+</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" id="exhistory" style="color:black">100,000,000</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" style="color:black">원</p>
-			                </li>
-			            </ol>
-			        </div>
-			        <p class="warning" style="text-align : center">계좌이체는 계좌변경이 불가능 합니다. 인증계좌 변경 희망 시 홈페이지 1:1문의하기로 연락주세요.</p><br><br>
-			    </div>`
-	},
 	alarm : ()=>{
 		return `<div class="themoin-mypage-notification">
 			        <div class="content">
@@ -316,18 +264,20 @@ mypage_vue = {
 		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;"><br>
 					<h1 style="margin:30px auto">모의 환전 시작하기</h1>
 					<div id="exchange_test_header" style="width : 100%; height : 330px; text-align: center;">
-						<div style="width : 100%; height : 50px; padding-top : 20px; font-size: 18px;"><b>모의 환전 시작일</b></div>
+						<div style="width : 100%; height : 50px; padding-top : 20px; font-size: 18px;">
+							<b>모의 환전 시작일</b>
+						</div>
 						
 						<div id="exchange_datepicker" style="width :100%; height:250px;">
-							<p style="font-weight: bold; width : 100%;">모의 환전 시작일 선택</p>
-							<div style="width : 100%; height:215px; padding-left: 405px">
+							<p style="font-size: 18px; font-weight: bold; width : 100%; color:red">모의 환전 시작일 선택</p>
+							<div style="width : 100%; height:215px; padding-left: 38.8%">
 								<div id="datepicker"  style="width: 240px; float: left"></div>
 							</div>
 				    	</div>
 					</div>	
 					
 					<div style="width:100%; height : 200px; text-align: center; margin-top:20px">
-			    		<div id="test_mode"><p>환전일 선택하여 모의 환전</p><br></div>
+			    		<div id="test_mode"><p></p></div>
 			    	</div>
 				</div>
 				<style type="text/css">
@@ -343,55 +293,54 @@ mypage_vue = {
 				</style>	`
 	},
 	exchange_test2 : ()=>{
-//		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; max-width : 1060px; margin: 30px auto;; min-height:840px;">
-					<div id="exchange_test_header" style="width : 100%; height : 80px; text-align: center;">
-						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
-							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" ><b>환율 기준일 : </b></div>
-							<div id="next_day_btn" style="width : 30%; height : 100%; float:left;text-align:left; padding: 18px 0 0 30px;">
-								<div class="arrow">
-								  	<div class="arrow-top"></div>
-								  	<div class="arrow-bottom"></div>
-								</div>
-							</div>
+		return `<div class="container" style="width: 100% !important; max-width:none;">
+					<div id="exchange_test_header" style="width : 90%; height : 80px; text-align: center; max-width:none;">
+						<div style="width : 60%; height : 100%; float:left; text-align:right; font-size: calc(1rem + 1vw); padding:30px 8% 0 0">
+							<b>환율 기준일 : </b>
 						</div>
-						
-						<div id="exchange_datepicker" style="width : 30%; float:left">
-							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
+						<div id="exchange_datepicker" style="width : 40%; float:left">
+							<p style="font-weight: bold; width : 100%; height: 25px; font-size: calc(1rem + 0.5vw); padding-left: 26%;">환율 기준일 변경</p>
 							<div style="width : 100%; height: 35px; padding-left : 50px">
 								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
 							</div>
 				    	</div>
-					</div>	
-					<div id="world_map">
-					    <div class="mapcontainer">
-					        <div class="map">
-					            <span></span>
-					        </div>
-					    </div>
 					</div>
-				    <div style="width:100%;height:430px">
-				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
-					    	<ol style="border-bottom-width: 0px;"></ol>
-					    	<div style="width:100%">
-					    		<div id="init_btn"></div>
-					    		<div id="save_btn" style="padding-left:40px"></div>
-					    	</div>
-					    	<div id="test_history"></div>
-					    </div>
-				    	<div id="exchange_test_chart1" style="width:67%;float:left">                         
-				 	      	<canvas id="canvas" style="width:100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas> 
+					<div style="width:90%;  margin-top:30px; max-width:none;" >
+						<div id="world_map" style="width: 100%; max-width:none; float:left">
+						    <div class="mapcontainer">
+						        <div class="map">
+						            <span></span>
+						        </div>
+						    </div>
+						</div>
+					</div>
+					
+				    <div style="width:90%;  max-width:none; margin-top: 50px;">    
+						 <div style="width:30%; height : 722px; float:left; border:1px solid black; border-right-width:0;">
+							<div id="amount" class="themoin-info-preview" style="width:100%; height: 57%; min-width:330px; float:left; border-bottom: 1px solid black;">
+						    	<p style="font-size: 24px; font-weight: bold; color: black;">모의 환전 자산</p>
+						    	<ol style="border-bottom-width: 0px; padding-left: 10px; width:310px;"></ol>
+						    	<div style="width:100%">
+						    		<div id="init_btn"></div>
+						    		<div id="save_btn" style="text-align: left; padding-left:5%"></div>
+						    	</div>
+						    	<div id="test_history"></div>
+						    </div>
+						    <div id="exchange_test_chart1" style="width:100%; height: 43%; padding: 20px; border-right-width:0; float:left; text-align: center;">                         
+					 	      	<p style="font-size: 24px; font-weight: bold; color: black;">환전일별 수익금 차트</p>
+					 	      	<canvas id="canvas" style="width:100%; height: 210px; max-height: 215px; "></canvas> 
+							</div>
 						</div>
 						
-				    </div>
-				    <div id="exchange_test_chart2" style="width:100%;height:510px">      
-						<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+					    <div style="width:70%; float:left;">
+							<div id="exchange_test_chart2" style="width:100%; height : 722px; border:1px solid black; float:left;">
+								<div style="width:100%;height:240px;float:left;border-bottom: 1px solid black; padding:20px"><canvas id="canvas2" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+								<div style="width:50%;height:240px;float:left;border-bottom: 1px solid black;border-right: 1px solid black;padding :20px;"><canvas id="canvas3" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+								<div style="width:50%;height:240px;float:left;border-bottom: 1px solid black;;padding:20px;"><canvas id="canvas4" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+								<div style="width:50%;height:240px;float:left;border-right: 1px solid black;padding:20px;"><canvas id="canvas5" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+								<div style="width:50%;height:240px;float:left;padding:20px;"><canvas id="canvas6" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+							</div>
+						</div>
 					</div> 
 					<br> 
 					<br> 
@@ -420,7 +369,11 @@ mypage_vue = {
 			        .mapael .map {
 			            position: relative;
 			        }
-			
+			        
+					.map svg {
+						height : 80%;
+					}
+					
 			        .mapael .mapTooltip {
 			            position: absolute;
 			            background-color: #fff;
@@ -434,7 +387,6 @@ mypage_vue = {
 			            display: none;
 			            color: #343434;
 			        }
-
 					.ui-datepicker-week-end { color:red; }
 					.ui-datepicker-week-end .ui-state-default { color:red; }
 					.Highlighted span {
@@ -444,7 +396,6 @@ mypage_vue = {
 					   font-weight:bold !important;
 					   font-size: 12px;
 					}
-					
 			    </style>
 				<script src="/web/resources/js/maps/jquery.mapael.js"></script>
 			    <script src="/web/resources/js/maps/global_map.js"></script>
@@ -509,7 +460,7 @@ mypage_vue = {
 								<div id="exchange_box" class="form-calculator main" style="width: 100%; min-width: 400px;">
 									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
-											<p style="text-align: left;">환전123 금액</p>
+											<p style="text-align: left;">환전 금액</p>
 											<input class="send-amount" id="exchange_send_amount"  type="text" tabindex="0" placeholder="0.00" value="1000000">
 										</div>
 										<div class="unit-select send" tabindex="0">
@@ -544,10 +495,10 @@ mypage_vue = {
 					<h1 style="padding-bottom: 0px;">지금 바로 머니허브 환전을 이용해보세요</span>
 						<p class="color-deepgrey"></p>
 					</div>
-			<div id="chart2" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>
+			<div id="chart1" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>
 				<div class="check_font" id="exchange_check" ></div>
 					<div class="moin-amount">
-						<div id="remit_box" class="form-calculator main">
+						<div id="exchange_box" class="form-calculator main">
 							<div class="amount-row">
 								<div class="">
 									<p>환전 금액</p>

@@ -115,7 +115,8 @@ exchange_test =(()=>{
 		.css({
 			height : '60px',
 			margin : '10px auto',
-			'text-align' : 'center'
+			'text-align' : 'left',
+			'padding-right' : '20%'
 		})	
 	}
 	
@@ -182,9 +183,9 @@ exchange_test =(()=>{
 			{ id: 'exchange_JPY', currencies : "일본 엔", money: '0', cntcd : 'JPY' }]
 
 		$.each(data, (i,j)=>{
-			$(`<li><p style="font-size : 18px width:120px;">${j.currencies}</p>
-					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${common.comma_create(j.money)}</p>
-					<p class="fs-block" style="font-size : 18px">${j.cntcd}</p>
+			$(`<li style="width:310px;"><p style="font-size : 18px; width:115px; margin-bottom:0;">${j.currencies}</p>
+					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:25%; text-align: right; margin-bottom:0;">${common.comma_create(j.money)}</p>
+					<p class="fs-block" style="font-size : 18px; margin-bottom:0;">${j.cntcd}</p>
 				</li>`)
 			.css({
 				'font-size' : '18px'
@@ -198,7 +199,8 @@ exchange_test =(()=>{
 			$('#init_btn').css({
 				width:'50%',
 				float : 'left',
-				'text-align' : 'center'
+				'text-align' : 'right',
+				'padding-right': '8%'
 			})
 			
 			$('<button/>')
@@ -211,24 +213,29 @@ exchange_test =(()=>{
 				amount_init()
 				$('#exchange_test_chart1').empty()
 				init_Exth()
+				exchange_test.onCreate()
+//				$('html').scrollTop(0);
 			})
 			
 			$('#save_btn').css({
 				width:'50%',
 				float : 'left',
-				'text-align' : 'left'
+				'text-align' : 'left',
+				'padding-left' : '8%'
 			})
 			
 			$('<button/>')
-			.text('저 장')
+			.text('저   장')
 			.addClass('btn btn-lg btn-primary')
+			.css({ width: '88px' })
 			.appendTo('#save_btn')
 			.click(()=>{
 				init_Exth()
 				saveFlag = true
-				
+//				alert('저장 클릭 후 amount_history 전 exth - ' + JSON.stringify(exth))
 				amount_history()
 				common.object_sort(exth)
+//				alert('저장 클릭 후 amount_history 후 exth - ' + JSON.stringify(exth))
 				sessionStorage.setItem('exchangeCount', 0)
 				$.ajax({
 					url : `${_}/exth/insert/${deposit}`,
@@ -243,7 +250,8 @@ exchange_test =(()=>{
 						sessionStorage.setItem('chartFlag', 'profitsChart')
 	
 						$('#exchange_test_chart1')
-						.html(`<canvas id="canvas" style="width:100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas>`)
+						.html(`<p style="font-size: 24px; font-weight: bold; color: black;">환전일별 수익금 차트</p>
+					 	      	<canvas id="canvas" style="width:100%; height: 210px; max-height: 215px; "></canvas>`)
 						$.getScript(line_graph_js)
 					},
 					error : e=>{
@@ -280,7 +288,7 @@ exchange_test =(()=>{
 		$('#world_map')
 		.html(`<div class="mapcontainer">
 			        <div class="map">
-			            <span>Alternative content for the map</span>
+			            <span></span>
 			        </div>
 			    </div>`)
 		$.getScript($.js() + '/maps/global_map.js')
@@ -288,11 +296,11 @@ exchange_test =(()=>{
 	
 	let getGraph =()=>{
 		$('#exchange_test_chart2')
-		.html(`<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-				<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-				<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-				<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-				<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>`)
+		.html(`<div style="width:100%;height:240px;float:left;border-bottom: 1px solid black; padding:20px"><canvas id="canvas2" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+				<div style="width:50%;height:240px;float:left;border-bottom: 1px solid black;border-right: 1px solid black;padding :20px;"><canvas id="canvas3" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+				<div style="width:50%;height:240px;float:left;border-bottom: 1px solid black;;padding:20px;"><canvas id="canvas4" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+				<div style="width:50%;height:240px;float:left;border-right: 1px solid black;padding:20px;"><canvas id="canvas5" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>
+				<div style="width:50%;height:240px;float:left;padding:20px;"><canvas id="canvas6" style="width:100%; height: 190px; max-height: 200px;"></canvas></div>`)
 		sessionStorage.setItem('chartFlag', 'historyChart')
 		$.getScript(line_graph_js)
 	}
@@ -318,7 +326,7 @@ exchange_test =(()=>{
 //		.css({ 'font-weight' : 'bold' })
 		.appendTo('#next_day_btn')
 		.click(()=>{
-			alert('>>>>')
+//			alert('>>>>')
 		})
 		
 		datepicker_kr()	
@@ -332,8 +340,10 @@ exchange_test =(()=>{
 		
 		$('#datepicker').datepicker()
 		.change(()=>{
-			if(exrateSess.bdate !== $('#datepicker').val()){
+			if(exrateSess.bdate !== $('#datepicker').val() ){
+//				alert('날짜 변경 후 저장 전 exth - ' + JSON.stringify(exth))
 				amount_history()
+//				alert('날짜 변경 후 저장 후 exth - ' + JSON.stringify(exth))
 //				alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
 //				alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
 				

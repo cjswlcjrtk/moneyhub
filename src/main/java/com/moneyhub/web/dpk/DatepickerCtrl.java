@@ -73,10 +73,10 @@ public class DatepickerCtrl extends Proxy{
 	}
 	@GetMapping("/selectall")
 	public Map<?, ?> selectAll(){
-		System.out.println("datepicker selectAll 진입");
+//		System.out.println("datepicker selectAll 진입");
 		Supplier<ArrayList<Datepicker>> f = () -> dpkMapper.selectAll();	
 		box.put("dpk", f.get());
-		print(box.get("dpk").toString());
+//		print(box.get("dpk").toString());
 		
 		return box.get();
 	}

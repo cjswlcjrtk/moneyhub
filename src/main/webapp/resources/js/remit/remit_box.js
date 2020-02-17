@@ -65,7 +65,6 @@ remit_box =(()=>{
 					{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '' },
 					{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
 					{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '' },
-					{ img : 'vn', cntcd : 'VND', curr : '베트남 동', flag : '' },
 					{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '' },
 					{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '' },
 					{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' },
@@ -91,17 +90,6 @@ remit_box =(()=>{
 			common.popup_close('root')
 		}
 	}
-	
-/*	let send_cntcd_filter =x=>{
-		let filtered_data = []
-		for(let i=0; i< x.length; i++ ){
-			if(x[i].cntcd !== cntcd ){
-				filtered_data.push(x[i])
-			}
-		}
-		alert('filtered_data - ' + JSON.stringify(filtered_data))
-		cntcd_display(filtered_data)
-	}*/
 	
 	let search_filter =x=>{
 		let filtered_data = []
@@ -130,7 +118,6 @@ remit_box =(()=>{
 				.hide()
 				$('#popup_box input').val('')
 				if( j.flag === 'mypage' || j.flag ==='remit'){
-
 					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
@@ -156,24 +143,20 @@ remit_box =(()=>{
 
 				}
 				else if( j.flag === 'exchange2'){
-//					alert('2) remit_box cntcd_display.flag 여기?' + j.flag)
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) //레미트박스 국가
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`) //레미트박스 통화
-					/*alert(`3) remit_box.js에서 선택된 통화 j.cntcd는? -> ${j.cntcd}`)*/
-					exch.cntp = j.curr.substring(0, j.curr.indexOf(' '))
-					/*alert(`4) remit_box에서 선택된 국가 exch.cntp는? -> ${j.curr.substring(0, j.curr.indexOf(' '))}`)*/
-					exch.cntcd = j.cntcd
-					let exch_arr = []
+					deal.cntp = j.curr.substring(0, j.curr.indexOf(' '))
+					deal.cntcd = j.cntcd
+					let deal_arr = []
 					function getExrate(){
 						return new Promise(function(resolve){
 							$.getJSON('/web/exrate/search/cntcd/' + j.cntcd, d=>{	
 								if(d){
 									$.each(d.exlist, (i, j)=>{
-										exch_arr.push(parseFloat(j.exrate))
+										deal_arr.push(parseFloat(j.exrate))
 									})
-									exch.exrate = exch_arr[0]
-									sessionStorage.setItem('exch', JSON.stringify(exch))
-//									alert('6) getjson>>>remit_box - exch.exrate : '+exch.exrate +', exch.cntcd : ' + exch.cntcd)
+									deal.exrate = deal[0]
+									sessionStorage.setItem('deal', JSON.stringify(deal))
 									resolve()
 								}
 							})
@@ -181,47 +164,32 @@ remit_box =(()=>{
 					}
 					getExrate()
 					.then(()=>{
-						common.receive_value_calc(exch_arr[0])
+						common.receive_value_calc(deal_arr[0])
 						$('.form-calculator .amount-row input.send-amount').keyup(()=>{
-							common.receive_value_calc(exch_arr[0])
+							common.receive_value_calc(deal_arr[0])
 						})
-//						alert('7) >>>remit_box - exch.exrate : '+$.exch().exrate +', exch.cntcd : ' + $.exch().cntcd)
-						//alert 결과는 object로 나옴 왜? cntcd가 선택한 cntcd + USD 함께 나옴
-//						alert('8) 선택한 국가 : ' + $('.form-calculator .amount-row .receive p').text())
 					})
 					.catch(()=>{
 						alert('오동작')
 					})
-//					alert('5) remitbox의192번째줄'+"exch.cntp - " + exch.cntp+"   exch.cntcd - " + exch.cntcd + 'exch.exrate - ' + exch.exrate)
-//					sessionStorage.setItem('exch',JSON.stringify(exch))
-//					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
+					let cntcd = $('#exch_box .amount-row .receive h3').text()
+					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
+						if(d.msg === 'UP'){
+							$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
+							$('#exchange_check').css('color', 'blue')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
+						}else if(d.msg === 'DOWN'){
+							$('#exchange_check').text('최근 약 2주간 해당 환율은 하락세입니다.')
+							$('#exchange_check').css('color', 'red')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
+						}
+					})
 
-					
-					let cntcd = $('.form-calculator .amount-row .receive h3').text()
-//					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
-//						alert('remit_box -> d.msg는?' + d.msg)
-//						if(d.msg === 'UP'){
-//							$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
-//							$('#exchange_check').css('color', 'blue')
-//							$('#exchange_check').css('text-align', 'center')
-//							$('#exchange_check').css('font-weight', 'bold')
-//						}else{
-//							$('#exchange_check').text('최근 약 2주간 해당 환율은 하락세입니다.')
-//							$('#exchange_check').css('color', 'red')
-//							$('#exchange_check').css('text-align', 'center')
-//							$('#exchange_check').css('font-weight', 'bold')
-//						}
-//					})
-
-//					$('#chart')
-//					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
-//					$.getScript(exChart_js)
-					
-				}
-				else{
-					/*$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
-					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-					exrate.onCreate()*/
+					$('#chart2') //통화 변경할 때 그래프 지우고 새로 그래프 그리는 부분
+					.html(`<canvas id="canvas1" style="width:200px; height:50px; margin-bottom: 10px"></canvas>`)
+					$.getScript(exChart_js)
 				}
 			})
 		})

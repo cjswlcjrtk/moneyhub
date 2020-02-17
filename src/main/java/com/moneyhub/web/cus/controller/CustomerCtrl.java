@@ -47,11 +47,10 @@ public class CustomerCtrl extends Proxy {
           System.out.println("로그인 시 param.getCpwd는? - "  +param.getCpwd());
           Function<Customer, Customer> f = t -> cusMapper.login(t);
           cus = f.apply(param);
-          System.out.println("로그인 시 cus는? - "+ cus.toString());
+//          System.out.println("로그인 시 cus는? - "+ cus.toString());
           Function<String, Account> p = t -> accMapper.getAcc(t);
           acc = p.apply(cemail);
-          Function<String, AccountHistory> p1 = t -> accMapper.getAccHis(t);
-          accHis = p1.apply(cemail);
+		 
           String result = (cus != null) ? "SUCCESS" : "FAIL";
           box.clear();
           box.put("msg", result);
@@ -67,6 +66,7 @@ public class CustomerCtrl extends Proxy {
           System.out.println("join 들어옴 param은? - " + param.toString());
           String encrypwd = CustomerSha256.encrypt(param.getCpwd());
           param.setCpwd(encrypwd);
+          param.setCstcd("1");
           cusMapper.join(param);
           accountService.createAcc(param);
           box.clear();
@@ -86,6 +86,8 @@ public class CustomerCtrl extends Proxy {
 	@DeleteMapping("/withdrawal")
 	public Map<?, ?> withdrawal(@RequestBody Customer param) {
 		System.out.println("자바 withdrawal 들어옴");
+		String encrypwd = CustomerSha256.encrypt(param.getCpwd());
+        param.setCpwd(encrypwd);
 		String cpwd = cus.getCpwd();
 		String cpwd2 = param.getCpwd();
 		System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
@@ -107,22 +109,14 @@ public class CustomerCtrl extends Proxy {
 	@PostMapping("/pwdChg")
     public Map<?, ?> pwdChg(@RequestBody Customer param) {
           System.out.println("자바 비번변경 들어옴");
-          System.out.println("---------------"+param.toString());
-//        Consumer<Customer> c = o -> cusMapper.pwdChg(o);
-//        c.accept(param);
-          System.out.println("***********"+param.toString());
           System.out.println("cus는???????????"+cus);
-          String cpwd = cus.getCpwd(); //로그인 시 입력한 비밀번호
-          String cpwd2 = param.getCpwd(); //비밀번호 변경 시 입력한 비밀번호x
           String encrypwd = CustomerSha256.encrypt(param.getCpwd());
           param.setCpwd(encrypwd);
           Consumer<Customer> c = o -> cusMapper.pwdChg(o);
           c.accept(param);
-          System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
-          System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " /  param.getCpwd()는? " + param.getCpwd());
+          System.out.println("cus.getCpdwd()는? " + cus.getCpwd() + " /  param.getCpwd()는? " + param.getCpwd());
           box.clear();
-          //box.put("msg", (cpwd != cpwd2) ? "true" : "false");
-          if (param.getCemail().equals(cus.getCemail()) && cpwd != cpwd2) {
+          if (param.getCemail().equals(cus.getCemail()) && cus.getCpwd() != param.getCpwd()) {
                  box.put("msg", "true");
                  box.put("cus", cus);
           } else {
@@ -146,15 +140,16 @@ public class CustomerCtrl extends Proxy {
 	@PostMapping("/cusInfoChg")
 	public Map<?, ?> cusInfoChg(@RequestBody Customer param) {
 		System.out.println("=============================자바 회원 정보 수정 들어옴");
-		Consumer<Customer> c = o -> cusMapper.cusInfoChg(o);
-		c.accept(param);
-		System.out.println("cus는???????????"+cus);
 		String daddr = cus.getDaddr();
 		String zip = param.getZip(); //정보번호 변경 시 입력한 우편번호
 		String addr = param.getAddr(); //정보번호 변경 시 입력한 주소
 		String daddr2 = param.getDaddr(); //정보번호 변경 시 입력한 상세주소
-		System.out.println("zip는? " + zip + " / addr는? " + addr + " / addr는? " + daddr);
-		System.out.println("param.getZip()은? " + param.getZip() + " / param.getAddr()는? " + param.getAddr() + " / param.getdaddr()는? " + param.getDaddr());
+		param.setCemail(cus.getCemail());
+		param.setZip(zip);
+		param.setAddr(addr);
+		param.setDaddr(daddr2);
+		Consumer<Customer> c = o -> cusMapper.cusInfoChg(o);
+		c.accept(param);
 		box.clear();
 		if (zip != null) {
 			box.put("msg", "true");
@@ -162,7 +157,6 @@ public class CustomerCtrl extends Proxy {
 		} else {
 			box.put("msg", "false");
 		}
-		System.out.println("param은?" + param);
 		System.out.println("박스에 담긴 메시지: " + box.get());
 		return box.get();
 	}
