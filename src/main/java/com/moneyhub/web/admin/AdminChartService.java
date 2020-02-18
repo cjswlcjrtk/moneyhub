@@ -17,7 +17,7 @@ public class AdminChartService {
 	@Transactional
 	public ArrayList<String> memberPieChartCount(List<String> s){
 		ArrayList<String> list = new ArrayList<>();
-		for(String p: s) {	
+		for(String p: s) {
 			list.add(adminMapper.memberPieChartCount(p));
 		}	
 		return list;

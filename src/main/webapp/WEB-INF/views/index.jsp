@@ -120,7 +120,7 @@
 				<div class="container" style="top: 18%;">
 					<div class="row">
 
-						<div class="col-full"><h1>김민국</h1></div>
+						<div class="col-full"><h1>박형진</h1></div>
 
 					</div>
 					<div class="row">
@@ -156,11 +156,11 @@
 				</div>
 				<div class="row section-content">
 					<div class="col-1-2" style="text-align: center;">
-						<img src="resources/img/면접용.jpeg" style="height: 200px;" src="">
+						<img src="resources/img/myFace.jpg" style="height: 200px;" src="">
 					</div>
 
 					<div class="col-1-3">
-						<h4>안녕하세요? 김민국입니다!</h4>
+						<h4>안녕하세요? 박형진입니다!</h4>
 						<p>저는 훌륭하고 멋진 소프트웨어 개발을 즐겨하는 사람입니다. 웹사이트 및 브라우저 플러그인, 기업 소프트웨어도 만들었고, 게임도 제작했습니다. 그 중  좋아했던 프로젝트 몇 개를 아래 포트폴리오로 만들었으니 <a href="#portfolio">여기를 누르시거나</a> 페이지 아래쪽에서 구경해 보세요! 도움이 필요하세요? 저하고 이야기해 보시겠어요? 소셜 미디어나 <a href="#contact">이메일</a>로 연락해 주세요.</p>
 						<ul class="social-links clearfix">
 							<li><a href="https://www.github.com/hmyanghm" target="_blank" title="Github"><i class="fa fa-github"></i></a></li>
@@ -246,9 +246,9 @@
 							</a>
 						</div>
 						<div class="col-1-6 project port-game mix_all" style="display: inline-block;  opacity: 1; padding-top: 30px;">
-							<a href="https://github.com/hmyanghm" title="github" >
+							<a href="https://github.com/cjswlcjrtk" title="github" target="_blank">
 								<img src="https://github.githubassets.com/images/modules/open_graph/github-mark.png" alt="Super Puzzle Platformer is a Unity game developed in 14 days.">
-							</a><
+							</a>
 						</div>						
 					</div>
 				</div>
@@ -268,24 +268,24 @@
 							<div class="col-full" style="margin-bottom: 25px;">
 
 								항상 초심같은 마음가짐으로 임할것이고 최신기술 트렌드에도 뒤져지지
-								않고 하루하루 성장하겠습니다  <br>rogbest@naver.com으로 이메일 주세요. 곧 답장 드리겠습니다.<br>언제든지 연락주세요	
+								않고 하루하루 성장하겠습니다  <br>hjp3401@naver.com으로 이메일 주세요. 곧 답장 드리겠습니다.<br>언제든지 연락주세요	
 							</div>
 						</div>
 						<div id="form-contact-container">
 							<div class="col-full">
 								<label for="">이름
-									<h2>김민국</h2>
+									<h2>박형진</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">Email 주소
 
-									<h2>rogbest@naver.com</h2>
+									<h2>hjp3401@naver.com</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">휴대폰 번호
-									<h2>010-4223-4683</h2>
+									<h2>010-4595-3401</h2>
 								</label>
 							</div>
 						</div>
