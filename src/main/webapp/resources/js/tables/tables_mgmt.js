@@ -111,21 +111,6 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-				
-//			alert(JSON.stringify(disableDays))
-			/*$.ajax({
-				url : _ + `/datepicker/insert/holiday`,
-				type : 'POST',
-				data : JSON.stringify(disableDays),
-				dataType : 'json',
-				contentType : 'application/json',
-				success : d=>{
-					alert('성공')
-				},
-				error : e=>{
-					alert('전송 실패')
-				}
-			})*/
 			
 		})
 		$(`<h3><a>DATEPICKER 테이블  DATA 삭제</a></h3><br><br>`)
@@ -374,7 +359,6 @@ tables_mgmt =(()=>{
 		})
 	}
 
-	//==========================================================
 	let trade_mgmt=()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>TRD 테이블 생성</a></h3><br><br>`)

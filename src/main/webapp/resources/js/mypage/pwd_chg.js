@@ -55,13 +55,12 @@ pwd_chg =(()=>{
 						if(d.msg === 'true'){
 							sessionStorage.setItem('CPWD',d.cus.cpwd)
 							auth.onCreate()
-							alert('변경된 비밀번호로 다시 로그인하실 수 있습니다.')
 						}else{
 							alert('정보를 다시 확인해주세요.')
 						}
 					},
 					error : e=>{
-						alert('pwd_chg ajax 실패')  
+						alert('시스템 확인 중입니다.')
 					}
 				})
 			}		

@@ -18,4 +18,3 @@ public class Exth {
 	private float usd, eur, aud, cny, jpy, rerate; 
 	private String bdate;
 }
-//cno, total, krw, usd, eur, aud, cny, jpy, rerate, bdate, profits

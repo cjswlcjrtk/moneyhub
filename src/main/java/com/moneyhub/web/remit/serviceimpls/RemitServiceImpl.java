@@ -67,20 +67,18 @@ public class RemitServiceImpl{
 		rcpt.setRcp(0); //0 미수취
 		rcpt.setCntp(deal.get("cntp").toString()); 
 		rcpt.setPassName(deal.get("passName").toString());
-//		rcpt.setPassLnm(deal.get("rcpsl").toString());
 		rcpt.setRcemail(deal.get("rcemail").toString());
 		rcpt.setCrtmem("LEJ");
 		rcpt.setCrtdt(sdf.format(date));
 		remitMapper.insertRCPT(rcpt);
 		
-	  //수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
-	  fee.setBsdate(sdf.format(date));
-	  fee.setMtcn(mtcn);
-	  fee.setCno(deal.get("cno").toString()); 
-	  fee.setCrtmem(deal.get("crtmem").toString()); //yhm수정
-	  fee.setCrtdt(sdf.format(date)); 
-	  fee.setFeeAmnt(deal.get("fee").toString());
-	  remitMapper.insertFee(fee);
+		fee.setBsdate(sdf.format(date));
+		fee.setMtcn(mtcn);
+		fee.setCno(deal.get("cno").toString()); 
+		fee.setCrtmem(deal.get("crtmem").toString()); //yhm수정
+		fee.setCrtdt(sdf.format(date)); 
+		fee.setFeeAmnt(deal.get("fee").toString());
+		remitMapper.insertFee(fee);
 	}
 	
 	@Transactional
@@ -124,14 +122,12 @@ public class RemitServiceImpl{
 		rcpt.setRcp(0); //0 미수취 1수취
 		rcpt.setCntp(deal.get("cntp").toString()); 
 		rcpt.setPassName(deal.get("passName").toString());
-//		rcpt.setPassLnm(deal.get("rcpsl").toString());
 		rcpt.setRcemail(deal.get("rcemail").toString());
 		rcpt.setCrtmem("LEJ");
 		rcpt.setCrtdt(sdf.format(date));
 		remitMapper.insertRCPT(rcpt);
 		
 		//수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
-		System.out.println("deal.get('fee')는1? " + deal.get("fee").toString());
 		fee.setBsdate(sdf.format(date));
 		fee.setMtcn(mtcn);
 		fee.setCno(deal.get("cno").toString()); 

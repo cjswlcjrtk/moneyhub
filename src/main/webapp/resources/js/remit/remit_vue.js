@@ -32,12 +32,6 @@ remit_vue = {
 								<p><span id="fee_check" style="font-size: initial; color:darkgray;"></span> USD (수수료 별도)</p>
 								<div class="spacer"></div> 
 							</div> 
-							<div class="description"> 
-								<i class="empty"></i> 
-									<div class="spacer"></div> 
-								<p><span style="font-size: initial; color:darkgray;">541,750</span> ${deal.cntcd} (받는이 예상 금액)</p> 
-								<div class="spacer"></div> 
-							</div> 
 								<div class="description last"> 
 									<i><img src="https://img.themoin.com/public/img/exchange-rate.svg"></i> 
 									<div class="spacer"></div> 

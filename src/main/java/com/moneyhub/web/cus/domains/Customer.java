@@ -14,17 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Customer {
 
-	private String cno,
-					cemail,
-					cpwd,
-					cname,
-					cstcd,		// 고객상태코드
-					sdate,		// 가입일
-					wdate,		// 탈퇴일
-					udate,
-					zip,
-					addr,
-					daddr,
-					birth;
+	private String cno, cemail, cpwd, cname, cstcd, sdate, wdate, udate,
+					zip, addr, daddr, birth;
 
 }

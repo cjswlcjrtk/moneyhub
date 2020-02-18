@@ -29,9 +29,6 @@ public class ExrateProxy {
 		
 		Collections.sort(paramList);
 		Collections.reverse(paramList);
-	/*	System.out.print("내림차순 : ");
-		paramList.forEach(i-> System.out.println(i));
-		*/
 		ArrayList<Exrate> resultList = new ArrayList<>();
 		
 		int initNum = 0;
@@ -45,7 +42,6 @@ public class ExrateProxy {
 				}
 			}else {
 				resultList.add(paramList.get(i));
-//				System.out.println(paramList.get(i));
 				if(paramList.get(i).getBdate().equals(paramList.get(i+1).getBdate())) {
 					initNum = i;
 					flag = true;
@@ -55,8 +51,6 @@ public class ExrateProxy {
 				length = 10;
 		}
 		Collections.sort(resultList);
-/*		System.out.println("중복제거 : " + resultList.size());
-		resultList.forEach(i-> System.out.println(i));*/
 		return resultList;
 	}
 }

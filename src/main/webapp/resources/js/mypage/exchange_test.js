@@ -23,7 +23,6 @@ exchange_test =(()=>{
 		dpkMinFlag = false
 		
 		exrateSess.flag = 'default'
-//		exrateSess.bdate = common.clock_format()	
 		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess))
 		disableDays = []
 		weekday = []
@@ -44,7 +43,7 @@ exchange_test =(()=>{
 				datepicker_show()
 			})
 			.catch(function(e){
-				alert('오동작')
+				alert('시스템 확인 중입니다.')
 			})
 		})
 		.fail(()=>{
@@ -214,7 +213,6 @@ exchange_test =(()=>{
 				$('#exchange_test_chart1').empty()
 				init_Exth()
 				exchange_test.onCreate()
-//				$('html').scrollTop(0);
 			})
 			
 			$('#save_btn').css({
@@ -232,10 +230,8 @@ exchange_test =(()=>{
 			.click(()=>{
 				init_Exth()
 				saveFlag = true
-//				alert('저장 클릭 후 amount_history 전 exth - ' + JSON.stringify(exth))
 				amount_history()
 				common.object_sort(exth)
-//				alert('저장 클릭 후 amount_history 후 exth - ' + JSON.stringify(exth))
 				sessionStorage.setItem('exchangeCount', 0)
 				$.ajax({
 					url : `${_}/exth/insert/${deposit}`,
@@ -255,7 +251,7 @@ exchange_test =(()=>{
 						$.getScript(line_graph_js)
 					},
 					error : e=>{
-						alert('ajax 실패')
+						alert('시스템 확인 중입니다.')
 					}
 				})
 			})
@@ -269,7 +265,7 @@ exchange_test =(()=>{
 
 			},
 			error : e=>{
-				alert('ajax 실패')
+				alert('시스템 확인 중입니다.')
 			}
 		})
 	}
@@ -323,10 +319,8 @@ exchange_test =(()=>{
 		$('<button/>')
 		.text('다음')
 		.addClass('btn btn-sm btn-primary')
-//		.css({ 'font-weight' : 'bold' })
 		.appendTo('#next_day_btn')
 		.click(()=>{
-//			alert('>>>>')
 		})
 		
 		datepicker_kr()	
@@ -341,12 +335,7 @@ exchange_test =(()=>{
 		$('#datepicker').datepicker()
 		.change(()=>{
 			if(exrateSess.bdate !== $('#datepicker').val() ){
-//				alert('날짜 변경 후 저장 전 exth - ' + JSON.stringify(exth))
 				amount_history()
-//				alert('날짜 변경 후 저장 후 exth - ' + JSON.stringify(exth))
-//				alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
-//				alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
-				
 				exrateSess.flag = 'select2'
 				exrateSess.bdate = $('#datepicker').val()
 				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
@@ -464,17 +453,14 @@ exchange_test =(()=>{
 	}
 	let amount_history =()=>{
 		let bdate_exist
-//		alert('amount_history - exchangeCount : ' + $.exchangeCount() + ', saveFlag : ' + saveFlag)
 		if($.exchangeCount() > 0 || saveFlag === true){	// 환전버튼 클릭 시 ++
 			$.each(exth, (i, j)=>{
 				if(exrateSess.bdate === j.bdate ){	//	날짜가 같을 시 오버라이딩 시키기
-//					alert('날짜 같음')
 					bdate_exist_flag = true
 					bdate_exist = i
 				}
 			})
 			if( bdate_exist_flag === true ){
-//				alert('오버라이딩')
 				exth[bdate_exist] = { bdate : exrateSess.bdate,
 						total : common.comma_remove($('#total_money').text()), 
 						krw : common.comma_remove($('#exchange_KRW').text()), 
@@ -496,9 +482,7 @@ exchange_test =(()=>{
 						jpy : common.comma_remove($('#exchange_JPY').text()),
 						cno : getCno	})
 			}
-//			alert('exth 저장 : ' + JSON.stringify(exth))
 		}
-		
 	}
 	return { onCreate, exchange_popup }
 })()

@@ -49,7 +49,6 @@ common = (function(){
 			.keyup(()=>{
 				let send_cntcd = $('.form-calculator .amount-row .send h3').text()
 				let send_value
-//				alert('send.val() : ' + send.val())
 				send.val( send.val().replace(/[^0-9]/g,'') )
 				if( parseFloat(common.comma_remove(send.val())) > parseFloat(common.comma_remove($('#exchange_' + send_cntcd ).text()))){
 					send_value = common.comma_create(common.comma_remove($('#exchange_' + send_cntcd).text()))

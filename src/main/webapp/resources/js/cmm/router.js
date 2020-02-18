@@ -1,6 +1,5 @@
 "use strict"
 function Session(x){	
-//	var exrateSess = {}
 	sessionStorage.setItem('ctx', x);
 	sessionStorage.setItem('js', x + '/resources/js');
 	sessionStorage.setItem('css', x + '/resources/css');

@@ -14,5 +14,4 @@ public interface ExchangeMapper {
 
 	public void insertEx(Exchange ex);
 	public ArrayList<Exrate> exTrend(String cntcd);
-	/* public void balanceChg(AccountHistory accHistory); */
 }

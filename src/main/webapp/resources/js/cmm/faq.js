@@ -49,7 +49,6 @@ faq =(()=>{
 	}
 	
 	let faq_list =(x)=>{	
-//		x.keyword.replace( /  /gi, ' ' )
 		if( x.keyword == ' ' || x.keyword == undefined || ( x.keyword.length < 2 )){ 
 			x.keyword = null
 		}else{
@@ -78,7 +77,6 @@ faq =(()=>{
 		    		$(this).children('.answer').attr('class', 'answer show')
 		    	}else{
 		    		$('div.box').children('.answer').attr('class', 'answer')
-//		    		$(this).children('.answer').attr('class', 'answer')
 		    	}
 		    })
 		    

@@ -7,7 +7,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(45, 204, 214, 0.2)',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -63,7 +62,6 @@ $(document).ready(function(){
 						labelString: 'Value'
 					},
 					ticks: {
-//						stepSize : 5,
 		                beginAtZero: false,
 		                callback: function(value, index, values) {
 		                	return common.comma_create(value)

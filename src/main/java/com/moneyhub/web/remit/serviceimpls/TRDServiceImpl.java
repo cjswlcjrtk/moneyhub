@@ -26,7 +26,7 @@ public class TRDServiceImpl{
 		box.put("CREATE_TRD", SQL.CREATE_TRD.toString());
 		Consumer<HashMap<String, Object>> c = p -> trdMapper.createTRD(p);
 		c.accept(box.get());
-		}
+	}
 	
 	public void deleteTRD() {
 		box.clear();

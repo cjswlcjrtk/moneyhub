@@ -42,7 +42,6 @@ public class ExrateSevice extends Typetester{
 			if( bdate.compareTo(e.getBdate()) >= 0) {
 				switch (e.getCntcd()) {
 				case "USD":
-//					System.out.println( e.getBdate() + "- 비교값 : " + );
 					usdList.add(e);
 					break;
 				case "EUR":
@@ -60,7 +59,6 @@ public class ExrateSevice extends Typetester{
 				}
 			}
 		}
-
 		box.clear();
 		box.put("usdRate", exPxy.sortDuplExrate(usdList));
 		box.put("eurRate", exPxy.sortDuplExrate(eurList));
@@ -84,14 +82,11 @@ public class ExrateSevice extends Typetester{
 		HashMap<String, Float> map = new HashMap<>();
 		map = exrateMapper.getExchangeFee();
 		inven.clear();
-		System.out.println("cntcd 수수료 계산 전 : " + exrateMapper.cntcdSearchExrate(cntcd));
-		System.out.println("수수료 : " + map.get("AMNT"));
 		for(Exrate e : exrateMapper.cntcdSearchExrate(cntcd)) {
 			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
 									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
 			inven.add(e);
 		}
-//		System.out.println("cntcd 수수료 계산 후 : " + inven.get());
 		return inven.get();
 	}
 	
@@ -99,13 +94,11 @@ public class ExrateSevice extends Typetester{
 		HashMap<String, Float> map = new HashMap<>();
 		map = exrateMapper.getExchangeFee();
 		inven.clear();
-//		System.out.println("bdate 수수료 계산 전 : " + exrateMapper.bdateSearchExrate(bdate));
 		for(Exrate e : exrateMapper.bdateSearchExrate(bdate)) {
 			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
 									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
 			inven.add(e);
 		}
-//		System.out.println("bdate 수수료 계산 후 : " + inven.get());
 		return inven.get();
 	}
 	
@@ -124,11 +117,9 @@ public class ExrateSevice extends Typetester{
 		c.accept(map);
 	}
 	@Transactional
-//	@Scheduled(fixedDelay=10000)
 	@Scheduled(cron="0 0 5 * * *")
 	public void schedulerEx() {
 		try {
-//			System.out.println("스케쥴 동작");
 			final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36";
 			
 			String exrateUrl = "https://api.manana.kr/exchange/rate/KRW/KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json";
@@ -139,8 +130,6 @@ public class ExrateSevice extends Typetester{
 												.ignoreContentType(true)
 												.execute();
 				JSONArray jsonArr = new JSONArray(homePage.parse().select("body").text());
-//				System.out.println(jsonArr.length());
-//				System.out.println(jsonArr);
 				
 				for( int i = 0; i< jsonArr.length(); i++ ) {
 					exrate.setBdate(jsonArr.getJSONObject(i).get("date").toString().substring(0, 10));

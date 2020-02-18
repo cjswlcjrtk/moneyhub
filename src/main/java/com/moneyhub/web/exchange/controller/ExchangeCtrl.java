@@ -34,31 +34,14 @@ public class ExchangeCtrl extends Proxy {
 
 	@PostMapping("/insert")
 	public Map<?, ?> insertExchange(@RequestBody HashMap<String, Object> exchange){
-		System.out.println("exchange들어옴???????????"+ exchange);
 		exService.insertExchange(exchange);
 		box.clear();
 		box.put("msg", "SUCCESS");
 		return box.get();
-
 	}
 	
 	@GetMapping("/extrend/cntcd/{cntcd}")
 	public Map<?, ?> exTrend(@PathVariable String cntcd) {
 		return exService.ExTrend(cntcd);
 	}
-	
-	/*
-	 * @PostMapping("/balanceChg") public Map<?, ?> balanceChg(@RequestBody
-	 * HashMap<String, Object> exchange){
-	 * System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + exchange);
-	 * exService.balanceChg(exchange); box.clear(); box.put("acc", acc);
-	 * 
-	 * //EJ 수정 acc -> 히스토리로 연결 if(accHistory.getBalance() > 0) { box.put("msg",
-	 * "SUCCESS"); }else { box.put("msg", "FAIL"); }
-	 * System.out.println("잔액 변경하는 자바 부분에서 box.get() -> " + box.get()); return
-	 * box.get(); }
-	 */
-	
-	
-	
 }

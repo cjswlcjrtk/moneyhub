@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component("pxy")
 public class Proxy {
 	public int integer(String param) {
-	//	Function<String, Integer> f = s-> Integer.parseInt(s);
 		Function<String, Integer> f = Integer :: parseInt;
 		
 		return f.apply(param);
@@ -22,12 +21,7 @@ public class Proxy {
 		return f.apply(param);
 	}
 	
-/*	public float ffloat(Object param) {
-		Function<Object, Float> f = Float :: parseFloat;
-		return f.apply(param);
-	}*/
 	public boolean equal(String t, String u) {
-	//	BiPredicate<String, String> f = (t, u)-> t.equals(u);
 		BiPredicate<String, String> f = String :: equals;
 		return f.test(t, u);
 	}

@@ -56,7 +56,6 @@ public class Split {
 		}
 		System.out.println(list);
 		
-
 	};
 
 }

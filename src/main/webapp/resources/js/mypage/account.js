@@ -49,7 +49,7 @@ account =(()=>{
 				if(successful){
 					alert('복사되었습니다.')
 				}else{
-					alert('복사실패')
+					alert('시스템 확인 중입니다.')
 				}
 			} catch (err) { 
 				alert('이 브라우저는 지원하지 않습니다.') 
@@ -72,14 +72,11 @@ account =(()=>{
 					$.getJSON(_ + '/account/balance/'+acctno, d=>{ 
 						acc.balance = d.balance
 						sessionStorage.setItem('acc', JSON.stringify(acc))
-						alert('acc에 담긴 세션은? ' + JSON.stringify(acc))
-						alert('acc.balance는? ' + acc.balance)
-						alert('d.balance는? ' + d.balance)
 					})
 					account.onCreate()
 				},
 				error : (request,status,error) => {
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			})
 			} else {alert('입금 금액을 입력해주십시오.')}
@@ -105,7 +102,7 @@ account =(()=>{
 					.appendTo('#account_tbody')
 				})
 			}else{
-				alert('계좌 getJSON 실패')
+				alert('시스템 확인 중입니다.')
 			}
 		})
 	}

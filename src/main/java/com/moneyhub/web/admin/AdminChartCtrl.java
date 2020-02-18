@@ -61,22 +61,16 @@ public class AdminChartCtrl extends Proxy{
 	
 	@GetMapping("/memberPieChart")
 	public Map<?, ?> memberPieChart(){
-		System.out.println("파이 테스트");
 		ArrayList<String> list = new ArrayList<>();
 		for(int i=1; i<7 ;i++) {
 			list.add(i*10+"");
 		}
 		ArrayList<String> list2 = new ArrayList<>();
 		list2 = adminChartService.memberPieChartCount(list);
-		System.out.println(list);
-		System.out.println(list2);
 		box.clear();
 		box.put("adminChart", list);
 		box.put("adminChartCount", list2);
 		print(box.get().toString());
 		return box.get();
 	}
-	
-	
-
 }

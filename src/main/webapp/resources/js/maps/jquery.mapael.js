@@ -754,21 +754,6 @@
             });
         },
 
-        /*
-         * Map a mouse position to a map position
-         *      Transformation principle:
-         *          ** start with (pageX, pageY) absolute mouse coordinate
-         *          - Apply translation: take into accounts the map offset in the page
-         *          ** from this point, we have relative mouse coordinate
-         *          - Apply homothetic transformation: take into accounts initial factor of map sizing (fullWidth / actualWidth)
-         *          - Apply homothetic transformation: take into accounts the zoom factor
-         *          ** from this point, we have relative map coordinate
-         *          - Apply translation: take into accounts the current panning of the map
-         *          ** from this point, we have absolute map coordinate
-         * @param pageX: mouse client coordinate on X
-         * @param pageY: mouse client coordinate on Y
-         * @return map coordinate {x, y}
-         */
         mapPagePositionToXY: function(pageX, pageY) {
             var self = this;
             var offset = self.$map.offset();
@@ -780,31 +765,6 @@
             };
         },
 
-        /*
-         * Zoom on the map
-         *
-         * zoomOptions.animDuration zoom duration
-         *
-         * zoomOptions.level        level of the zoom between minLevel and maxLevel (absolute number, or relative string +1 or -1)
-         * zoomOptions.fixedCenter  set to true in order to preserve the position of x,y in the canvas when zoomed
-         *
-         * zoomOptions.x            x coordinate of the point to focus on
-         * zoomOptions.y            y coordinate of the point to focus on
-         * - OR -
-         * zoomOptions.latitude     latitude of the point to focus on
-         * zoomOptions.longitude    longitude of the point to focus on
-         * - OR -
-         * zoomOptions.plot         plot ID to focus on
-         * - OR -
-         * zoomOptions.area         area ID to focus on
-         * zoomOptions.areaMargin   margin (in pixels) around the area
-         *
-         * If an area ID is specified, the algorithm will override the zoom level to focus on the area
-         * but it may be limited by the min/max zoom level limits set at initialization.
-         *
-         * If no coordinates are specified, the zoom will be focused on the center of the current view box
-         *
-         */
         onZoomEvent: function (e, zoomOptions) {
             var self = this;
 

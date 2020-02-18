@@ -28,6 +28,7 @@ public class RootConfig {
 //		dataSource.setPassword("moneyhubdb");
 		dataSource.setUsername("moneyhub");
 		dataSource.setPassword("moneyhub");
+
 		return dataSource;
 	}
 	

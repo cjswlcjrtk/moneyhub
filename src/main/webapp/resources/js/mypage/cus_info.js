@@ -8,14 +8,12 @@ cus_info =(()=>{
 		js = $.js()
 		cus = $.cusInfo()
 		mypage_vue_js = js + '/vue/mypage_vue.js'
-//		cookie_js = js + '/cmm/cookie.js'
 	}
 	
 	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(mypage_vue_js)
-//			$.getScript(cookie_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -30,10 +28,6 @@ cus_info =(()=>{
 		.html(mypage_vue.cus_info())
 
 		let cus = $.cusInfo()
-//		alert(JSON.stringify(cus))
-/*		zip : sessionStorage.setItem('ZIP', cus.zip)
-		addr : sessionStorage.setItem('ADDR', cus.addr)
-		daddr : sessionStorage.setItem('DADDR', cus.daddr)*/
 		$('#infoEmail').text(cus.cemail)
 		$('#infoName').text(cus.cname)
 		$('#infoZip').text(cus.zip)

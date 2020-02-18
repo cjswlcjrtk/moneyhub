@@ -13,11 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
-	//계좌 생성 테이블
-	/*
-	 * private String cemail, bsdate, acctNo, achcntcd, crtmem, crtdt, upmem, updt;
-	 * private int balance, deposit, withdrawal;
-	 */
+	
 	private String cemail, bsdate, acctNo, achcntcd, crtmem, crtdt, upmem, updt;
 	private int balance;
 }

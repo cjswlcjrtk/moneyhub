@@ -21,7 +21,6 @@ public class TxCtrl {
 	
 	@GetMapping("/crawling/kakaofaq")
 	public Map<?, ?> faqCrawling() {
-//		System.out.println("FAQ 크롤링 진입");
 		txService.crawling();
 		box.clear();
 		box.put("result", "SUCCESS");
@@ -30,7 +29,6 @@ public class TxCtrl {
 	
 	@GetMapping("/insert/faqlist")
 	public Map<?, ?> faqInsert(){
-//		System.out.println("Tx FAQ insert 진입");
 		txService.insertFAQStore();
 		box.put("result", "SUCCESS");
 		return box.get();
@@ -38,7 +36,6 @@ public class TxCtrl {
 	
 	@GetMapping("/insert/exratelist")
 	public Map<?, ?> exrateInsert(){
-//		System.out.println("Tx EXRATE insert 진입");
 		txService.insertExrateStore();
 		box.put("result", "SUCCESS");
 		return box.get();

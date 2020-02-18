@@ -55,8 +55,8 @@ auth =(()=>{
 			$('html').scrollTop(0)
 		})
 
-		$('#cemail').val('mh@moneyhub.com')
-		$('#cpwd').val('moneyhub')
+		$('#cemail').val('song@gmail.com')
+		$('#cpwd').val('aa')
 
 
 		join_2_page_btn()
@@ -89,7 +89,6 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						sessionStorage.setItem('acc', JSON.stringify(d.acc))
 						mypage.onCreate()
@@ -245,7 +244,6 @@ auth =(()=>{
 		var dateStr = $('#birth').val();		
 		var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
 		var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자
-													// (월)
 		var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
 		var today = new Date(); // 날짜 변수 선언
 		var yearNow = today.getFullYear(); // 올해 연도 가져옴
@@ -328,9 +326,10 @@ auth =(()=>{
 							if(d.msg === 'SUCCESS'){
 								login_page()
 								login()
-								alert('회원가입이 완료되었습니다.')
+//								alert('회원가입이 완료되었습니다.')
 							}else{
-								alert('회원가입 실패')
+//								alert('회원가입 실패')
+								alert('시스템 확인 중입니다.')
 								return false
 							}
 						},

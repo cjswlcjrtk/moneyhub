@@ -1,4 +1,3 @@
-//		window.onload = function() {//
 $(document).ready(function(){
 	let value
 	let config = {
@@ -9,7 +8,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(45, 204, 214, 0.2)',	//'#9de8ec',
 				borderColor: '#2DCCD6',
-			//	lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -73,15 +71,7 @@ $(document).ready(function(){
 					    }
 		            }
 				}]
-			}/*,
-			elements: {
-		        line: {
-		            borderJoinStyle: 'round'
-		        }
-		    }*/
-//			lineTension : 5,
-//			bezierCurve: false
-			
+			}
 		}
 	};
 	let config1 = {
@@ -160,10 +150,6 @@ $(document).ready(function(){
 					        }
 					    }
 					}
-					/*scaleLabel: {
-						display: true,
-						labelString: 'Value'
-					}*/
 				}]
 			}
 		}
@@ -179,8 +165,6 @@ $(document).ready(function(){
 			config1.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
 			config1.data.datasets[0].data[i] = parseFloat(j.profits)
 		})
-//		config1.options.title.text = `환전 날짜별 수익금 차트`
-		
 		window.myLine = new Chart(ctx, config1);
 		
 	}else if($.chartFlag() === 'historyChart'){	
@@ -205,7 +189,6 @@ $(document).ready(function(){
 				let ctx = document.getElementById(j.ctxId).getContext('2d');
 				tempConfig = j.cf
 				tempConfig.options.tooltips.backgroundColor = j.color
-//				tempConfig.data.datasets[0].backgroundColor = j.color
 				tempConfig.data.datasets[0].borderColor = j.color
 				tempConfig.data.labels = config.data.labels
 				tempConfig.data.datasets[0].data = j.data
@@ -232,7 +215,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(45, 204, 214, 0.2)',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -307,7 +289,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(54, 162, 235, 0.2)',		//window.chartColors.blue,
 				borderColor: '#36a2eb',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -382,7 +363,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(255, 205, 86, 0.2)',		//window.chartColors.blue,
 				borderColor: '#36a2eb',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -457,7 +437,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(255, 99, 132, 0.2)',		//window.chartColors.blue,
 				borderColor: '#36a2eb',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -532,7 +511,6 @@ $(document).ready(function(){
 				label: '머니허브 환율',
 				backgroundColor: 'rgba(153, 102, 255, 0.2)',	//36a2eb
 				borderColor: '#36a2eb',
-//				lineTension : 0,
 				data: [],
 				fill: true	
 			}]
@@ -592,7 +570,6 @@ $(document).ready(function(){
 		                beginAtZero: false,
 		                callback: function(value, index, values) {
 		                	return common.comma_create(value)
-					        
 					    }
 		            }
 				}]

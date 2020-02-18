@@ -30,7 +30,6 @@ public class ExchangeService {
 	@Autowired AccountHistory accHistory;
 	
 	public void insertExchange(HashMap<String, Object> exchange) {
-		System.out.println("exchangeService 들어옴???? -----------" + exchange);
 		String mtcn = CharUtil.excuteGenerate();
 		exch.setMtcn(mtcn);
 		exch.setCemail(exchange.get("cemail").toString());
@@ -45,12 +44,10 @@ public class ExchangeService {
 		String code = "0";
 		exch.setChngCausCd(code);
 		exch.setTrdStatCd(code);
-		System.out.println("최종 ex - " + exch);
 		exMapper.insertEx(exch);
 	}
 	
 	public Map<?, ?> ExTrend(String cntcd){
-		System.out.println("Exchange.service 들어옴 cntcd - " + cntcd);
 		ArrayList<Exrate> list = new ArrayList<>();
 		list = exMapper.exTrend(cntcd);
 		float sum = 0, avg;
@@ -58,7 +55,6 @@ public class ExchangeService {
 			sum += exlist.getExrate();
 		}
 		avg = sum / list.size();
-		System.out.println("list - " + list);
 		box.clear();
 		if(list.get(0).getExrate() > avg) {
 			box.put("msg","UP");
@@ -67,37 +63,4 @@ public class ExchangeService {
 		}
 		return box.get();
 	}
-	
-	/*
-	 * public void balanceChg(HashMap<String, Object> exchange) {
-	 * System.out.println("Exchange.service balanceChg 들어옴 여기서 exchange는? - " +
-	 * exchange); acc.setCemail(exchange.get("cemail").toString()); String
-	 * stwithdrawal = exch.getExchKrw(); int withdrawal =
-	 * Integer.parseInt(stwithdrawal.replaceAll(",", ""));
-	 * acc.setWithdrawal(withdrawal); String stexchange =
-	 * exchange.get("acc").toString(); JSONObject json = new JSONObject(stexchange);
-	 * int intbalance = json.getInt("balance"); int balance = intbalance -
-	 * withdrawal; acc.setBalance(balance); if(acc.getBalance() > 0) {
-	 * Consumer<Account> c = o -> exMapper.balanceChg(acc); c.accept(acc); }else {
-	 * System.out.println("잔액 부족으로 인해 실패!"); } }
-	 */
-	
-	/*
-	 * public void balanceChg(HashMap<String, Object> exchange) { //EJ 수정 acc ->
-	 * 히스토리로 연결
-	 * 
-	 * System.out.println("Exchange.service balanceChg 들어옴 여기서 exchange는? - " +
-	 * exchange); accHistory.setCemail(exchange.get("cemail").toString()); String
-	 * stwithdrawal = exch.getExchKrw(); int withdrawal =
-	 * Integer.parseInt(stwithdrawal.replaceAll(",", ""));
-	 * accHistory.setWithdrawal(withdrawal); String stexchange =
-	 * exchange.get("acc").toString(); JSONObject json = new JSONObject(stexchange);
-	 * int intbalance = json.getInt("balance"); int balance = intbalance -
-	 * withdrawal; accHistory.setBalance(balance); if(accHistory.getBalance() > 0) {
-	 * Consumer<AccountHistory> c = o -> exMapper.balanceChg(accHistory);
-	 * c.accept(accHistory); }else { System.out.println("잔액 부족으로 인해 실패!"); } }
-	 */
-	
-	
-	
 }

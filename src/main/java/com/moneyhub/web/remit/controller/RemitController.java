@@ -36,19 +36,16 @@ public class RemitController extends Proxy{
 		
 		@PostMapping("/insert")
 		public void insertRemit(@RequestBody HashMap<String, Object> deal){
-		System.out.println("ajax가 보낸 deal"+ deal);
 		remitService.insertRemit(deal);
 		}
 		
 		@PostMapping("/insert/exch")
 		public void insertExch(@RequestBody HashMap<String, Object> deal){
-		System.out.println("ajax가 보낸 deal"+ deal);
 		remitService.insertExch(deal);
 		}
 		
 		@GetMapping("/lists/page/{nowPage}/search/{cno}")
 		public Map<?, ?> trdhrList(@PathVariable String nowPage,@PathVariable String cno) {
-			print("송금 리스트 진입 - nowPage : " + nowPage+"cno"+cno);
 			int pageSize = 5, blockSize = 5;
 			pager.setCno(cno);
 			pager.setPageSize(pageSize);
@@ -59,7 +56,5 @@ public class RemitController extends Proxy{
 		}
 		@DeleteMapping("/delete/trdhr/list/row")
 		public void deleteTrfhrList(@RequestBody String mtcn) {
-			//EJ 거래내역 삭제
-			System.out.println("delete 들어옴"+ mtcn);
 		}
 }

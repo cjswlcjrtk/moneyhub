@@ -6,9 +6,6 @@ $(document).ready(function(){
 		$('.form-calculator .amount-row .receive p').text(`${x.country}`)
 		$('.form-calculator .amount-row .receive h3').text(`${x.cntcd}`)
 		
-		/*$('#exchange_test_exrate p')
-		.text(`${x.cntcd} 환율 : ${x.exrate}`)
-		.css({ 'text-align': 'left', margin : '5px' })*/
 		
 		$.getScript($.js() + '/remit/remit_box.js')
 		.done(()=>{
@@ -53,9 +50,6 @@ $(document).ready(function(){
                             stroke: "#fff",
                             "stroke-width": 1
                         },
-                       /* attrsHover: {
-                            animDuration: 0
-                        },*/
                         text: {
                             attrs: {
                                 cursor: "pointer",
@@ -197,8 +191,6 @@ $(document).ready(function(){
                       },
                       "SG": {
                           "value": "40000"
-//                          text: {content: "싱가포르 - 1 SGD", attrs: {fill: "#000", "font-size": 18, },
-//               				  position : "center", "font-weight" : "bold"}
                       },
                       "AU": {
                           "value": "400",
@@ -207,13 +199,9 @@ $(document).ready(function(){
                       },
                       "GB": {
                           "value": "40000"
-//                          text: {content: "영국 - 1 GBP", attrs: {fill: "#000", "font-size": 18, },
-//               				  position : "center", "font-weight" : "bold"}
                       },
                       "NP": {
                           "value": "50000"
-//                          text: {content: "네팔 - 1 NPR", attrs: {fill: "#000", "font-size": 18, },
-//               				  position : "bottom", "font-weight" : "bold"}
                       },
                       "DE": {
                           "value": "400",
@@ -222,35 +210,22 @@ $(document).ready(function(){
                       },
                       "FR": {
                           "value": "40000"
-//                          text: {content: "유럽연합 - 1 EUR", attrs: {fill: "#3dccd6", "font-size": 18, },
-//               				  position : "center", "font-weight" : "bold"}
                       },
                       "IT": {
                           "value": "40000"
-//                          text: {content: "이탈리아 - 1 EUR", attrs: {fill: "#000", "font-size": 18, },
-//               				  position : "bottom", "font-weight" : "bold"}
                       },
                       "NL": {
                           "value": "40000"
-//                          text: {content: "네덜란드 - 1 EUR", attrs: {fill: "#3dccd6", "font-size": 18, },
-//               				  position : "top", "font-weight" : "bold"}
                       },
                       "PT": {
                           "value": "40000"
-//                          text: {content: "포르투갈 - 1 EUR", attrs: {fill: "#3dccd6", "font-size": 18, },
-//               				  position : "top", "font-weight" : "bold"}
                       },
                       "ES": {
                           "value": "40000"
-//                          text: {content: "스페인 - 1 EUR", attrs: {fill: "#3dccd6", "font-size": 18, },
-//               				  position : "top", "font-weight" : "bold"}
                       },
                       "BE": {
                           "value": "40000"
-//                          text: {content: "벨기에 - 1 EUR", attrs: {fill: "#3dccd6", "font-size": 18, },
-//               				  position : "top", "font-weight" : "bold"}
                       },
-//////////////////////////////////////////////
                       "AF": {
                           "value": "35320445"
                       },
@@ -797,7 +772,6 @@ $(document).ready(function(){
             
             $(".mapcontainer").trigger('update', [{
                 setLegendElemsState: all_hidden,
-    //            animDuration: 1000
             }]);
             
         

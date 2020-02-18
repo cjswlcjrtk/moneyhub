@@ -105,7 +105,6 @@ exchange =(()=>{
 						deal.acctNo = acc.acctNo
 						deal.type = '2'
 						sessionStorage.setItem('deal',JSON.stringify(deal))
-						alert(JSON.stringify(deal))
 						
 						$.ajax({ 
 						url: _+'/account/withdrawal',
@@ -113,25 +112,25 @@ exchange =(()=>{
 						data : JSON.stringify(deal), 
 						contentType :'application/json',
 						success : () => {
-//							alert("입금 확인되었습니다.")
 							$.ajax({
 								url: _+'/remit/insert/exch',
 								type : 'POST',
 								data : JSON.stringify(deal),
 								contentType :'application/json',
 								success : () => {
-									alert("환전 성공")
 									mypage.remit_list({ nowPage : 0, cno : cus.cno})
 									mypage.onCreate()
 									$( 'html, body' ).stop().animate( { scrollTop : '825' })
 								},
 								error : (request,status,error) => {
-									alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//									alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+									alert('시스템 확인 중입니다.')
 								}
 							})
 						},
 						error : (request,status,error) => {
-							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							alert('시스템 확인 중입니다.')
 						}
 						})
 					}

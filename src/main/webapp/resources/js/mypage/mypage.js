@@ -53,7 +53,7 @@ mypage =(()=>{
 			page_move()	
 			remit_receive()
 			setInterval(clock_excute, 1000)
-//			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0, cno : cus.cno})
 		})
 		.fail(()=>{
@@ -201,7 +201,7 @@ mypage =(()=>{
 					alert('성공')
 				},
 				error : e=>{
-					alert('전송 실패')
+					alert('시스템 확인 중입니다.')
 				}
 			})
 		})
@@ -213,29 +213,6 @@ mypage =(()=>{
 		if(deal.cntp === '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
-		
-//		let deal_cntp = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '', cntp : '일본' },
-//			{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '', cntp : '중국' },
-//			{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '', cntp : '미국' },
-//			{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '', cntp : '싱가포르' },
-//			{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '', cntp : '호주' },
-//			{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '', cntp : '영국' },
-//			{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '', cntp : '벨기에' },
-//			{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '', cntp : '프랑스' },
-//			{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '', cntp : '독일' },
-//			{ img : 'it', cntcd : 'EUR', curr : '이탈리아 유로', flag : '', cntp : '이탈리아' },
-//			{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '', cntp : '네덜란드' },
-//			{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '', cntp : '포르투갈' },
-//			{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '', cntp : '스페인' }]
-		
-//			$.each(deal_cntp, (i, j)=>{
-//				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
-//					i.img = j.img
-//					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
-//				}
-//			})
-//		
-//		$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${img}.svg`)
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
@@ -279,7 +256,6 @@ mypage =(()=>{
 		$.getJSON( `${$.ctx()}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			
 			let pxy = d.pager
-//			alert('pxy.rowCount : ' + pxy.rowCount)
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
 				{ img : 'cn', cntcd : 'CNY', curr : '중국'},
 				{ img : 'us', cntcd : 'USD', curr : '미국'},
@@ -337,7 +313,7 @@ mypage =(()=>{
 											<span class="user-sendlist-receiveunit">KRW</span>
 										</h3>
 									</div>
-									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
+									<p>적용 환율 : 1 ${j.cntCd} = ${j.exrate} KRW</p>
 									<div class="send-due">
 										<p>${j.trdTypeCd}이 정상적으로 완료되었습니다.</p>
 									</div>

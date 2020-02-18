@@ -151,7 +151,6 @@ public class AdminCtrl extends Proxy{
 	
 	@PostMapping("/exchangeDBUpdate")
 	public Map<?, ?> exchangeDBUpdate(@RequestBody Map<String, Float> param){
-		System.out.println(param.get("exchangeDBValue")*0.01);
 		param.put("exchangeDBValue", (float) (param.get("exchangeDBValue")*0.01));
 		Consumer<Map<String, Float>> c = o -> adminMapper.exchangeDBUpdate(o);
 		c.accept(param);

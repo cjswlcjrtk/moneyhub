@@ -34,25 +34,25 @@ public class TRDHRServiceImpl{
 		pager.paging();
 		pxy.print(pager.toString());
 		Function<PageProxy, ArrayList<Map<String,Object>>> f = t -> trdhrMapper.selectAll(t);
-		
 		box.put("map", f.apply(pager));
 		box.put("pager", pager);
-		
 		pxy.print(box.get("pager").toString());
 		pxy.print(">>>>>리스트 :" + box.get("map").toString());
-		
 		return box.get();
 	}
+	
 	public int countTRDHR() {
 		Function<PageProxy, String> s = p -> trdhrMapper.countTRDHR(p);
 		return pxy.integer(s.apply(pager));
 	}
+	
 	public void createTRDHR() {
 			box.clear();
 			box.put("CREATE_TRDHR", SQL.CREATE_TRDHR.toString());
 			Consumer<HashMap<String, Object>> c = p -> trdhrMapper.createTRDHR(p);
 			c.accept(box.get());
 	}
+	
 	public void deleteTRDHR() {
 		box.clear();
 		box.put("DROP_TRDHR", SQL.DROP_TRDHR.toString());

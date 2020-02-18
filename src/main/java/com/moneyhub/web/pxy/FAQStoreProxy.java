@@ -1,7 +1,5 @@
 package com.moneyhub.web.pxy;
 
-import java.util.ArrayList;
-
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

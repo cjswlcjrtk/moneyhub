@@ -15,7 +15,6 @@ nav_vue = {
 					<li><a id="join">회원가입</a></li>
 					<li><a id="login">로그인</a></li> 
 					<li><a id="admin_login">관리자</a></li> 
-					<li><a id="tables_mgmt_a">DB Table 관리</a></li> 
 				</ul> 
 		<script> 
 					$(document).ready(function(){  

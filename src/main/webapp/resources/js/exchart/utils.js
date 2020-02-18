@@ -42,7 +42,6 @@ window.chartColors = {
 	var Color = global.Color;
 
 	Samples.utils = {
-		// Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
 		srand: function(seed) {
 			this._seed = seed;
 		},
@@ -133,7 +132,6 @@ window.chartColors = {
 	Samples.utils.srand(Date.now());
 
 	// Google Analytics
-	/* eslint-disable */
 	if (document.location.hostname.match(/^(www\.)?chartjs\.org$/)) {
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

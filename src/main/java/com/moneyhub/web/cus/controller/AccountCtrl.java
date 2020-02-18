@@ -27,7 +27,6 @@ import com.moneyhub.web.pxy.Proxy;
 @RequestMapping("/account")
 public class AccountCtrl extends Proxy {
 
-	/* @Autowired CustomerServiceImpl customerServiceImpl; */
 	@Autowired Customer cus;
 	@Autowired Box<Object> box;
 	@Autowired SqlSession sqlsession;
@@ -39,16 +38,13 @@ public class AccountCtrl extends Proxy {
 
     
 	
-	  @GetMapping("/getacchis/{cemail}/{acctNo}") //계좌 조회 
-	  public Map<? ,?> getAccHis(@PathVariable HashMap<String,Object> map){
-	  System.out.println("===========계좌 내역 가져오기" +map); 
-	  box.clear();
-	  Function<HashMap<String,Object>, List<AccountHistory>> f = t -> accMapper.getAccHis(t);
-	  box.put("msg","SUCCESS"); box.put("accHis",f.apply(map));
-	  System.out.println("box.get() -----------> "+box.get()); 
-	  return box.get(); 
-	  }
-	 
+	@GetMapping("/getacchis/{cemail}/{acctNo}") //계좌 조회 
+	public Map<? ,?> getAccHis(@PathVariable HashMap<String,Object> map){
+	box.clear();
+	Function<HashMap<String,Object>, List<AccountHistory>> f = t -> accMapper.getAccHis(t);
+	box.put("msg","SUCCESS"); box.put("accHis",f.apply(map));
+	return box.get(); 
+	}
 	
 	@PostMapping("/deposit")
 	public void deposit(@RequestBody HashMap<String, Object> deposit) {
@@ -57,7 +53,6 @@ public class AccountCtrl extends Proxy {
 	
 	@PostMapping("/withdrawal")  //출금
 	public Map<?, ?> ReWithDrawal(@RequestBody HashMap<String, Object> param){
-		System.out.println("들어온 param은 >>>>>>>>>>>" + param);
 		accountService.withDrawal(param);
 		return param;
 		}

@@ -22,11 +22,10 @@ remit_box =(()=>{
 			$.getScript(exrate_js)
 		)
 		.done(()=>{
-//			common.remit_send_focusout()
 			popup()
 		})
 		.fail(()=>{
-			alert('js를 불러오지 못했습니다.')
+			alert('시스템 확인 중입니다.')
 		})
 	}
 	
@@ -126,14 +125,12 @@ remit_box =(()=>{
 					deal.cntp =$('.form-calculator .amount-row .receive p').text()
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
-					/*alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)*/
 					
 				}
 				else if(( j.flag === 'exchange')){
 					if( cntcd_slide.style.display === 'none'){
 						$('#cntcd_slide').css({ display : 'block'})
 					}else{
-						alert( '나라 선택 후  display 없을 때: ' + cntcd_slide.style.display )
 						$('#cntcd_slide').css({ display : 'none'})
 					}
 					
@@ -170,7 +167,7 @@ remit_box =(()=>{
 						})
 					})
 					.catch(()=>{
-						alert('오동작')
+						alert('시스템 확인 중입니다.')
 					})
 					let cntcd = $('#exch_box .amount-row .receive h3').text()
 					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{

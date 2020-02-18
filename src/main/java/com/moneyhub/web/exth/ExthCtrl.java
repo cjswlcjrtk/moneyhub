@@ -26,14 +26,12 @@ public class ExthCtrl {
 	
 	@PostMapping("/insert/{deposit}")
 	public Map<?, ?> insertExth(@RequestBody ArrayList<Exth> paramList, @PathVariable String deposit) {
-//		System.out.println("EXTH insert 진입 - " + deposit);
 		box.put("exth", exthService.insertExth(paramList, deposit));
 		return box.get();
 	}
 	
 	@DeleteMapping("/delete/{getCno}")
 	public void truncateExthByCno(@PathVariable String getCno) {
-//		System.out.println("EXTH delete 진입 - " + getCno);
 		Consumer<String> c = t -> exthMapper.deleteExthByCno(t);
 		c.accept(getCno);
 	}

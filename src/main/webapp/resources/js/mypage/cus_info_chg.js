@@ -59,7 +59,6 @@ cus_info_chg =(()=>{
 							cus.addr = d.cus.addr
 							cus.daddr = d.cus.daddr
 							sessionStorage.setItem('cus',JSON.stringify(cus))
-							alert('회원 정보가 수정되었습니다.')
 							cus_info.onCreate()
 						}else{
 							alert('변경된 정보가 없습니다.')
@@ -67,7 +66,7 @@ cus_info_chg =(()=>{
 						
 					},
 					error : e=>{
-						alert('cus_info_chg ajax 실패')  
+						alert('시스템 확인 중입니다.')
 					}
 				})
 			}

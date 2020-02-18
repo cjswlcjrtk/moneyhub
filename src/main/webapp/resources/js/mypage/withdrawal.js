@@ -59,7 +59,7 @@ withdrawal =(()=>{
 						}
 					},
 					error : e=>{
-						alert('withdrawal ajax 실패')  
+						alert('시스템 확인 중입니다.')
 					}
 				})
 			}		

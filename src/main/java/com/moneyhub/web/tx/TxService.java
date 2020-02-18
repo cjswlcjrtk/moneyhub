@@ -44,7 +44,6 @@ public class TxService {
 			faq.setTitle(faqPxy.title_stores()[i]);
 			faq.setContent(faqPxy.content_stores()[i]);
 			faqMapper.insertFAQ(faq);
-//			txMapper.insertFAQ(faq);
 		}
 	}
 	
@@ -56,7 +55,6 @@ public class TxService {
 			exrate.setCntcd("EUR");
 			exrate.setCrtmem("KMK");
 			exrateMapper.insertExrate(exrate);
-//		//	txMapper.insertFAQ(exrate);
 		}
 	}
 	
